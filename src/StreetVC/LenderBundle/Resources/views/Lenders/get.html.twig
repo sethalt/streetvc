@@ -1,0 +1,49 @@
+{% extends "StreetVCLenderBundle::LenderLayout.html.twig" %}
+
+{% block title %}Profile{% endblock %}
+
+{% block content %}
+<div class="ui two column doubling row">
+  <div class="column eight wide centered">
+    <div class="ui segment">
+        <h2 class="ui header">Profile</h2>
+        <p>User: {{ user.fullName }}</p>
+        <p>Accreditation Status: {{ lender.accredited?'Accredited':'Not Accredited' }}</p>
+        <p>Current Balance: ${{ lender.currentBalance|number_format(2, '.', ',') }}</p>
+        <p>&nbsp;</p>
+        <p>Username: {{ user.username }}</p>
+        <p>Email: {{ user.email }}</p>
+        <p>Birthdate: {{ user.dateOfBirth|date('m/d/Y') }}</p>
+        <p>Social Security Number: XXX-XX-{{ user.socialSecurityNumber|slice(7, 4) }}</p>
+        <p>&nbsp;</p>
+        
+        <div class="button ui green"  onClick="editProfile()">Edit Profile or Change Password</div>
+    </div>
+  </div>
+</div>
+
+    <div class="ui basic modal">
+    {{ render(controller('FOSUserBundle:Profile:edit')) }}
+    </div>
+    
+{% endblock %}
+
+{% block javascripts %}
+  <script type="text/javascript">
+    function editProfile() {
+      $('.basic.modal').modal('show');
+    }
+
+    $(document).ready(function () {
+
+      $('#editProfile').on('submit', function (event) {
+        var postData = $(this).serializeArray();
+        var action = $(this).attr("action");
+        $.post(action, postData, function (data) {
+        });
+        location.reload();
+        event.preventDefault();
+      });
+    });
+  </script>
+{% endblock %}

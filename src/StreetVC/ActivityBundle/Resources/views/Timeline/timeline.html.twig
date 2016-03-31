@@ -1,0 +1,13 @@
+<div class="ui feed segment">
+<h4 class="ui header">{{ user }}'s Timeline</h4>
+{% for action in timeline %}
+  {{ timeline_render(action) }}
+{% else %}
+  <div class="event">
+    <div class="label"><i class="circular user icon"></i></div>
+    <div class="content">
+      <div class="summary">No updates</div>
+    </div>
+  </div>
+{% endfor %}
+</div>

@@ -1,0 +1,5 @@
+<input type="text" ng-model="search" placeholder="search"/>
+
+<ul ng-repeat="investor in investors | filter:search:true">
+  <li><a ng-href="#/investors/{{ investor.id }}">{{ investor.first_name }} {{ investor.last_name }} ({{ investor.email }})</a></li>
+</ul>

@@ -1,0 +1,16 @@
+{% extends "StreetVCLenderBundle::LenderLayout.html.twig" %}
+
+{% block content %}
+
+<div class="doubling two column row">
+  <div class="column eight wide centered">
+    <div class="ui segment">
+    </div>
+  </div>
+  <div class="column eight wide centered">
+    <div class="ui segment">
+      {% include 'StreetVCTransactionBundle::link_account.html.twig' with {url: path('post_lender_account', {lender: lender.id})} %}
+    </div>
+  </div>
+</div>
+{% endblock %}

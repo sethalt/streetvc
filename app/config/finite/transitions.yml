@@ -1,0 +1,31 @@
+        transitions:
+            submit:
+                from: draft
+                to: proposed
+            accept:
+                from: proposed
+                to:   platform_accepted
+            reject:
+                from: proposed
+                to:   platform_rejected
+            accept_terms:
+                from: platform_accepted
+                to:   terms_accepted
+            decline_terms:
+                from: platform_accepted
+                to:   terms_declined
+            
+            disburse:
+                from: [ funded ]
+                to: [ disbursed, error ]
+            open_escrow:
+                from: 
+            modify_escrow:
+                from: [ escrow_open ]
+                to: [ escrow_modifying ]
+            cancel_escrow:
+                from: [ escrow_open ]
+                to: [escrow_canceled ]
+            close_escrow:
+                from: [ escrow_open ]
+                to: [ escrow_closed ]

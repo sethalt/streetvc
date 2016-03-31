@@ -1,0 +1,25 @@
+<script type="text/javascript">
+
+$(document).ready(function(){
+  $( "form" ).submit(function(event) {
+    $( "#video" ).val(youtube_parser($( "#video" ).val(), event));
+     return;
+  });
+});
+
+function youtube_parser(url, event){
+  var length = url.length;
+  if(url.length==11 || url.length==0){
+    return url;
+  }else{
+    var regExp = /^.*((youtu.be\/)|(v\/)|(\/u\/\w\/)|(embed\/)|(watch\?))\??v?=?([^#\&\?]*).*/;
+    var match = url.match(regExp);
+    if (match&&match[7].length==11){
+      return match[7];
+    }else{
+      alert("Youtube url is inccorect");
+      event.preventDefault();
+    }
+  }
+}
+</script>

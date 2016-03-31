@@ -1,0 +1,37 @@
+<?xml version="1.0" ?>
+
+<container xmlns="http://symfony.com/schema/dic/services"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
+
+    <parameters>
+        <parameter key="bancbox_invest.webhook_service.class">StreetVC\BancboxInvest\Service\WebhookService</parameter>
+        <parameter key="bancbox_invest.bancbox_client.class">StreetVC\BancboxInvest\Client\BancboxInvestClient</parameter>
+        <parameter key="bancbox_invest.bancbox_provider.class">StreetVC\BancboxInvest\BancboxInvestBundle\Provider\BancboxProvider</parameter>
+    </parameters>
+
+    <services>
+        <service id="bancbox_invest.webhook_service" class="%bancbox_invest.webhook_service.class%">
+            <argument type="service" id="dispatcher" />
+            <argument type="service" id="monolog.logger.bancbox" />
+            <argument>%bancbox_invest.api_key%</argument>
+        </service>
+
+        <service id="bancbox_invest.bancbox_client" class="%bancbox_invest.bancbox_client.class%">
+            <argument type="service" id="guzzle_client" />
+            <argument type="collection">
+                <argument key="api_key">%bancbox_invest.api_key%</argument>
+                <argument key="secret">%bancbox_invest.secret%</argument>
+                <argument key="created_by">%bancbox_invest.created_by%</argument>
+            </argument>
+        </service>
+
+        <service id="bancbox_invest.bancbox_provider" class="%bancbox_invest.bancbox_provider.class%">
+            <argument type="service" id="bancbox_invest.bancbox_client" />
+            <argument type="service" id="odm" />
+            <argument type="service" id="event_dispatcher" />
+            <argument type="service" id="monolog.logger.bancbox" />
+        </service>
+
+    </services>
+</container>

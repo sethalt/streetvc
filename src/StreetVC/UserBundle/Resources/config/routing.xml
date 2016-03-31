@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<routes xmlns="http://symfony.com/schema/routing"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://symfony.com/schema/routing http://symfony.com/schema/routing/routing-1.0.xsd">
+
+    <route id="login_register" pattern="/user/default">
+        <default key="_controller">StreetVCUserBundle:Default:index</default>
+    </route>
+    <!--
+    <route id="register_borrower" pattern="/register/borrower">
+        <default key="_controller">StreetVCUserBundle:Registration:registerBorrower</default>
+    </route>
+    <route id="register_lender" pattern="/register/lender">
+        <default key="_controller">StreetVCUserBundle:Registration:registerLender</default>
+    </route>
+    -->
+    <route id="register" pattern="/register/type/{type}" methods="POST|GET">
+        <default key="_controller">StreetVCUserBundle:Registration:register</default>
+        <requirement key="_method">GET</requirement>
+    </route>
+    <route id="register_choice" pattern="/register/">
+        <default key="_controller">StreetVCUserBundle:Registration:register</default>
+    </route>
+    <route id="register_confirmed" pattern="/type/{type}/confirmed">
+        <default key="_controller">StreetVCUserBundle:Registration:confirmed</default>
+        <requirement key="_method">GET</requirement>
+    </route>
+    <route id="register_role" pattern="/type/{type}/role">
+        <default key="_controller">StreetVCUserBundle:Registration:role</default>
+        <requirement key="_method">GET</requirement>
+    </route>
+</routes>

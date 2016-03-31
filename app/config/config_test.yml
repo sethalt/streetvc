@@ -1,0 +1,38 @@
+imports:
+    - { resource: config_dev.yml }
+
+framework:
+    test: ~
+    session:
+#        storage_id: session.storage.mock_file
+        storage_id: session.storage.filesystem
+    profiler:
+        collect: false
+
+web_profiler:
+    toolbar: false
+    intercept_redirects: false
+
+swiftmailer:
+    disable_delivery: true
+
+monolog:
+    channels: [ bancbox ]
+    handlers:
+        main:
+            type:  stream
+            path:  "%kernel.logs_dir%/%kernel.environment%.log"
+            level: notice
+        firephp:
+            type:  firephp
+            level: error
+        chromephp:
+            type:  chromephp
+            level: warning
+        bancbox:
+            channels: [ bancbox ]
+            path: "%kernel.logs_dir%/bancbox_test.log"
+            level: debug
+            type: stream
+
+#liip_functional_test: ~

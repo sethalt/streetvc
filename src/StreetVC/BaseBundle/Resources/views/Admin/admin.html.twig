@@ -1,0 +1,132 @@
+<!doctype html>
+<html ng-app="bancbox">
+<head>
+  <title>Bancbox Console</title>
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.0-rc.0/angular.js"></script>
+  <!--  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.0-rc.0/angular-resource.min.js"></script> -->
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.0-rc.0/angular-route.min.js"></script>
+  <script src="/javascript/lodash.js"></script>
+  <script type="text/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/restangular/1.3.1/restangular.js"></script>
+</head>
+<body>
+
+<h1>Bancbox Invest</h1>
+
+<div>
+  <ul>
+    <li><a ng-href="#/investors/">List Investors</a></li>
+    <li><a ng-href="#/investors/synchronize">Synchronize Investors</a></li>
+    <li><a ng-href="#/issuers/">List Issuers</a></li>
+    <li><a ng-href="#/escrows/">List Escrows</a></li>
+  </ul>
+</div>
+{% block body %}
+  <div ng-view>
+    {% verbatim %}
+    {{ msg }}
+    {% endverbatim %}
+    {% block view %}
+    {% endblock %}
+  </div>
+{% endblock %}
+
+<script>
+  angular
+      .module('bancbox', ['ngRoute', 'restangular'])
+      .config(function ($routeProvider) {
+        $routeProvider
+            .when('/', {
+              controller: 'MainCtrl',
+              templateUrl: '/partials/main.html'
+            })
+            .when('/investors', {
+              controller: 'InvestorsListCtrl',
+              templateUrl: '/partials/investors.html'
+            })
+            .when('/investors/synchronize', {
+              controller: 'InvestorsSyncCtrl',
+              templateUrl: '/partials/investors_synchronize.html'
+            })
+            .when('/investors/:id', {
+              controller: 'InvestorCtrl',
+              templateUrl: '/partials/investor.html'
+            })
+            .when('/escrows', {
+              controller: 'EscrowsCtrl',
+              templateUrl: '/partials/escrows.html'
+            })
+            .when('/escrows/:id', {
+              controller: 'EscrowCtrl',
+              templateUrl: '/partials/escrow.html'
+            })
+            .otherwise({
+              redirectTo: '/'
+            });
+      })
+      .config(function (RestangularProvider) {
+//        RestangularProvider.setRequestSuffix('.json');
+        RestangularProvider.setDefaultHttpFields({headers: {'Accept': 'text/json'}});
+        RestangularProvider.setRequestInterceptor(function (elem, operation, what) {
+          if (operation === 'put') {
+            elem.id = undefined;
+            elem.views = undefined;
+            return elem;
+          }
+          if (operation == 'post') {
+
+          }
+          return elem;
+        });
+      })
+      .config(function ($httpProvider, $locationProvider) {
+        $httpProvider.defaults.headers.common["X-Requested-With"] = 'XMLHttpRequest';
+//    $httpProvider.defaults.headers.common["Accept"] = 'text/html';
+//    $httpProvider.defaults.headers.post["Content-Type"] = "application/x-www-form-urlencoded";
+//    $locationProvider.html5Mode(true);
+      })
+
+      .controller('MainCtrl', function ($scope) {
+        $scope.msg = 'yo';
+      })
+      .controller('InvestorsListCtrl', ['$scope', 'Restangular', function ($scope, Restangular) {
+        $scope.msg = 'investors';
+//        $scope.statuses = {'ACTIVE': true, 'INACTIVE': false};
+        $scope.filters = {}
+        Restangular.all('investors').getList().then(function (investors) {
+          $scope.investors = investors;
+        });
+        $scope.synchronize = function() {
+          Restangular.all('investors').pat
+        }
+      }])
+      .controller('InvestorCtrl', ['$scope', '$routeParams', 'Restangular', function ($scope, $routeParams, Restangular) {
+        $scope.msg = 'investor';
+        var id = $routeParams.id;
+        Restangular.all('investors').get(id).then(function (investor) {
+          $scope.investor = investor;
+        });
+      }])
+      .controller('EscrowsCtrl', ['$scope', 'Restangular', function ($scope, Restangular) {
+        Restangular.all('escrows').getList().then(function (escrows) {
+          $scope.escrows = Restangular.stripRestangular(escrows);
+        })
+      }])
+      .controller('EscrowCtrl', ['$scope', '$routeParams', 'Restangular', function ($scope, $routeParams, Restangular) {
+        $scope.msg = 'escrow';
+        var id = $routeParams.id;
+        var escrow = Restangular.one('escrows', id);
+//        Restangular.all('escrows').get(id).then(function (escrow) {
+//          $scope.escrow = escrow;
+//        });
+        $scope.escrow = escrow.get().$object;
+//        escrow.get().then(function(e) {
+//          $scope.escrow = e;
+//        });
+
+        $scope.disburse = function() {
+          escrow.customPOST({}, 'disburse', {}, {});
+        }
+      }]);
+</script>
+</body>
+</html>

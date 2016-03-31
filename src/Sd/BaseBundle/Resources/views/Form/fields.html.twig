@@ -1,0 +1,14 @@
+{% extends 'MopaBootstrapBundle:Form:fields.html.twig' %}
+{% block choice_or_other_row %}
+    {% set data_expanded = form.choice.vars.expanded ? 'true' : 'false' %}
+    {% set widget_control_group_attr = widget_control_group_attr|merge({'data-toggle': 'choiceOrOther', 'data-expanded': data_expanded}) %}
+    {% set show_child_legend = false %}
+    {{ block('widget_control_group_start') }}
+    {{ block('choice_or_other_widget') }}
+    {{ block('widget_control_group_end') }}
+{% endblock %}
+
+{% block choice_or_other_widget %}
+{{ form_row(form.choice, {'widget_control_group_attr': {'data-role': 'choice'}}) }}
+{{ form_row(form.other, {'widget_control_group_attr': {'data-role': 'other'}}) }}
+{% endblock %}

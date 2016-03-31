@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xliff xmlns="urn:oasis:names:tc:xliff:document:1.2" version="1.2">
+  <file source-language="en-US" target-language="en" datatype="plaintext" original="file.ext">
+    <body>
+      <trans-unit id="00cecd41deb8b71773a209fa52b13d70" resname="bor.step.register">
+        <source>bor.step.register</source>
+        <target>Register</target>
+      </trans-unit>
+      <trans-unit id="77ae2c21e23768603dda8444b25ca57d" resname="bor.step.legal">
+        <source>bor.step.legal</source>
+        <target>Legal</target>
+      </trans-unit>
+      <trans-unit id="f2ec937ccd04f432d460a50592b41196" resname="bor.step.profile">
+        <source>bor.step.profile</source>
+        <target>Profile</target>
+      </trans-unit>
+      <trans-unit id="4dbfea6d54dac3de0228edc4514d76d6" resname="bor.step.review_business">
+        <source>bor.step.review_business</source>
+        <target>Review and submit business</target>
+      </trans-unit>
+      <trans-unit id="67de4636e99ca8202b4b51e84b15679b" resname="bor.step.create_lr">
+        <source>bor.step.create_lr</source>
+        <target>Create Loan Request</target>
+      </trans-unit>
+      <trans-unit id="412637324cd9749d02aa4a978159f4f8" resname="bor.step.create_escrow">
+        <source>bor.step.create_escrow</source>
+        <target>Create Escrow</target>
+      </trans-unit>
+      <trans-unit id="b66c62e6cc60347d384762c43b51f7d8" resname="bor.step.finish">
+        <source>bor.step.finish</source>
+        <target>Start Collecting Funds!</target>
+      </trans-unit>
+      <trans-unit id="1f3ae5dc342e69fad211c278713bb81d" resname="bor.apply_for_loan">
+        <source>bor.apply_for_loan</source>
+        <target>Are you looking to apply for a loan as a borrower?</target>
+      </trans-unit>
+      <trans-unit id="8ca72ff53b7ab980a5553ce345414b25" resname="bor.step.financial">
+        <source>bor.step.financial</source>
+        <target>Financial</target>
+      </trans-unit>
+    </body>
+  </file>
+</xliff>

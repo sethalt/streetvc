@@ -1,0 +1,25 @@
+{% extends '::layout.html.twig' %}
+
+{% block view %}
+<div class="column">
+    <div class="ui grid">
+      <div class="row">
+        <div class="column three wide"></div>
+        <div class="column ten wide">
+            <h2 class="ui dividing header">Edit Your Business Profile</h2>
+            <form class="ui horizontal form" method="POST" action="{{ path('put_business', {business: business.id}) }}">
+            {{ form_row(form) }}
+            {{ form_rest(form) }}
+            <input type="hidden" name="_method" value="put" />
+            <input type="submit" class="ui blue submit button" value="Save Business" />
+            </form>
+        </div>
+        <div class="column three wide"></div>
+      </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block javascripts %}
+  {{ include('StreetVCBorrowerBundle:Businesses:businessFormJs.html.twig') }}
+{% endblock %}

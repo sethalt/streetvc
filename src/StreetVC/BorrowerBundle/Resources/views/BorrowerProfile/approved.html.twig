@@ -1,0 +1,17 @@
+{% extends "StreetVCBorrowerBundle::BorrowerLayout.html.twig" %}
+{% block title %}Profile{% endblock %}
+
+{% block content %}
+<div class="two column doubling ui row">
+  <div class="column ten wide centered">
+    {{ include('StreetVCBorrowerBundle:BorrowerProfile:borrowerSteps.html.twig', { step: '3'}) }}
+    <div class="ui segment">
+        <h2 class="ui header">Congratulations, you are now eligible to apply for a loan with Investable!</h2>
+        <p>We will be in touch in the next weeks. please contact <a href="mailto:help@beinvestable.com">help@beinvestable.com</a> if you have any immediate questions or comments. Also, please make sure to check your email as we schedule a consulting seminar to support your small business needs</p>
+    </div>
+    <img style="width: 100%;" src="/img/registration/congratulations.jpg" alt="congratulations" />
+  </div>
+</div>
+
+
+{% endblock %}

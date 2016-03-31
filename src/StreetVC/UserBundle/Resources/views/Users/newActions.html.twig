@@ -1,0 +1,7 @@
+{% extends '::layout.html.twig' %}
+
+{% block view %}
+<div class="column">
+{{ form(form, {attr: {class: 'ui form'}, action: path('post_user_actions', {user: user.id})}) }}
+</div>
+{% endblock %}

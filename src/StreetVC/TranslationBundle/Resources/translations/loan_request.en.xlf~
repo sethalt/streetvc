@@ -1,0 +1,167 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xliff xmlns="urn:oasis:names:tc:xliff:document:1.2" version="1.2">
+  <file source-language="en-US" target-language="en" datatype="plaintext" original="file.ext">
+    <body>
+      <trans-unit id="42c2004edf24e223ccaa919c1020e50d" resname="lr.funding">
+        <source>lr.funding</source>
+        <target>Funding Goal</target>
+      </trans-unit>
+      <trans-unit id="5bd68fd0b15985fad349ddd633d9ed2e" resname="lr.start">
+        <source>lr.start</source>
+        <target>Campaign Start Date</target>
+      </trans-unit>
+      <trans-unit id="2381e173111059b23ec8ec5bd7e2a6ce" resname="lr.state">
+        <source>lr.state</source>
+        <target>State</target>
+      </trans-unit>
+      <trans-unit id="8bf9f8e0d9bb47ec7af53bfa2b02d551" resname="lr.term">
+        <source>lr.term</source>
+        <target>Desired loan term (in months) </target>
+      </trans-unit>
+      <trans-unit id="125b9569cf56fcadb18a27cdaeb93e20" resname="lr.additional_revenue">
+        <source>lr.additional_revenue</source>
+        <target>Additional Revenue</target>
+      </trans-unit>
+      <trans-unit id="eb385d7829b748ae381d19b4114a8fe9" resname="lr.time_to_utilization">
+        <source>lr.time_to_utilization</source>
+        <target>Time to utilization</target>
+      </trans-unit>
+      <trans-unit id="4c78f10900139be970a57f51eef342c3" resname="lr.cancel">
+        <source>lr.cancel</source>
+        <target>Cancel Loan Request</target>
+      </trans-unit>
+      <trans-unit id="78620b6eae2bfada81c8b9f7cb6cd300" resname="lr.not_open">
+        <source>lr.not_open</source>
+        <target>Loan Request is not currently open for funding.</target>
+      </trans-unit>
+      <trans-unit id="51712128f7e7bc07a260686ca4637a62" resname="lr.funded">
+        <source>lr.funded</source>
+        <target>This loan was fully funded</target>
+      </trans-unit>
+      <trans-unit id="296e356a15772033a10f5a2c4fe2523c" resname="lr.evaluation.rate">
+        <source>lr.evaluation.rate</source>
+        <target>Interest Rate</target>
+      </trans-unit>
+      <trans-unit id="ffb413d4723f9b03b7216f5025103b93" resname="lr.evaluation.grade">
+        <source>lr.evaluation.grade</source>
+        <target>Grade</target>
+      </trans-unit>
+      <trans-unit id="99879c3c458ff548824f859d3e719df1" resname="lr.evaluation.schedule">
+        <source>lr.evaluation.schedule</source>
+        <target>Payment Schedule</target>
+      </trans-unit>
+      <trans-unit id="b0348121b851e2e1c0857426a3fd81aa" resname="lr.evaluation.total">
+        <source>lr.evaluation.total</source>
+        <target>Total</target>
+      </trans-unit>
+      <trans-unit id="6f5b3dda745aed9672a2485a16b83067" resname="lr.evaluation.monthly">
+        <source>lr.evaluation.monthly</source>
+        <target>Monthly</target>
+      </trans-unit>
+      <trans-unit id="db9becf06f3879d27a38240403d7dc37" resname="lr.edit">
+        <source>lr.edit</source>
+        <target>Edit Loan Request</target>
+      </trans-unit>
+      <trans-unit id="42b1c0ce1e3ddbc7962903cfb0ef78a1" resname="lr.submit_for_approval">
+        <source>lr.submit_for_approval</source>
+        <target>Submit for Credit Approval</target>
+      </trans-unit>
+      <trans-unit id="40b31457c1adbb3640f48c2b06bbed6e" resname="lr.accept_launch">
+        <source>lr.accept_launch</source>
+        <target>Accept these terms and launch your campaign?</target>
+      </trans-unit>
+      <trans-unit id="0f094e46b7fb5400ca7e55e422a35f29" resname="lr.accept">
+        <source>lr.accept</source>
+        <target>Accept</target>
+      </trans-unit>
+      <trans-unit id="f68eab14e132fa66125e5515a84c8d4a" resname="lr.decline">
+        <source>lr.decline</source>
+        <target>Decline and Cancel</target>
+      </trans-unit>
+      <trans-unit id="dca26b6adc58e8b40c6e7694f1e4c4b4" resname="lr.cta.share">
+        <source>lr.cta.share</source>
+        <target>Share</target>
+      </trans-unit>
+      <trans-unit id="1bd8f851bf23fa52e71381cd41123e35" resname="lr.cta.contact">
+        <source>lr.cta.contact</source>
+        <target>Contact the borrower</target>
+      </trans-unit>
+      <trans-unit id="1cbc6580b814b5fcbbe932a6aec2b339" resname="lr.new.heading">
+        <source>lr.new.heading</source>
+        <target>Request a loan to support your business</target>
+      </trans-unit>
+      <trans-unit id="88526d7286d66100d16c46643587ea72" resname="lr.new.term">
+        <source>lr.new.term</source>
+        <target>how many months would you like to have to pay back your loan.</target>
+      </trans-unit>
+      <trans-unit id="6dd677bd9cae2ec2af511c5d95466075" resname="lr.new.additional_revenue">
+        <source>lr.new.additional_revenue</source>
+        <target>Additional Revenue</target>
+      </trans-unit>
+      <trans-unit id="130196ae9f79bfd2bad8939fd16535ef" resname="lr.cta.invest">
+        <source>lr.cta.invest</source>
+        <target>Invest In this project</target>
+      </trans-unit>
+      <trans-unit id="0008194d0767fb9bed088a740dd37ac8" resname="lr.create">
+        <source>lr.create</source>
+        <target>Create Loan Request</target>
+      </trans-unit>
+      <trans-unit id="a5b58556161e56e8c96bdce3e28ac3a4" resname="lr.create.submit">
+        <source>lr.create.submit</source>
+        <target>Submit Loan Request</target>
+      </trans-unit>
+      <trans-unit id="2ac8681db8b5625c9284c2dd8453ec9f" resname="lr.title">
+        <source>lr.title</source>
+        <target>Title</target>
+      </trans-unit>
+      <trans-unit id="9ae2a3bf48cb3ef1b1ff5a76faf86caa" resname="lr.funding_goal">
+        <source>lr.funding_goal</source>
+        <target>Amount of loan request</target>
+      </trans-unit>
+      <trans-unit id="2fd20bcf1741c94021afa0a91451cdc0" resname="lr.video">
+        <source>lr.video</source>
+        <target>Youtube URL or ID</target>
+      </trans-unit>
+      <trans-unit id="5b73f9681b1e364a9bee11e7a4bf6135" resname="lr.end">
+        <source>lr.end</source>
+        <target>End Date</target>
+      </trans-unit>
+      <trans-unit id="3a4fc81de2c890a7adf457a2ffc42242" resname="lr.minimum_amount">
+        <source>lr.minimum_amount</source>
+        <target>minimum amount</target>
+      </trans-unit>
+      <trans-unit id="acb4afdb6f939991d6c03dc7515f86c7" resname="lr.max_amount">
+        <source>lr.max_amount</source>
+        <target>maximum</target>
+      </trans-unit>
+      <trans-unit id="208dc800aa363ea504e30b1a4cbdd9ff" resname="lr.lend_now">
+        <source>lr.lend_now</source>
+        <target>Lend Now</target>
+      </trans-unit>
+      <trans-unit id="79dd68f65dedbf63d6b069e41095b62c" resname="lr.lend_again">
+        <source>lr.lend_again</source>
+        <target>Lend Again</target>
+      </trans-unit>
+      <trans-unit id="08f51aa07216f6ccc7cbe40f9b296de0" resname="lr.terms_conditions">
+        <source>lr.terms_conditions</source>
+        <target>Terms and Conditions</target>
+      </trans-unit>
+      <trans-unit id="7f8ed515e36ce9d04b80673a144f50ac" resname="lr.terms_conditions_terms">
+        <source>lr.terms_conditions_terms</source>
+        <target>By clicking here, you accept that we have the right to check your credit using our independent third party credit data sources.  
+
+To evaluate your loan, we review this data as well as the data you provide about your business including the type of business, revenue and cashflow numbers, and the size, term, and purpose of your loan.  We use this information to determine how risky your loan is for investors and therefore to assign a credit rating and an interest rate.
+
+If a personal guarantee is required, we may check your personal credit and use your personal credit score to evaluate your loan.</target>
+      </trans-unit>
+      <trans-unit id="e8b990abd837ecdd53ac1be74c80823c" resname="lr.description">
+        <source>lr.description</source>
+        <target>Explain briefly why you need the loan</target>
+      </trans-unit>
+      <trans-unit id="5d5d8be2943874f4518811bf2921de07" resname="lr.use_of_loan_proceeds">
+        <source>lr.use_of_loan_proceeds</source>
+        <target>Use of loan proceeds</target>
+      </trans-unit>
+    </body>
+  </file>
+</xliff>

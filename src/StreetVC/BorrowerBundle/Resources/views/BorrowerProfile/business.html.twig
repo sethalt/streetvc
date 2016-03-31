@@ -1,0 +1,183 @@
+{% extends "StreetVCBorrowerBundle::BorrowerLayout.html.twig" %}
+{% block title %}Business{% endblock %}
+
+{% block content %}
+<div class="one column doubling ui row">
+  <div class="column">
+    <div class="ui grid two column">
+      <div class="row">
+        <div class="column">
+         <div class="ui segment">
+            <h3 class="ui dividing header">Profile</h3>
+            <div class="ui list">
+              <div class="item">
+                <div class="header">{{ 'biz.legal.name'|trans({}, 'business')  }}</div>
+                <div class="content">{{ business.legalName }}</div>
+              </div>
+              <div class="item">
+                <div class="header">{{ 'biz.legal.dbas'|trans({}, 'business')  }}</div>
+                <div class="content">{{ business.dbas }}</div>
+              </div>
+              <div class="item">
+                <div class="header">{{ 'biz.legal.phone'|trans({}, 'business')  }}</div>
+                <div class="content">{{ business.phone }}</div>
+              </div>
+              <div class="item">
+                <div class="header">{{ 'biz.legal.structure'|trans({}, 'business')  }}</div>
+                <div class="content">{{ business.legalStructure}}</div>
+              </div>
+              <div class="item">
+                <div class="header">{{ 'biz.legal.taxid'|trans({}, 'business')  }}</div>
+                <div class="content">{{ business.taxId}}</div>
+              </div>
+              <div class="item">
+                <div class="header">{{ 'biz.website'|trans({}, 'business')  }}</div>
+                <div class="content">{{ business.website }}</div>
+              </div>
+              <div class="item">
+                <div class="header">{{ 'biz.legal.industry'|trans({}, 'business')  }}</div>
+                <div class="content">{{ business.industry }}</div>
+              </div>
+              <div class="item">
+                <div class="header">{{ 'biz.legal.year_established'|trans({}, 'business')  }}</div>
+                <div class="content">{{ business.yearEstablished }}</div>
+              </div>
+              <div class="item">
+                <div class="header">{{ 'biz.registration_state'|trans({}, 'business')  }}</div>
+                <div class="content">{{ business.registrationState }}</div>
+              </div>
+              <div class="item">
+                <div class="header">{{ 'biz.legal.address'|trans({}, 'business')  }}</div>
+                <div class="content">{{ business.address }}</div>
+              </div>
+              <div class="item">
+                <div class="header">{{ 'biz.bricks_mortar'|trans({}, 'business')  }}</div>
+                <div class="content">{% if business.bricksAndMortar %}yes{% else %}no{% endif %}</div>
+              </div>
+              <div class="item">
+                <div class="header">{{ 'biz.number_locations'|trans({}, 'business')  }}</div>
+                <div class="content">{{ business.numberLocations }}</div>
+              </div>
+              <div class="item">
+                <div class="header">{{ 'biz.time_at_current_location'|trans({}, 'business')  }}</div>
+                <div class="content">{{ business.timeAtCurrentLocation }}</div>
+              </div>
+              <div class="item">
+                <div class="header">{{ 'biz.description'|trans({}, 'business')  }}</div>
+                <div class="content">{{ business.bio }}</div>
+              </div>
+            </div>  
+              {%  if business.video %}
+              <div class="ui video" data-source="youtube" data-id="{{ business.video }}"></div>
+              {% endif %}
+            </div>
+        </div>
+        <div class="column">
+         <div class="ui segment">
+            <h3 class="ui dividing header">Financial</h3>
+            <div class="ui list">
+              <div class="item">
+                <div class="header">{{ 'biz.legal.annual_revenue'|trans({}, 'business')  }}</div>
+                <div class="content">{{ business.annualRevenue }}</div>
+              </div>
+              <div class="item">
+                <div class="header">{{ 'biz.legal.net_profit'|trans({}, 'business')  }}</div>
+                <div class="content">{{ business.netProfit }}</div>
+              </div>
+              <div class="item">
+                <div class="header">{{ 'biz.legal.have_cashflow'|trans({}, 'business')  }}</div>
+                <div class="content">{% if business.hasCashflow %}yes{% else %}no{% endif %}</div>
+              </div>
+              <div class="item">
+                <div class="header">{{ 'biz.financial.past_cashflow'|trans({}, 'business')  }}</div>
+                <div class="content">
+                   <table class="ui celled striped table">
+                   
+                   <thead><tr><th>Month</th><th>Cashflow</th></tr></thead>
+                    {% for cashflow in business.pastCashflow  %}
+                    <tr>
+                      <td>{{ cashflow.month|date('M') }}</td>
+                      <td>{{ cashflow.cashflow }}</td>
+                    </tr>
+                    {% endfor %}
+                    </table>
+                </div>
+              </div>
+              <div class="item">
+                <div class="header">{{ 'biz.legal.cyclical_business'|trans({}, 'business')  }}</div>
+                <div class="content">{% if business.cyclicalBusiness %}yes{% else %}no{% endif %}</div>
+              </div>
+              <div class="item">
+                <div class="header">{{ 'biz.financial.past_revenue'|trans({}, 'business')  }}</div>
+                <div class="content">
+                   <table class="ui celled striped table">
+                   
+                   <thead><tr><th>Month</th><th>Revenue</th><th>Cashflow</th></tr></thead>
+                    {% for cashflow in business.pastRevenue  %}
+                    <tr>
+                      <td>{{ cashflow.month|date('M') }}</td>
+                      <td>{{ cashflow.revenue}}</td>
+                      <td>{{ cashflow.cashflow }}</td>
+                    </tr>
+                    {% endfor %}
+                    </table>
+                </div>
+              </div>
+              
+              <div class="item">
+                <div class="header">{{ 'biz.credit_facilities'|trans({}, 'business')  }}</div>
+                <div class="content">{% if business.creditFacilities %}yes{% else %}no{% endif %}</div>
+              </div>
+              <div class="item">
+                <div class="header">{{ 'biz.cf_amount_due'|trans({}, 'business')  }}</div>
+                <div class="content">{{ business.cfAmountDue }}</div>
+              </div>
+              <div class="item">
+                <div class="header">{{ 'biz.cf_largest_amount_outstanding'|trans({}, 'business')  }}</div>
+                <div class="content">{{ business.cfLargestAmountOutstanding }}</div>
+              </div>
+              <div class="item">
+                <div class="header">{{ 'biz.cf_final_payment_date'|trans({}, 'business')  }}</div>
+                <div class="content">{{ business.cfFinalPaymentDate }}</div>
+              </div>
+              <div class="item">
+                <div class="header">{{ 'biz.assets_real_estate_value'|trans({}, 'business')  }}</div>
+                <div class="content">{{ business.assetsRealEstateValue }}</div>
+              </div>
+              <div class="item">
+                <div class="header">{{ 'biz.assets_equipment'|trans({}, 'business')  }}</div>
+                <div class="content">{{ business.assetsEquipment }}</div>
+              </div>
+              <div class="item">
+                <div class="header">{{ 'biz.assets_inventory'|trans({}, 'business')  }}</div>
+                <div class="content">{{ business.assetsInventory }}</div>
+              </div>
+              <div class="item">
+                <div class="header">{{ 'biz.assets_accounts_receivable'|trans({}, 'business')  }}</div>
+                <div class="content">{{ business.assetsAccountsReceivable }}</div>
+              </div>
+              <div class="item">
+                <div class="header">{{ 'biz.assets_cash'|trans({}, 'business')  }}</div>
+                <div class="content">{{ business.assetsCash }}</div>
+              </div>
+              <div class="item">
+                <div class="header">{{ 'biz.number_employees'|trans({}, 'business')  }}</div>
+                <div class="content">{{ business.numberEmployees }}</div>
+              </div>
+              <div class="item">
+                <div class="header">{{ 'biz.own_lease_location'|trans({}, 'business')  }}</div>
+                <div class="content">{{ business.ownLeaseLocation }}</div>
+              </div>
+              <div class="item">
+                <div class="header">{{ 'biz.remaining_term_of_lease'|trans({}, 'business')  }}</div>
+                <div class="content">{{ business.remainingTermOfLease }}</div>
+              </div>
+            </div>
+            
+            </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}

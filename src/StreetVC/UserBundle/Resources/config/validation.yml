@@ -1,0 +1,11 @@
+StreetVC\UserBundle\Document\User:
+    constraints:
+        - Doctrine\Bundle\MongoDBBundle\Validator\Constraints\Unique: email 
+    properties:
+        email:
+            - Email: ~ 
+        social_security_number:
+            - Regex:
+                pattern: '/^\d{3}-\d{2}-\d{4}$/'
+                match: true 
+                message: 'Social Security Number must be in the format xxx-xx-xxxx, and must include dashes'

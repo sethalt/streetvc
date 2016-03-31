@@ -1,0 +1,84 @@
+{% if is_granted('ROLE_ISSUER') %}
+{% set business = user.business %}
+{% set escrow = business.activeEscrow %}
+{% set currentRequest = business.activeLoanRequest %}
+
+<script type="text/javascript">
+  $( document ).ready(function() {
+    $('.borrowerTabs.menu .item').tab();
+  });
+</script>
+
+
+{% if not currentRequest or escrow %}
+
+  <div class="row">
+    <div class="column">
+      {{ include('StreetVCBorrowerBundle:BorrowerProfile:borrowerSteps.html.twig', { step: '5'}) }}
+      <p>You have no loan requests</p>
+      <a class="button ui blue" href="{{ path('new_business_loanrequest', {business: business.id}) }}">Request a Loan</a>
+    </div>
+  </div>
+  
+{% else %}
+
+<div class="row">
+  <div class="column">
+  <h3 class="ui dividing header">{{ business.title }}</h3>
+      <div class="ui top attached tabular borrowerTabs menu">
+          <a class="active item" data-tab="business">Business Data</a>
+          <a class="active item" data-tab="loanRequests">Loan Requests</a>
+          <a class="item"  data-tab="banking">Banking</a>
+          <a class="item"  data-tab="legal">Legal Info</a>
+      </div>
+      <div class="ui tab active bottom attached segment" data-tab="business">
+        <h2 class="ui heading">{{ business.title }}</h2>
+        {% if business.video %}
+            <iframe width="420" height="315" src="//www.youtube.com/embed/{{ business.video }}" frameborder="0" allowfullscreen></iframe>
+        {% endif %}
+        <p>{{ business.bio }}</p>
+
+        <table class="ui table">
+          <tr><td>{{ 'biz.website'|trans({}, 'business')  }}</td><td>{{ business.website}}</td></tr>
+          <tr><td>{{ 'biz.bricks_mortar'|trans({}, 'business')  }}</td><td>{{ business.bricksAndMortar}}</td></tr>
+          {% if business.hasCashflow %}
+            <tr><td>{{ 'biz.legal.cashflow'|trans({}, 'business')  }}</td><td>{{ business.cashflow}}</td></tr>
+          {% endif %}
+          {% if business.hasRevenue  %}
+            <tr><td>{{ 'biz.legal.annual_revenue'|trans({}, 'business')  }}</td><td>{{ business.annualRevenue}}</td></tr>
+          {% endif %}
+          <tr><td>{{ 'biz.average_margin'|trans({}, 'business')  }}</td><td>{{ business.margin }}</td></tr>
+        </table>
+      </div>
+      <div class="ui tab active bottom attached segment" data-tab="loanRequests">
+        {% if currentRequest or escrow %}
+          {{ include('StreetVCBorrowerBundle:Businesses:loanRequestPartial.html.twig') }}
+        {% else %}
+          <p>You have no loan requests</p>
+          <a class="button ui blue" href="{{ path('new_business_loanrequest', {business: business.id}) }}">Request a Loan</a>
+        {% endif %}
+      </div>
+      <div class="ui tab active bottom attached segment" data-tab="banking">
+        {% include 'StreetVCTransactionBundle::accounts.html.twig' with {accounts: business.linkedAccounts} %}
+        <div class="ui section divider"></div>
+        {% include 'StreetVCTransactionBundle::link_account.html.twig' with {url: path('post_business_account', {business: business.id})} %}
+      </div>
+      <div class="ui tab bottom attached segment" data-tab="legal">
+        <table class="ui table">
+            <tr><td>{{ 'biz.legal.name'|trans({}, 'business')  }}</td><td>{{ business.legalName}}</td></tr>
+            <tr><td>{{ 'biz.legal.taxid'|trans({}, 'business')  }}</td><td>{{ business.taxId}}</td></tr>
+            <tr><td>{{ 'biz.state_of_incorporation'|trans({}, 'business')  }}</td><td>{{ business.registrationState}}</td></tr>
+            <tr><td>{{ 'biz.legal.phone'|trans({}, 'business')  }}</td><td>{{ business.phone}}</td></tr>
+            <tr><td>{{ 'biz.legal.address'|trans({}, 'business')  }}</td><td>{{ business.address}}</td></tr>
+            <tr><td>{{ 'biz.legal.structure'|trans({}, 'business')  }}</td><td>{{ business.legalStructure }}</td></tr>
+            <tr><td>{{ 'biz.legal.industry'|trans({}, 'business')  }}</td><td>{{ business.industry }}</td></tr>
+        </table>
+      </div>
+  </div>
+</div>
+{% endif %}
+
+{% endif %}
+
+
+

@@ -1,0 +1,13 @@
+<style>
+  .even {background-color: #eee; }
+  .odd {background-color: #ccc; }
+</style>
+<input type="text" ng-model="search.$" placeholder="search"/>
+<div ng-repeat="escrow in escrows| filter:search">
+  <div style="background-color: {{$even ? '#ccc':'#eee'}}">
+    <a ng-href="#/escrows/{{ escrow.id }}">{{ escrow.project_name }} ({{ escrow.id}})</a>
+    <table>
+      <tr ng-repeat="(key, value) in escrow"><td>{{key}}</td><td>{{value}}</td></tr>
+    </table>
+  </div>
+</div>

@@ -1,0 +1,31 @@
+project:
+    info:
+        funding: Funding Goal
+        start: Campaign start date
+        end: Campaign end date
+        term: term
+        state: state
+        additional_revenue: additional revenue
+        time_to_utilization: time to utilization
+    evaluation:
+        rate: Interest Rate
+        grade: Grade
+        schedule: Payment Schedule    
+        total: Total
+        monthly: Monthly
+    action:
+        accept_launch: Accept these terms and launch your campaign?
+        accept: Accept
+        decline: Decline and Cancel
+    loan_request:
+        cancel: Cancel Loan Request
+        not_open: Loan Request is not currently open for funding.
+        funded: This loan was fully funded
+    escrow:
+        create: Create Escrow
+        cancel: Cancel Escrow
+        sign_agreement: Please accept and sign the Escrow Agreemnt that was emailed to you to open your request for funding.
+    CTA:
+        invest: Invest In this Project
+        share: Share
+        contact: Contact the Borrower

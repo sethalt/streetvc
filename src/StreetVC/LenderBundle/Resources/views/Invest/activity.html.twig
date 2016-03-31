@@ -1,0 +1,105 @@
+{% extends "StreetVCLenderBundle::LenderLayout.html.twig" %}
+
+{% block title %}Recent Activity{% endblock %}
+
+{% block content %}
+  <div class="two column doubling ui row">
+    <div class="column">
+      <div class="ui segment">
+         <h3 class="ui header">Account Overview</h3>
+         <table class="ui striped table">
+            <tr>
+              <td>Current Balance</td>
+              <td>${{ lender.currentBalance|number_format(2, '.', ',') }}</td>
+            </tr>
+            <tr>
+              <td>Balance Pending</td>
+              <td>${{ lender.pendingBalance|number_format(2, '.', ',') }}</td>
+            </tr>
+            <tr>
+              <td>Funds committed to loans</td>
+              <td>${{ lender.committedAmount|number_format(2, '.', ',') }}</td>
+            </tr>
+            <tr>
+              <td>Funds currently held in escrow</td>
+              <td>${{ lender.fundsInEscrow|number_format(2, '.', ',') }}</td>
+            </tr>
+         </table>
+         
+         <h4 class="ui dividing header">Bank Accounts</h4>
+         {% set accounts = user.lender.linkedAccounts %}
+         <div class="ui ordered list">
+          {% for account in accounts %}
+            <div class="item">
+              {{ account }}
+            </div>
+          {% endfor %}
+         </div>
+         <div class="ui buttons">
+            <a class="ui button green" href="{{ path('invest_account') }}">Add Funds</a>
+            <a class="ui button green" href="{{ path('invest_account') }}">Withdraw Funds</a>
+            <a class="ui button green" href="{{ path('invest_accounts') }}">Manage Linked Accounts</a>
+         </div>
+      </div>
+    </div>
+    <div class="column">
+      <div class="ui segment">
+         <h3 class="ui header">Recent Loan Request Commitments</h3>
+            <table class="ui table">
+              <thead>
+              <tr>
+                <th>Title</th>
+                <th>Goal</th>
+                <th>Amount Funded</th>
+                <th>Your Contribution</th>
+                <th>Date You Invested</th>
+                <th>Status</th>
+                <th></th>
+              </tr>
+              </thead>
+              <tbody>
+              {% for commitment in commitments %}
+                {% set escrow = commitment.escrow %}
+                <tr>
+                  <td><a href="{{ path('get_loanrequest', {loanRequest: commitment.loanRequest.id}) }}">{{ commitment.title }}</a></td>
+                  <td>{{ escrow.fundingGoal }}</td>
+                  <td>{{ escrow.amountFunded }}</td>
+                  <td>{{ commitment.amount }}</td>
+                  <td>{{ commitment.created|date("m/d/y") }}</td>
+                  <td>{{ escrow.state }}</td>
+                  <td><a class="ui button tiny green" href="{{ path('get_loanrequest', {loanRequest: commitment.loanRequest.id}) }}">{% if escrow.state == 'open' %}Fund Now{% else %}view project{% endif %}</a></td>
+                </tr>
+              {% endfor %}
+              </tbody>
+            </table>
+            <a class="ui button green" href="{{ path('invest_commitments') }}">View All Loan Commitments</a>
+         
+      </div>
+    </div>
+  </div>
+  
+  <div class="one column ui row">
+    <div class="column">
+      <h2 class="ui dividing header">Loan Repayment</h2>
+      <p>Loan Repayment info goes here</p>
+    </div>
+  </div>  
+  
+  <div class="one column ui row">
+    <div class="column">
+      <h2 class="ui dividing header">Account Activity</h2>
+      <table class="ui striped table">
+        <thead>
+          <tr><th>date</th><th>amount</th><th>status</th><th>source</th><th>destination</th><th>type</th></tr>
+        </thead>
+        <tbody>
+        {% for i in activity %}
+          <tr><td>{{ i.created_date }}</td><td>${{ i.amount|number_format(2, '.', ',') }}</td><td>{{ i.status }}</td><td>{{ i.source.type }}</td><td>{{ i.destination.type }}</td><td>{{ i.activity_type}}</td></tr>
+        {% endfor %}
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+{% endblock %}
+  

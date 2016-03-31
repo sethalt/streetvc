@@ -1,0 +1,21 @@
+{% extends "StreetVCBorrowerBundle::BorrowerLayout.html.twig" %}
+
+{% block title %}Request a Loan for {{ business.legalName }}{% endblock %}
+{% block content %}
+<div class="two column doubling ui row">
+  <div class="column">
+    <h2 class="ui header">{{ block('title') }}</h2>
+    <form class="ui form" method="POST" action="{{ path('post_business_loanrequest', {business: business.id}) }}">
+    {{ form_row(form) }}
+    {{ form_rest(form) }}
+    <input type="submit" class="ui submit button" value="Create Loan Request" />
+    </form>
+  </div>
+  <div class="column">
+  </div>
+</div>
+{% endblock %}
+
+{% block javascripts %}
+  {{ include('StreetVCBorrowerBundle:Businesses:businessFormJs.html.twig') }}
+{% endblock %}

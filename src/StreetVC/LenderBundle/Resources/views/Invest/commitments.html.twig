@@ -1,0 +1,48 @@
+{% extends "StreetVCLenderBundle::LenderLayout.html.twig" %}
+
+{% block title %}Loan Commitments for {{ app.user.username }}{% endblock %}
+
+{% block content %}
+<div class="ui one column row">
+  <div class="column">
+    <h2 class="dividing ui header">Loan Commitments for {{ app.user.username }}</h2>
+    <table class="ui table">
+      <thead>
+      <tr>
+        <th>Title</th>
+        <th>Goal</th>
+        <th>Amount Funded</th>
+        <th>Progress</th>
+        <th>Your Contribution</th>
+        <th>Date You Invested</th>
+        <th>Status</th>
+        <th></th>
+      </tr>
+      </thead>
+      <tbody>
+      {% for commitment in commitments %}
+        {% set escrow = commitment.escrow %}
+        <tr>
+          <td><a href="{{ path('get_loanrequest', {loanRequest: commitment.loanRequest.id}) }}">{{ commitment.title }}</a></td>
+          <td>{{ escrow.fundingGoal }}</td>
+          <td>{{ escrow.amountFunded }}</td>
+          <td>
+            <div class="ui progress {{ escrow.fullyFunded ? 'green' : '' }}">
+              {#
+              <div class="bar" style="background-color: mediumvioletred; width: {{ commitment.percentage }}%;"></div>
+              <div class="bar" style="width: {{ escrow.percentFunded - commitment.percentage }}%;"></div>
+              #}
+              <div class="bar" style="width: {{ escrow.percentFunded }}%;"></div>
+            </div>
+          </td>
+          <td>{{ commitment.amount }}</td>
+          <td>{{ commitment.created|date("m/d/y") }}</td>
+          <td>{{ escrow.state }}</td>
+          <td><a class="ui button tiny green" href="{{ path('get_loanrequest', {loanRequest: commitment.loanRequest.id}) }}">{% if escrow.state == 'open' %}Fund Now{% else %}view project{% endif %}</a></td>
+        </tr>
+      {% endfor %}
+      </tbody>
+    </table>
+  </div>
+</div>
+{% endblock %}

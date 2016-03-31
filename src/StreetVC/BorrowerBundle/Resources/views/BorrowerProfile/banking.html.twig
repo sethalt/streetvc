@@ -1,0 +1,41 @@
+{% extends "StreetVCBorrowerBundle::BorrowerLayout.html.twig" %}
+{% block title %}Banking{% endblock %}
+
+{% block content %}
+  <div class="two column doubling ui row">
+    <div class="column">
+      <div class="ui segment">
+         <h2 class="heading ui">Account Balance</h2>
+        {{ business.currentBalance|number_format(2, '.', ',') }}
+      </div>
+    </div>
+    <div class="column">
+      <div class="ui segment">
+         <h2 class="heading ui">Loan Repayment information</h2>
+         <p>loan repayment info here.</p>
+      </div>
+    </div>
+
+    <div class="column">
+      <div class="ui segment">
+        {% include 'StreetVCTransactionBundle::addFunds.html.twig' with {accounts: business.linkedAccounts, url: path('post_business_account_funds', {'business': business.id})} %}
+      </div>
+    </div>
+
+    <div class="column">
+      <div class="ui segment">
+        {% include 'StreetVCTransactionBundle::withdrawFunds.html.twig' with {accounts: business.linkedAccounts, url: path('withdraw_business', {'business': business.id})} %}
+      </div>
+    </div>
+    <div class="column">
+      <div class="ui segment">
+          {% include 'StreetVCTransactionBundle::accounts.html.twig' with {accounts: business.linkedAccounts} %}
+      </div>
+    </div>
+    <div class="column">
+      <div class="ui segment">
+        {% include 'StreetVCTransactionBundle::link_account.html.twig' with {url: path('post_business_account', {business: business.id})} %}
+      </div>
+    </div>
+  </div>
+{% endblock %}

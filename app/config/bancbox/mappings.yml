@@ -1,0 +1,23 @@
+bancbox_invest:
+    mappings:
+        investor:
+            request:
+                'reference_id': 'id'
+                'first_name': 'first_name'
+                'last_name': 'last_name'
+                'email': 'email'
+                'phone': 'phone_number'
+                'address_1': 'address.address'
+                'address_2': 'address.address2'
+                'city': 'address.city'
+                'state': 'address.state'
+                'zip': 'address.zip'
+                'dob': 'dob'
+                'ssn': 'social_security_number'
+            response:
+                id: 'lender.bancbox_id'
+                bank_name: 'lender.internal_account.name'
+                account_type: 'lender.internal_account.type'
+                account_number: 'lender.internal_account.account_number'
+                account_routing_number: 'lender.internal_account.routing_number'
+

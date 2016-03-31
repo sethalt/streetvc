@@ -1,0 +1,15 @@
+<div ng-app="PDFViewer">
+  <div ng-controller="DocCtrl">
+    <ng-pdf template-url="/partials/viewer.html" canvasid="pdf-canvas" scale="1"></ng-pdf>
+  </div>
+</div>
+
+{% block javascripts %}
+<script>
+  var app = angular.module('PDFViewer', ['pdf']);
+  app.controller('DocCtrl', function ($scope) {
+    $scope.pdfUrl = "/sampleagreement.pdf";
+  });
+</script>
+{% endblock %}
+

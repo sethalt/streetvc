@@ -1,0 +1,30 @@
+<table class="ui table">
+  <tr>
+    <td>{{ 'lr.funding'|trans({}, 'loan_request') }}</td>
+    <td>{{ loanRequest.fundingGoal }}</td>
+  </tr>
+  <tr>
+    <td>{{ 'lr.start'|trans({}, 'loan_request') }}</td>
+    <td>{{ loanRequest.startDate|date('m/d/Y') }}</td>
+  </tr>
+  <tr>
+    <td>{{ 'lr.end'|trans({}, 'loan_request') }}</td>
+    <td>{{ loanRequest.closeDate|date('m/d/Y') }}</td>
+  </tr>
+  <tr>
+    <td>{{ 'lr.term'|trans({}, 'loan_request') }}</td>
+    <td>{{ loanRequest.term ~ ' months' }}</td>
+  </tr>
+  <tr>
+    <td>{{ 'lr.state'|trans({}, 'loan_request') }}</td>
+    <td>{{ loanRequest.state ~ ' :: ' ~ loanRequest.escrowState }}</td>
+  </tr>
+  <tr>
+    <td>{{ 'lr.additional_revenue'|trans({}, 'loan_request') }}</td>
+    <td>{{ loanRequest.additionalRevenue }}</td>
+  </tr>
+  <tr>
+    <td>{{ 'lr.time_to_utilization'|trans({}, 'loan_request') }}</td>
+    <td>{{ loanRequest.timeToUtilize }}</td>
+  </tr>
+</table>

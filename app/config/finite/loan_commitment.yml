@@ -1,0 +1,38 @@
+finite_finite:
+    loan_commitment:
+        class: StreetVC\LenderBundle\Document\LoanCommitment
+        states:
+            new:
+                type: initial
+                properties: { description: New loan commitment. }
+            pending:
+                properties: { description: Loan commitment sent to Bancbox but unconfirmed. }
+            confirmed:
+                properties: { description: Commitment confirmed. }
+            refunding:
+                properties: { description: Refund requested. }
+            refunded:
+                properties: { description: Refund confirmed.}
+            failed:
+                properties: { description: Something went wrong.. }
+            canceled:
+                properties: { description: Commitment canceled.. }
+            disbursed:
+                properties: { description: Escrow successful and funds disbursed. }
+                type:       final
+        transitions:
+            submit:
+                from: [ new ]
+                to:   pending
+            confirm:
+                from: [ new, pending ]
+                to:   confirmed
+            refund:
+                from: [ pending, confirmed ]
+                to:   refunding
+            confirm_refund:
+                from: [ confirmed, refunding ]
+                to:   refunded
+            disburse:
+                from: [ confirmed ]
+                to:   disbursed

@@ -1,0 +1,329 @@
+* { margin:0; padding:0; }
+
+html, body {
+    font-size: 15px;
+    font-family: 'Open Sans', sans-serif !important;
+}
+
+a, a:visited {
+  text-decoration: none;
+  color: #999;
+}
+
+
+
+body {
+    color: #3e3d39;
+    background-color: white;
+    background-attachment: fixed;
+    background-size: cover;
+    overflow-x:hidden;
+}
+
+.absolute { position: absolute; }
+.relative { position: relative; }
+.full { width: 100%; }
+
+.alignLeft { text-align: left; }
+.alignRight { text-align: right; }
+
+.ui.inverted.blue.menu, 
+.ui.blue.buttons .button, 
+.ui.blue.button, 
+.ui.blue.labels .label, 
+.ui.blue.label 
+{ background-color: #3875b6 !important; border-color: #3875b6 !important; }
+
+.ui.blue.header { color: #3875b6 !important; }
+
+.ui.inverted.green.menu, 
+.ui.green.buttons .button, 
+.ui.green.button, 
+.ui.green.labels .label, 
+.ui.green.label 
+{ background-color: #8bb35a !important; border-color: #8bb35a !important; }
+
+.ui.green.header { color: #8bb35a !important; }
+
+.ui.input input[type='radio']{ width: auto !important; }
+
+.ui.form select { width: auto; }
+
+select.ui.search.dropdown { visibility: visible; }
+.field input[type="radio"] {
+	margin: 0 4px 0 8px;
+}
+
+.ui.progress.noPadding {
+	padding: 0 !important; 
+	border: none;
+}
+
+.ui.progress.noPadding.skinny {
+  height: 12px;
+}
+
+.ui.progress.noPadding.skinny .bar {
+  display: block;
+}
+
+#ha-header {
+  font-family: 'Lato', Arial, sans-serif;
+  opacity: 1;
+}
+
+#ha-header #sidebarBtn { 
+  margin-top: 40px;
+  margin-left: 20px; 
+}
+
+#ha-header .headerInner {
+  border-bottom: solid 4px #8bb35a;
+  float: left;
+  width: 100%;
+}
+
+#ha-header .logo {
+    width: 200px;
+    margin-left: 25px;
+    margin-bottom: -4px;
+    display: inline-block;
+    float: left;
+}
+
+#ha-header .logo img {
+   width: 100%;
+}
+
+#footer { margin-top: 1em; border-top: solid 4px #3875b6; }
+
+#footerMenu { box-shadow: none !important; }
+
+#userMenu { 
+	float: right; 
+  margin: 0 !important;
+  height: 16px;
+}
+#userMenu .item { 
+  padding: 0 !important;
+}
+
+#topMenu {
+  max-width: 950px;
+  float: right; 	
+  clear: right;
+}
+
+#topMenu a { color: #3e3d39; font-weight: bold; }
+
+#topMenu a.button { color: #fff; text-transform: none; }
+
+.social { width: 32px; height: 32px; margin: 0 2px; display: inline-block; text-indent: 9999px; }
+
+.social.facebook { background: url(/img/social/32/facebook_dark.png); }
+.social.facebook:hover { background: url(/img/social/32/facebook_active.png); }
+.social.youtube{ background: url(/img/social/32/youtube_dark.png); }
+.social.youtube:hover { background: url(/img/social/32/youtube_active.png); }
+.social.twitter { background: url(/img/social/32/twitter_dark.png); }
+.social.twitter:hover { background: url(/img/social/32/twitter_active.png); }
+.social.linkedin { background: url(/img/social/32/in_dark.png); }
+.social.linkedin:hover { background: url(/img/social/32/in_active.png); }
+  
+.field > div {
+  padding-left: 1.5%;
+}
+.button .icon { transition: all 0.2s ease-out; }
+.button:hover .icon { transform: scale(1.5); }
+
+.ui.segment:first-child { margin-top: 1em; }
+
+
+/** FRONTEND **/
+
+
+.homeSlider { margin-top: -30px; border-bottom: solid 4px #8bb35a; position: relative; }
+.homeSlider img { width: 100%; margin-bottom: -4px; }
+
+.homeSlider .homeCta { position: absolute; top: 15%; left: 2%; }
+.homeSlider h1 { text-shadow: 2px 2px 2px #fff; font-size: 40px; }
+
+.homeBanner .column { margin-bottom: 0 !important; }
+
+.howto { position: relative; }
+
+.howto a { position: absolute; top: 20px; z-index: 100; }
+.howto a.requestLoan { right: 30px; }
+.howto a.investLoan { left: 30px; }
+
+.howto img { 
+  left: 0;
+  top: 0;
+  width: 100%;
+  z-index: 1;
+}
+
+.popularLoanRequests {
+	 background: #3875b6;
+   color: #fff;
+}
+
+.popularLoanRequests img {
+  width: 80%;
+}
+
+.popularLoanRequests .progress {
+  width: 80%; margin: 5px auto;
+  text-align: left;
+}
+
+.popularLoanRequests .percentFunded  {
+  background: #8bb35a;
+  border-radius: 65px;
+  top: 273px;
+  right: 12%;
+  width: 40px;
+  height: 30px;
+  padding-top: 10px;
+  text-align: center;
+}
+
+.popularLoanRequests h2 { padding-top: 1em !important; }
+
+.popularLoanRequests .sample { 
+  position: absolute;
+  top: 2%;
+  text-align: center;
+  left: 50%;
+  margin-left: -30px;
+  font-weight: bold;
+  font-style: italic;
+  text-shadow: 1px 1px 1px #000;
+  font-size: 20px;
+}
+
+#testimonials {
+	background: #8bb35a;
+  color: #fff;
+  font-size: 26px;
+  border-top: solid 4px #000;
+  border-bottom: solid 4px #3875b6;
+  padding: 2em;
+}
+
+#team { margin-top: 1em; }
+#team .column img { width: 100%; cursor: pointer; }
+#team .ui.reveal { width: 100%; }
+
+#contact { margin-bottom: -1em; background: #222222; }
+
+.modal .content p { margin-bottom: 1em; }
+  
+.main.container {
+	max-width: 1280px;
+	margin: 0 auto;
+}
+
+#ha-header .ui.menu {
+  box-shadow: none !important;
+}
+
+/** END FRONTEND **/
+
+
+/** USER DASHBOARD **/
+
+
+/** BORROWER FORMS **/
+
+  #past_cashflow .field label, #past_revenue .field label { display: none; }
+  #past_cashflow .field .field label, #past_revenue .field .field label { display: block; }
+  #past_cashflow .field, #past_revenue .field { max-width: 100px; float: left; clear: none; margin-right: 5px; }
+  #past_cashflow .field { max-width: 180px; }
+  
+  .ui.items.lrHeading > .row > .item, .ui.items > .item { min-height: 100px; }
+  
+  .lrData .lrVideo { width: 100%; margin: 2em 0;}
+  .lrData .lrGraph { width: 100%; }
+  
+  .share { width: 100%; text-align: center; }
+
+/** End BORROWER FORMS **/
+
+
+/** Registration Confirmation **/
+
+   .investorOrBorrower {
+       
+   }
+   
+  .investorOrBorrower .circle {
+     width: 75%;
+     display: inline-block;
+     margin-top: 2em;
+  }
+  
+  .investorOrBorrower .circle:after {
+    content: "";
+    display: block;
+    width: 100%;
+    height:0;
+    padding-bottom: 100%;
+    background: #4679BD; 
+    -moz-border-radius: 50%; 
+    -webkit-border-radius: 50%; 
+    border-radius: 50%;
+  }
+  
+  .investorOrBorrower .circle.blue:after { background: #3875b6; }
+  .investorOrBorrower .circle.green:after { background: #8bb35a; }
+  
+  .investorOrBorrower .circle span {
+    float:left;
+    width:80%;
+    margin: 0 10%;
+    padding-top:45%;
+    line-height:2em;
+    margin-top:-0.5em;
+    text-align:center;
+    color:white;
+    font-size: 26px;
+  }
+  
+
+#date_of_birth select { display: inline-block; width: auto; }
+
+/** End Registration Confirmation **/
+
+
+/** END USER DASHBOARD **/
+
+
+@media all and (max-width: 1400px){
+  .investorOrBorrower .circle span {
+    font-size: 20px;
+  }
+}
+
+@media all and (max-width: 1260px){
+   .percentFunded { display: none; }
+}
+
+@media all and (max-width: 850px){
+  .howto a { font-size: 11px !important; }
+}
+
+@media all and (max-width: 730px){
+  .investorOrBorrower .circle span {
+    font-size: 14px;
+    line-height: 1.5em;
+  }
+  
+  #accountMenu, #socialMenu { float: left; clear: both; margin-top: 10px;}
+  
+  #testimonials { font-size: 16px; }
+}
+
+@media all and (max-width: 550px){
+  .howto a { display: none !important; }
+  #loggedin { display: none; }
+}

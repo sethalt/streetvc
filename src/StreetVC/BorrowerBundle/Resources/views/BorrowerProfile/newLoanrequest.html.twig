@@ -1,0 +1,36 @@
+{% extends "StreetVCBorrowerBundle::BorrowerLayout.html.twig" %}
+
+{% block content %}
+<div class="two column doubling ui row">
+  <div class="column ten wide centered">
+    {{ include('StreetVCBorrowerBundle:BorrowerProfile:borrowerSteps.html.twig', { step: '5'}) }}
+    <div class="ui segment">
+      <h2 class="ui header">{{ 'lr.create'|trans({}, 'loan_request') }}</h2>
+      <form id="loanRequestForm" class="ui form" method="POST" action="{{ path('post_business_loanrequest', {business: business.id}) }}">
+      {{ form_row(form) }}
+      {{ form_rest(form) }}
+      <input type="submit" class="ui submit button" value="{{ 'lr.create.submit'|trans({}, 'loan_request') }}" />
+      </form>
+    </div>
+  </div>
+</div>
+{% endblock %}
+
+{% block javascripts %}
+  {{ include('StreetVCBorrowerBundle:Businesses:businessFormJs.html.twig') }}
+<script type="text/javascript">
+    $( document ).ready(function() {
+      
+      $('form#loanRequestForm').on('submit', function(event) {
+        var postData = $(this).serializeArray();
+        var action = $(this).attr("action");
+        $('form#legalForm input[type=submit]').attr('disabled', true);
+        $.get( action, postData, function(data) {
+          alert('form submitted!');
+
+        });
+        event.preventDefault();
+      });
+
+</script>
+{% endblock %}

@@ -1,0 +1,21 @@
+{% extends '::layout.html.twig' %}
+
+{% block view %}
+  <div ng-app="PDFViewer" class="row">
+    <div class="column" ng-controller="DocCtrl">
+      <ng-pdf pdf-url="{{ path('download_document', {document: document.id}) }}" template-url="/partials/viewer.html" canvasid="pdf-canvas"></ng-pdf>
+    </div>
+  </div>
+{% endblock %}
+
+{% block javascripts %}
+  <script type="text/javascript" src="/scripts/pdf.js"></script>
+  <script src="/scripts/angular-pdf.js"></script>
+  <script>
+    var url = "{{ path('download_document', {document: document.id}) }}";
+    var app = angular.module('PDFViewer', ['pdf']);
+    app.controller('DocCtrl', function ($scope) {
+      $scope.pdfUrl = url;
+    });
+  </script>
+{% endblock %}

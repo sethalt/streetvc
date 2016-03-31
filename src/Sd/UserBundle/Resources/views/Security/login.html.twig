@@ -1,0 +1,52 @@
+{#
+
+This file is part of the Sonata package.
+
+(c) Thomas Rabaix <thomas.rabaix@sonata-project.org>
+
+For the full copyright and license information, please view the LICENSE
+file that was distributed with this source code.
+
+#}
+
+{% extends "SonataUserBundle::layout.html.twig" %}
+
+{% block fos_user_content %}
+
+    <div class="ui stackable grid">
+        <div class="column four wide">&nbsp;</div>
+
+        <div class="column eight wide">
+        <form class="ui fluid large form segment" action="{{ path("fos_user_security_check") }}" method="post" role="form">
+            <h2 class="ui dividing header">{{ 'title_user_authentication'|trans({}, 'SonataUserBundle') }}</h1>
+            {% if error %}
+                <div class="ui error message">{{ error|trans({}, 'FOSUserBundle') }}</div>
+            {% endif %}
+            <input type="hidden" name="_csrf_token" value="{{ csrf_token }}" />
+
+            <div class="field">
+                <label for="username">{{ 'security.login.username'|trans({}, 'FOSUserBundle') }}</label>
+                <input type="text" id="username" name="_username" value="{{ last_username }}" required="required" />
+            </div>
+
+            <div class="field">
+                <label for="password">{{ 'security.login.password'|trans({}, 'FOSUserBundle') }}</label>
+                <input type="password" id="password" name="_password" required="required" />
+            </div>
+
+            <div class="inline field">
+                <div class="ui checkbox">
+                    <input type="checkbox" id="remember_me" name="_remember_me" value="on" />
+                    <label for="remember_me">{{ 'security.login.remember_me'|trans({}, 'FOSUserBundle') }}</label>
+                </div>
+            </div>
+
+            <input class="ui blue submit button" type="submit" id="_submit" name="_submit" value="{{ 'security.login.submit'|trans({}, 'FOSUserBundle') }}" />
+            <a href="{{ path('fos_user_resetting_request') }}">{{ 'forgotten_password'|trans({}, 'SonataUserBundle') }}</a>
+            <a href="{{ url('fos_user_registration_register') }}">{{ 'link_register'|trans({}, 'SonataUserBundle') }}</a>
+        </form>
+        </div>
+
+        <div class="column four wide">&nbsp;</div>
+    </div>
+{% endblock fos_user_content %}

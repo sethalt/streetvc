@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xliff xmlns="urn:oasis:names:tc:xliff:document:1.2" version="1.2">
+  <file source-language="en-US" target-language="en" datatype="plaintext" original="file.ext">
+    <body>
+      <trans-unit id="d5545475f7070c2c78e9a163f6307488" resname="reg.heading">
+        <source>reg.heading</source>
+        <target>Get funding for your business. Customized loans. Invest in businesses and track your ROI.</target>
+      </trans-unit>
+      <trans-unit id="2928ea9b4c2c3d8894f8eb48ade5e520" resname="registration_confirmed">
+        <source>registration_confirmed</source>
+        <target>Thank you for registering with StreetVC. Are you looking to:</target>
+      </trans-unit>
+      <trans-unit id="1c2930d342ccd55510bf22d4a5026b82" resname="reg.first_name">
+        <source>reg.first_name</source>
+        <target>First Name</target>
+      </trans-unit>
+      <trans-unit id="d25bf4c83ca7da55bcf546f934de134b" resname="reg.last_name">
+        <source>reg.last_name</source>
+        <target>Last Name</target>
+      </trans-unit>
+      <trans-unit id="fc85f329966ef4b09adbed3612008541" resname="reg.password">
+        <source>reg.password</source>
+        <target>Password</target>
+      </trans-unit>
+      <trans-unit id="f317ffaa0f0fc9c3a78feed2a9e63b6f" resname="reg.password_confirmation">
+        <source>reg.password_confirmation</source>
+        <target>Password Again</target>
+      </trans-unit>
+      <trans-unit id="ace45b02ef472a9d04cd751683caf5e5" resname="reg.ssn">
+        <source>reg.ssn</source>
+        <target>Social Security Number (xxx-xx-xxxx), include dashes</target>
+      </trans-unit>
+      <trans-unit id="796701880dfd06c5dffaebd02039aa4d" resname="reg.birthdate">
+        <source>reg.birthdate</source>
+        <target>Date of Birth</target>
+      </trans-unit>
+      <trans-unit id="20840bd287fcda0127ceded4de06debb" resname="reg.background_check">
+        <source>reg.background_check</source>
+        <target>Allow Background Check</target>
+      </trans-unit>
+      <trans-unit id="1d08ae5134c0bfcf0a734be2cba161f7" resname="reg.certify_true">
+        <source>reg.certify_true</source>
+        <target>Verify that the information entered is true</target>
+      </trans-unit>
+      <trans-unit id="7278e1cba98014b56673f3a4eddb840e" resname="reg.username">
+        <source>reg.username</source>
+        <target>Username</target>
+      </trans-unit>
+      <trans-unit id="c38201a928dcff17401bfa297722ca54" resname="reg.email">
+        <source>reg.email</source>
+        <target>Email Address</target>
+      </trans-unit>
+      <trans-unit id="5c69f7d113fd0dec16cef9bb69056fab" resname="reg.cashflow_positive">
+        <source>reg.cashflow_positive</source>
+        <target>Is your business cashflow positive?</target>
+      </trans-unit>
+    </body>
+  </file>
+</xliff>

@@ -1,0 +1,45 @@
+{% set lr = loanRequest %}
+{% set escrow = loanRequest.escrow %}
+<tr>
+    <td>
+    
+        {% if is_granted("ROLE_INVESTOR") %}
+            <a class="" href="{{ path('invest_loanrequest', {'loanRequest': lr.id}) }}"><strong>{{ lr.title }}</strong></a>
+          {% elseif is_granted("ROLE_ISSUER") %}
+            <a class=" " href="{{ path('get_borrower_loanrequest', {'loanRequest': lr.id}) }}"><strong>{{ lr.title }}</strong></a>
+          {% endif %}
+        {#
+          <a class="ui button tiny" href="{{ path('get_business', {'business': lr.business.id}) }}"><i class="user icon"></i> {{ lr.business }}</a>
+          #}
+
+          
+    </td>
+          {% if lr.timeUntilClose %}
+            <td class="">{{ lr.timeUntilClose }} days</td>
+          {% else %}
+            <td class="error"><i class="attention icon"></i>Campaign has ended</td>
+          {% endif %}
+  <td>
+    {% if loanRequest.video %}
+      <div class="ui video" data-source="youtube" data-id="{{ loanRequest.video }}"></div>
+    {% endif %}
+  </td>
+  {% set evaluation = loanRequest.evaluation %}
+  <td>{% if evaluation %}{{ evaluation.grade }}{% endif %}</td>
+  <td>{% if evaluation %}{{ evaluation.rate * 100}}%{% endif %}</td>
+  <td>
+    {% if escrow %}
+      {{ escrow.commitments|length }}
+    {% endif %}
+  </td>
+
+  <td>
+    {% if escrow %}
+      {% set percentFunded = escrow.percentFunded %}
+      <div class="ui indicating progress">
+        <div class="bar" style="width: {{ percentFunded }}%;"></div>
+        <div class="label">{{ percentFunded }}% Funded of ${{ lr.fundingGoal|number_format(2, '.', ',') }}</div>
+    </div>
+    {% endif %}
+  </td>
+</tr>

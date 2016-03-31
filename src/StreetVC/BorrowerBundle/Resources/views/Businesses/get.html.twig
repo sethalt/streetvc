@@ -1,0 +1,60 @@
+{% extends '::layout.html.twig' %}
+
+{% block title %}{{ business.legalName }}{% endblock %}
+
+{% block view %}
+
+<div class="row">
+  <div class="column">
+  <h3 class="ui dividing header">{{ business.legalName }} {% if user and user.id == business.user.id %}<a class="ui button green tiny" href="{{ path('edit_business', {business: business.id})}}">Edit Business</a>{% endif %}</h3>
+      <div class="ui top attached tabular borrowerTabs menu">
+          <a class="active item" data-tab="business">Business</a>
+          <a class="active item" data-tab="loanRequests">Loan Requests</a>
+      </div>
+      <div class="ui tab active bottom attached segment" data-tab="business">
+        {% if business.video %}
+            <iframe width="420" height="315" src="//www.youtube.com/embed/{{ business.video }}" frameborder="0" allowfullscreen></iframe>
+        {% endif %}
+        <p>{{ business.bio }}</p>
+
+        <table class="ui table">
+          <tr><td>{{ 'biz.website'|trans({}, 'business')  }}</td><td>{{ business.website}}</td></tr>
+          <tr><td>{{ 'biz.bricks_mortar'|trans({}, 'business')  }}</td><td>{{ business.bricksAndMortar}}</td></tr>
+          {% if business.hasCashflow %}
+            <tr><td>{{ 'biz.legal.cashflow'|trans({}, 'business')  }}</td><td>{{ business.cashflow}}</td></tr>
+          {% endif %}
+          {% if business.hasRevenue  %}
+            <tr><td>{{ 'biz.legal.annual_revenue'|trans({}, 'business')  }}</td><td>{{ business.annualRevenue}}</td></tr>
+          {% endif %}
+          <tr><td>{{ 'biz.average_margin'|trans({}, 'business')  }}</td><td>{{ business.margin }}</td></tr>
+        </table>
+      </div>
+      <div class="ui tab active bottom attached segment" data-tab="loanRequests">
+          {{ include('StreetVCBorrowerBundle:Businesses:loanRequestPartial.html.twig') }}
+      </div>
+  </div>
+</div>
+
+  <div class="row">
+    <div class="column">
+      {% include '::comments.html.twig' with {'id': business.id } %}
+    </div>
+  </div>
+
+
+{% endblock %}
+
+
+{% block stylesheets %}
+  <link rel="stylesheet" href="/bundles/foscommentbundle/css/comments.css"/>
+  <link rel="stylesheet" href="/styles/responsive_youtube.css"/>
+{% endblock %}
+
+
+{% block javascripts %}
+<script type="text/javascript">
+  $( document ).ready(function() {
+    $('.borrowerTabs.menu .item').tab();
+  });
+</script>
+{% endblock %}

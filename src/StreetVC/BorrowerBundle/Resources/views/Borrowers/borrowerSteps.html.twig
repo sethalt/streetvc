@@ -1,0 +1,23 @@
+<div class="ui small steps">
+  <div class="ui step disabled">
+    {{ 'bor.step.register'|trans({}, 'borrower') }} 
+  </div>
+  <div class="ui {% if step == '2' %}active{% else %}disabled{% endif %} step">
+    {{ 'bor.step.legal'|trans({}, 'borrower') }} 
+  </div>
+  <div class="ui {% if step == '3' %}active{% else %}disabled{% endif %} step">
+    {{ 'bor.step.profile'|trans({}, 'borrower') }} 
+  </div>
+  <div class="ui {% if step == '4' %}active{% else %}disabled{% endif %} step">
+    {{ 'bor.step.review_business'|trans({}, 'borrower') }} 
+  </div>
+  <div class="ui {% if step == '5' %}active{% else %}disabled{% endif %} step">
+    {{ 'bor.step.create_lr'|trans({}, 'borrower') }} 
+  </div>
+  <div class="ui {% if step == '6' %}active{% else %}disabled{% endif %} step">
+    {{ 'bor.step.create_escrow'|trans({}, 'borrower') }} 
+  </div>
+  <div class="ui {% if step == '7' %}active{% else %}disabled{% endif %} step">
+    {{ 'bor.step.finish'|trans({}, 'borrower') }} 
+  </div>
+</div>

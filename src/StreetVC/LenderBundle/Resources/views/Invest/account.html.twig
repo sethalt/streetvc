@@ -1,0 +1,74 @@
+{% extends "StreetVCLenderBundle::LenderLayout.html.twig" %}
+
+{% block title %}Accounts{% endblock %}
+{% block content  %}
+<div class="ui two column doubling row">
+  {% if lender.linkedAccounts|length == '0' %}
+  <div class="column eight wide centered">
+    <div class="ui segment">
+      <h3 class="ui header">You have no linked bank accounts.</h3>
+      <a href="{{ path('new_lender_account', {lender: user.lender.id }) }}" class="ui button green">Add Bank Account</a>
+    </div>
+  </div>
+  {% else %}
+    <div class="column six wide">
+      <div class="ui segment">
+         <table class="ui striped table">
+            <tr>
+              <td>Current Balance</td>
+              <td>${{ lender.currentBalance|number_format(2, '.', ',') }}</td>
+            </tr>
+            <tr>
+              <td>Balance Pending</td>
+              <td>${{ lender.pendingBalance|number_format(2, '.', ',') }}</td>
+            </tr>
+            <tr>
+              <td>Funds committed to loans</td>
+              <td>${{ lender.committedAmount|number_format(2, '.', ',') }}</td>
+            </tr>
+            <tr>
+              <td>Funds currently held in escrow</td>
+              <td>${{ lender.fundsInEscrow|number_format(2, '.', ',') }}</td>
+            </tr>
+         </table>
+       </div>
+    </div>
+
+    <div class="column ten wide">
+      <h3 class="ui segmented header">Add Funds</h3>
+      <div class="ui segment">
+        <form id="fundAccount" class="ui form" action="{{ path('post_lender_account_funds', {'lender': lender.id}) }}" method="POST">
+          <p>Select Linked Account:</p>
+    
+          <div class="field">
+            <div class="ui selection dropdown">
+              <input type="hidden" name="account">
+    
+              <div class="default text">Account</div>
+              <i class="dropdown icon"></i>
+    
+              <div class="menu">
+                {% for account in lender.linkedAccounts %}
+                  <div class="item" data-value="{{ account.id }}">{{ account.name }}</div>
+                {% endfor %}
+              </div>
+            </div>
+          </div>
+          <div class="field">
+            <label for="amount">Amount</label>
+            <input type="number" id="amount" placeholder="100.00" name="amount">
+          </div>
+          <div class="field">
+            <button type="submit" class="ui funds button">Add</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  {% endif %}
+  
+    <script type="text/javascript">
+      $('.ui.selection.dropdown').dropdown();
+    </script>
+</div>
+{% endblock %}
+

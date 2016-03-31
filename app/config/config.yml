@@ -1,0 +1,320 @@
+imports:
+    - { resource: parameters.yml }
+    - { resource: security.yml }
+    - { resource: finite/finite_states.yml }
+    - { resource: bancbox/mappings.yml }
+
+framework:
+    #esi:             ~
+    translator: { fallback: en }
+    secret:          "%secret%"
+    router:
+        resource: "%kernel.root_dir%/config/routing.yml"
+        strict_requirements: ~
+    form:            ~
+    csrf_protection: ~
+    validation:      { enable_annotations: true }
+    templating:
+        engines: ['twig']
+        #assets_version: SomeVersionScheme
+    default_locale:  "%locale%"
+    trusted_proxies: ~
+    session:
+        cookie_lifetime: 86400
+        handler_id: session.handler.mongo
+    fragments:       ~
+    http_method_override: true
+
+jms_security_extra: ~
+
+# Twig Configuration
+twig:
+    debug:            "%kernel.debug%"
+    strict_variables: "%kernel.debug%"
+    form:
+        resources:
+            - 'SdBaseBundle:Form:semantic_fields.html.twig'
+
+# Assetic Configuration
+assetic:
+    debug:          "%kernel.debug%"
+    use_controller: false
+    bundles:        [ "FOSCommentBundle" ]
+    #java: /usr/bin/java
+    filters:
+        cssrewrite: ~
+        #closure:
+        #    jar: "%kernel.root_dir%/Resources/java/compiler.jar"
+        #yui_css:
+        #    jar: "%kernel.root_dir%/Resources/java/yuicompressor-2.4.7.jar"
+
+doctrine_mongodb:
+    connections:
+        default:
+            server: 
+            options: {}
+    default_database: 
+    document_managers:
+        default:
+            auto_mapping: true
+            mappings:
+                FOSUserBundle: ~
+                StreetVCLoanBundle: ~
+                StreetVCBorrowerBundle: ~
+                StreetVCUserBundle: ~
+                StreetVCLenderBundle: ~
+                FOSCommentBundle: ~
+#                SonataMediaBundle: ~
+                StreetVCBaseBundle:
+                    type: annotation
+                    is_bundle: true
+#                    dir: %kernel.root_dir%/../src/StreetVC/BaseBundle/Document/Document
+                    prefix: StreetVC\BaseBundle\Document
+                    alias: Base
+
+# Swiftmailer Configuration
+#swiftmailer:
+#    transport: "%mailer_transport%"
+#    host:      "%mailer_host%"
+#    username:  "%mailer_user%"
+#    password:  "%mailer_password%"
+#    spool:     { type: memory }
+
+
+swiftmailer:
+    default_mailer: gmail
+    mailers:
+        gmail:
+            transport:  smtp
+            username:   
+            password:  
+            host:       smtp.gmail.com
+            port:       587
+            encryption: tls
+            auth_mode:  login
+            spool:     { type: memory }
+
+fos_user:
+    db_driver: mongodb
+    firewall_name: main
+    user_class: "StreetVC\UserBundle\Document\User"
+#    service:
+#        user_manager: pugx_user_manager
+    registration:
+        form:
+            type: streetvc_user_registration #StreetVC\UserBundle\Form\Type\RegistrationFormType
+#            handler:
+#        confirmation:
+#            enabled:    true
+
+
+sensio_framework_extra:
+    view:    { annotations: false }
+    router:  { annotations: true }
+    request: { converters: true }
+
+hwi_oauth:
+    firewall_name: main
+    resource_owners:
+        facebook:
+            type:   facebook
+            client_id:  %facebook_id%
+            client_secret: %facebook_secret%
+            options:
+                display: popup
+
+fos_rest:
+#    throw_exception_on_unsupported_content_type: false
+    allowed_methods_listener: true
+    serializer:
+        serialize_null: true
+    view:
+        formats:
+            rss: true
+            xml: false
+            json: true
+            html: true
+        templating_formats:
+            html: true
+        force_redirects:
+            html: true
+        failed_validation: HTTP_BAD_REQUEST
+        default_engine: twig
+        view_response_listener: 'force'
+    routing_loader:
+        default_format: html #json
+    param_fetcher_listener: true
+    format_listener:
+        rules:
+            - { path: '^/', priorities: ['json', 'html', '*/*'], fallback_format: 'json', prefer_extension: true }
+    body_converter:
+        enabled: true
+#        validate: true
+#        validation_errors_argument: validationErrors
+    body_listener:
+        decoders:
+            json: fos_rest.decoder.json
+    access_denied_listener:
+        json: true
+
+jms_di_extra:
+    doctrine_integration: true
+    locations:
+        all_bundles: false
+        bundles: [StreetVCLoanBundle, StreetVCBorrowerBundle, StreetVCBancboxInvestBundle, StreetVCUserBundle ]
+        directories: ["%kernel.root_dir%/../src"]
+
+jms_serializer:
+    metadata:
+        auto_detection: true
+        directories:
+            FOSUserBundle:
+                path: "%kernel.root_dir%/Resources/FOSUserBundle/serializer"
+                namespace_prefix: "FOS\\UserBundle"
+    property_naming:
+        separator:  _
+        lower_case: true
+    visitors:
+        json:
+            options: 0
+
+fos_comment:
+    db_driver: mongodb
+    class:
+        model:
+            comment: StreetVC\BorrowerBundle\Document\Comment
+            thread: StreetVC\BorrowerBundle\Document\Thread
+
+bancbox_invest:
+    api_key:    "a53bcbc8-bb72-4da6-8a1e-0165a5073ef8"
+    secret:     "Lz9CkWjZPr"
+    baseUrl:    "https://sandbox-api.bancboxcrowd.com/crowd/v0/cfp/"
+    created_by: 'StreetVC'
+    cfp_id:     '650395515397'
+
+#sonata_block:
+#    default_contexts: [cms]
+#    blocks:
+#        sonata.admin.block.admin_list:
+#            contexts:   [admin]
+        # Your other blocks
+
+spy_timeline:
+    drivers:
+        odm:
+            object_manager:       doctrine.odm.mongodb.document_manager
+            post_load_listener:   true
+            classes:
+                timeline:         StreetVC\ActivityBundle\Document\Timeline
+                action:           StreetVC\ActivityBundle\Document\Action
+                component:        StreetVC\ActivityBundle\Document\Component
+                action_component: StreetVC\ActivityBundle\Document\ActionComponent
+    notifiers:
+        - spy_timeline.unread_notifications
+
+    timeline_manager: ~
+    action_manager:   ~
+    filters:
+        duplicate_key:
+            priority: 10
+        data_hydrator:
+            priority: 20
+            filter_unresolved: false
+            locators:
+                - spy_timeline.filter.data_hydrator.locator.doctrine_odm
+    spread:
+        on_subject:         true         # DEFAULT IS TRUE  Spread each action on subject too
+        on_global_context:  true   # Spread automatically on global context
+        deployer:           spy_timeline.spread.deployer.default
+        delivery:           immediate
+        batch_size:         50
+    render:
+        path:     'StreetVCActionBundle:Timeline/verbs'
+        resources:
+            - 'StreetVCActionBundle:Timeline:components.html.twig'
+
+old_sound_rabbit_mq:
+    connections:
+        default:
+            host:     'localhost'
+            port:     5672
+            user:     'guest'
+            password: 'guest'
+            vhost:    '/'
+            lazy:     false
+    consumers:
+        notification:
+            connection: default
+            exchange_options: {name: 'notifications', type: direct}
+            queue_options:    {name: 'notifications'}
+            callback:         namshi.notification.consumer
+services:
+    odm: @doctrine.odm.mongodb.document_manager
+    om: @doctrine.odm.mongodb.document_manager
+    doctrine: @doctrine_mongodb
+    dispatcher: @event_dispatcher
+    security: @security.context
+    finite_factory: @finite.factory
+
+    bancbox_client: @bancbox_invest.bancbox_client
+    bancbox_provider: @bancbox_invest.bancbox_provider
+
+    bancbox_logger: @monolog.logger.bancbox
+
+    escrow_manager: @escrow.manager
+
+    guzzle_client:
+        class: GuzzleHttp\Client
+
+    session.handler.mongo:
+        class: Symfony\Component\HttpFoundation\Session\Storage\Handler\MongoDbSessionHandler
+        arguments: [@mongo, { database: streetvc, collection: session } ]
+
+    mongo.connection:
+        class: MongoDoctrine\MongoDB\Connection
+        factory_service: odm
+        factory_method: getConnection
+        calls:
+            - [initialize, []]
+    mongo:
+        class: Mongo
+        factory_service: mongo.connection
+        factory_method: getMongo
+
+    doctrine_mongo_db_param_converter:
+        class: Sensio\Bundle\FrameworkExtraBundle\Request\ParamConverter\DoctrineParamConverter
+        arguments: [ @doctrine_mongodb ]
+        tags:
+            - { name: request.param_converter, converter: doctrine.odm }
+
+    namshi.notification.manager:
+        class: Namshi\Notificator\Manager
+        calls:
+            - [addhandler, [@namshi.notification.handler.email] ]
+    namshi.notification.handler.email:
+        class: Namshi\Notificator\Notification\Handler\Emailvision
+        arguments:
+          client: @namshi.email_client.emailvision
+    namshi.email_client.emailvision:
+        class: Namshi\Emailvision\Client
+        arguments:
+            config:
+                test_email:
+                random:   AAA
+                encrypt:  BBB
+                uidkey:   email
+                stype:    NOTHING
+
+    namshi.notification.consumer:
+        class: Namshi\Notificator\Messaging\RabbitMQ\Symfony2\Consumer
+        arguments: [@namshi.notification.manager]
+
+
+parameters:
+    loan_evaluation.evaluator.class: StreetVC\LoanEvaluation\Service\LoanEvaluatorStub
+    loan_terms: [ 3, 6, 12, 24, 36 ]
+    mongo.session.options:
+        database: wisn_session
+        collection: session
+    fos_user.registration.form.name: ''
+

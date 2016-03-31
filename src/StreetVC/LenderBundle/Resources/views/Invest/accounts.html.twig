@@ -1,0 +1,52 @@
+{% extends "StreetVCLenderBundle::LenderLayout.html.twig" %}
+
+{% block title %}Accounts{% endblock %}
+{% block content %}
+<div class="ui two column doubling row">
+    <div class="column six wide">
+    <h2 class="ui heading">Accounts</h2>
+    <div class="ui grid">
+      <div class="ui two column doubling row">
+      {% for account in accounts if account.bancboxId %}
+        <div class="column eight wide">
+          <div class="ui segment">
+            <div class="ui list">
+              <div class="item" {% if not account.verified %}style="border-color: #D95C5C;"{% endif %}>
+                <div class="header">StreetVC ID:</div>
+                  <div class="name">{{ account.bancboxId }}</div>
+              </div>
+              <div class="item">
+                <div class="header">routing number: </div>
+                  {{ account.routingNumber }}
+              </div>
+              <div class="item">
+                <div class="header">account number: </div>
+                  {{ account.accountNumber }}
+              </div>
+              <div class="item">
+                <div class="header">status: </div>
+                  {{ account.state }}
+              </div>
+              
+              <div class="item">
+                {% if not account.verified %}
+                  <a class="ui red button mini" href="{# path('') #}">verify account</a>
+                {% endif %}
+              </div>
+            </div>
+          </div>
+        </div>
+      {% endfor %}
+      </div>
+      </div>
+  </div>
+  <div class="column ten wide ">
+    <div class="ui segment">
+    {% if is_granted('ROLE_INVESTOR') %}
+      {% include 'StreetVCTransactionBundle::link_account.html.twig' with {url: path('post_lender_account', {lender: lender.id})} %}
+    {% endif %}
+    </div>
+  </div>
+</div>
+{% endblock %}
+

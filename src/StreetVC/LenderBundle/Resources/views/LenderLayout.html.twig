@@ -1,0 +1,57 @@
+{% extends '::layout.html.twig' %}
+
+{% block title %}
+{% endblock %}
+
+  {% block sidebar %}
+    {% include("StreetVCLenderBundle::LenderSidebar.html.twig") %}
+  {% endblock %}
+
+
+{% block view %}
+  {% if is_granted('ROLE_INVESTOR') %}
+  {% set lender=user.lender %}
+  {% set account = user.lender.internalAccount %}
+  <div class="one column doubling row">
+    <div class="column">
+    <div class="ui segment">
+      <div class="ui secondary green pointing menu">
+        <span class="item">
+          <h2 class="ui header green">Investor Dashboard</h2>
+        </span>
+        <span class="item">
+           <strong>Current Balance: ${{ lender.currentBalance|number_format(2, '.', ',') }}</strong>
+        </span>
+        <span class="item">
+            <a href="{{ path('invest_account') }}" class="ui button tiny red">ADD FUNDS TO YOUR ACCOUNT</a>
+        </span>
+        <a class="item " href="{{ path('invest_index') }}">
+          <i class="users icon"></i>
+          <span>{{ 'lend.browse_requests'|trans({}, 'lender') }}</span>
+        </a>
+        <a class="item " href="{{ path('invest_commitments') }}">
+          <i class="dollar icon"></i>
+          <span>Activity</span>
+        </a>
+        {#
+        <a class="item " href="{{ path('invest_activity') }}">
+          <i class="dollar icon"></i>
+          <span>Activity</span>
+        </a>
+        #}
+        <a class="item " href="{{ path('get_lender', {lender: lender.id}) }}">
+          <i class="book icon"></i>
+          <span>Edit Investor Profile</span>
+        </a>
+      </div>
+    </div>
+    </div>
+  </div>
+  {% endif %}
+
+  {% block content %}
+
+  {% endblock %}
+
+
+{% endblock %}

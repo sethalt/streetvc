@@ -1,0 +1,103 @@
+finite_finite:
+    escrow:
+        class: StreetVC\LoanBundle\Document\Escrow
+        graph: escrow
+        states:
+            new:
+                type: initial
+                properties: { description: Escrow persisted }
+            pending:
+                properties: { description: Creation of escrow requested and service ID issued, but pending signatures }
+            open:
+                properties: { description: Escrow is confirmed open }
+            signing:
+                properties: { description: pending signatures }
+            signed:
+                properties: { description: documents signed }
+            created:
+                properties: { description: Escrow created but not necessarily accepting funds per start date }
+            rejected:
+                properties: { description: Attempt to create escrow failed }
+#            unstarted:
+#                properties: { description: Loan Escrow open but start date is still in the future }
+            started:
+                properties: { description: Loan Escrow open, under funding goal, and within funding interval }
+            closing:
+                properties: { description: Closing of Escrow was requested, pending confirmation. }
+            closed:
+                properties: { description: Closing of Escrow confirmed by bancbox. }
+            funded:
+                properties: { description: Escrow has met its goal }
+#            over_funded:
+#                properties: { description: Escrow has collected funding maximum }
+            expired:
+                properties: { description: Funding window elapsed. Possibility to re-open }
+            cancel_pending:
+                properties: { description: Escrow cancellation requested, pending confirmation. }
+            canceled:
+                type: final
+                properties: { description: Funding window for escrow elapsed before minimum_amount funded }
+            origination_fee_paid:
+                properties: { description: Platform fee collected. }
+            payments_scheduled:
+                properties: { description: Issuer payments scheduled. }
+            disbursal_pending:
+                properties: { description: Disbursing of funds is pending signature. }
+            disbursed:
+                properties: { description: Funds disbursed. }
+            repayment:
+                properties: { description: Loan in repayment. }
+            repaid:
+                properties: { description: Loan repaid. }
+        transitions:
+            request:
+                from: [ new ]
+                to:   pending
+            open_confirmed:
+                from: [ new, pending ]
+                to:   open
+            signed:
+                from: [ pending ]
+                to:  signed
+            modify:
+                from: [ open ]
+                to:   open
+#            start:
+#                from: [ created, closed ]
+#                to:   started
+            expire:
+                from: [ open ]
+                to:   expired
+            cancel:
+                from: [ pending, created, signed, open ]
+                to:   cancel_pending
+            cancel_confirmed:
+                from: [ pending, open, cancel_pending ]
+                to:   canceled
+            fund:
+                from: [ open ]
+                to:   open
+            funded:
+                from: [ open ]
+                to:   funded
+            pay_origination_fee:
+                from: [ funded ]
+                to:   origination_fee_paid
+            disburse:
+                from: [ funded, origination_fee_paid ]
+                to:   closing #repaying #disbursal_pending
+#            close:
+#                from: [ origination_fee_paid ]
+#                to:   closing
+            close_confirmed: # aka disbursed
+                from: [ closing ]
+                to:   closed
+            schedule_payments:
+                from: [ closed ]
+                to:   payments_scheduled
+            repaying:
+                from: [ payments_scheduled ]
+                to:   repayment
+            repaid:
+                from: [ repayment ]
+                to:   repaid

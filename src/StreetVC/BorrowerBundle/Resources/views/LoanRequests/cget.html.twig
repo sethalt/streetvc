@@ -1,0 +1,80 @@
+    <div class="ui segment centered">
+        <h3 class="ui heading">Filter Requests</h3>
+        <form class="ui fluid  form" method="get" action="">
+          <div class="fields">
+            <div class="field four wide">
+              <label>Loan Amount Min ($)</label>
+              <div class="ui left icon input">
+                <input name="minAmount" placeholder="5000" type="number" />
+                <i class="dollar icon"></i>
+              </div>
+            </div>
+            <div class="field four wide">
+              <label>Loan Amount Max ($)</label>
+              <div class="ui left icon input">
+                <input name="maxAmount" placeholder="10000" type="number" />
+                <i class="dollar icon"></i>
+              </div>
+            </div>
+           <div class="field four wide">
+              <label>Industry</label>
+              <select name="industry" class="ui search dropdown">
+                <option value="">Select One</option>
+                <option value="industry">industry</option>
+              </select>
+            </div>
+           <div class="field four wide">
+              <label>Purpose</label>
+              <select name="purpose" class="ui search dropdown">
+                <option value="">Select One</option>
+                <option value="cash flow">cash flow</option>
+                <option value="day-to-day operating expenses">day-to-day operating expenses</option>
+                <option value="inventory">inventory</option>
+                <option value="additional plant/equipment/vehicles">additional plant/equipment/vehicles</option>
+                <option value="reserve/cushion">reserve/cushion</option>
+                <option value="real estate">real estate</option>
+                <option value="replace old plan/equipment/vehicles">replace old plan/equipment/vehicles</option>
+                <option value="start business">start business</option>
+                <option value="repayment or debt">repayment or debt</option>
+                <option value="payroll">payroll</option>
+                <option value="construction for new / expanded facility">construction for new / expanded facility</option>
+              </select>
+            </div>
+            <div class="field four wide">
+              <label>Zip Code</label>
+              <div class="ui input">
+                <input name="zipCode" placeholder="12345" type="number" />
+              </div>
+            </div>
+           <div class="field four wide">
+              <label>Credit Score</label>
+              <select name="creditRating" class="ui search dropdown">
+                <option value="">Select One</option>
+                <option value="A">A</option>
+                <option value="B">B</option>
+                <option value="C">C</option>
+                <option value="D">D</option>
+                <option value="E">E</option>
+                <option value="F">F</option>
+                <option value="G">G</option>
+              </select>
+            </div>
+            <div class="field four wide">
+                <label>Has Video</label>
+                <input type="checkbox" class="checkbox" name="hasVideo" />
+            </div>
+            <div class="field sixteen wide">
+              <input type="submit" class="ui submit button" value="Filter Results" />
+            </div>
+          </div>
+        </form>
+    </div> 
+    
+    <table class="ui table">
+        {{ include('StreetVCBorrowerBundle:LoanRequests:loanRequestHeaders.html.twig') }}
+    <tbody>
+    {% for request in requests if request.escrow and request.escrow.state == 'open' and request.escrow.closeDate > date() %}
+        {{ include('StreetVCBorrowerBundle:LoanRequests:loanRequestItem.html.twig', { loanRequest: request }) }}
+    {% endfor %}
+    </tbody>
+    </table>

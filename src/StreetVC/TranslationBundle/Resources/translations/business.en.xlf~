@@ -1,0 +1,195 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xliff xmlns="urn:oasis:names:tc:xliff:document:1.2" version="1.2">
+  <file source-language="en-US" target-language="en" datatype="plaintext" original="file.ext">
+    <body>
+      <trans-unit id="e5bdfa91015d3a8cc8740563aeffc40c" resname="biz.annual_revenue">
+        <source>biz.annual_revenue</source>
+        <target>Annual Revenues, most recent full year, as reported for tax purposes</target>
+      </trans-unit>
+      <trans-unit id="107d540f9bd184047aa558c3b0743baf" resname="biz.average_margin">
+        <source>biz.average_margin</source>
+        <target>Average margin per sale</target>
+      </trans-unit>
+      <trans-unit id="ac8fdeac73713148ab1098fda954fab7" resname="biz.state_of_incorporation">
+        <source>biz.state_of_incorporation</source>
+        <target>State of Incorporation</target>
+      </trans-unit>
+      <trans-unit id="6a0b4dd335542289033be6150ea912e2" resname="biz.legal.name">
+        <source>biz.legal.name</source>
+        <target>Official name of your business</target>
+      </trans-unit>
+      <trans-unit id="163dce33e0bb4335c2b2d1f1b4527c50" resname="biz.legal.taxid">
+        <source>biz.legal.taxid</source>
+        <target>Tax ID/EIN (9 digits)</target>
+      </trans-unit>
+      <trans-unit id="cb9e69ca4583a65cf2ac496cc3ccacc6" resname="biz.legal.phone">
+        <source>biz.legal.phone</source>
+        <target>Official Business Phone Number</target>
+      </trans-unit>
+      <trans-unit id="eaa660e72c036b4d6482447550d753b2" resname="biz.legal.structure">
+        <source>biz.legal.structure</source>
+        <target>Corporate Structure</target>
+      </trans-unit>
+      <trans-unit id="89ee854c6e2bd1597171e4937a420f51" resname="biz.website">
+        <source>biz.website</source>
+        <target>Website address</target>
+      </trans-unit>
+      <trans-unit id="9d4ae8da9f59df92895fbf9d1abb5839" resname="biz.legal.annual_revenue">
+        <source>biz.legal.annual_revenue</source>
+        <target>Annual Revenue</target>
+      </trans-unit>
+      <trans-unit id="4772649be742a2b2ca70e28520ee5f09" resname="biz.revenue_tip">
+        <source>biz.revenue_tip</source>
+        <target>Revenue is your total sales number.  This is before deducting any of the expenses associated with doing business such as the cost of inventory, payroll, rent, etc.  </target>
+      </trans-unit>
+      <trans-unit id="dbe072d4231945f67d74a0a0f48d7f06" resname="biz.legal.have_revenue">
+        <source>biz.legal.have_revenue</source>
+        <target>Does your business have revenue?</target>
+      </trans-unit>
+      <trans-unit id="fb54557726fbe4b86d1d6f88c35d6a40" resname="biz.legal.have_cashflow">
+        <source>biz.legal.have_cashflow</source>
+        <target>Does your business currently have cashflow?</target>
+      </trans-unit>
+      <trans-unit id="798a38990eadcd24134f4c58d6d5c789" resname="biz.legal.cashflow">
+        <source>biz.legal.cashflow</source>
+        <target>What Is your cashflow?</target>
+      </trans-unit>
+      <trans-unit id="29bbfb44b12a16723c83dbe7adafb4cd" resname="biz.cashflow_tip">
+        <source>biz.cashflow_tip</source>
+        <target>CashFlow is the net cash flowing in to your business, after you have paid your operating expenses.  Operating expenses include payroll, payments to suppliers and vendors that sell you inventory, as well as regular monthly expenses such as rent, phone, internet, cable.  Expenses do not include "major purchases" such as buildings, equipment or vehicles (except if your are in the business of selling or renting equipment or vehicles).  </target>
+      </trans-unit>
+      <trans-unit id="ee870c4b196f56827a4c14a2dc0d439c" resname="biz.legal.address">
+        <source>biz.legal.address</source>
+        <target>Official Business Address</target>
+      </trans-unit>
+      <trans-unit id="8246d0f65df7dd9e908047ab75f5c8fb" resname="biz.video">
+        <source>biz.video</source>
+        <target>Youtube URL or ID</target>
+      </trans-unit>
+      <trans-unit id="a5f5391e4dfc2486be68111913bf285a" resname="biz.bricks_mortar">
+        <source>biz.bricks_mortar</source>
+        <target>Is Your Business Primarily Bricks-and-Mortar?</target>
+      </trans-unit>
+      <trans-unit id="31735fc4cb83f92b8928f2d5e5ef3f04" resname="biz.legal.industry">
+        <source>biz.legal.industry</source>
+        <target>Industry</target>
+      </trans-unit>
+      <trans-unit id="30984ec097b85fb0cbe799b856ccb0e1" resname="biz.legal.heading">
+        <source>biz.legal.heading</source>
+        <target>Tell us about yourself and your company</target>
+      </trans-unit>
+      <trans-unit id="88c0a052a98db3bdc3edfbc66c616d29" resname="biz.legal.save">
+        <source>biz.legal.save</source>
+        <target>Save and Continue</target>
+      </trans-unit>
+      <trans-unit id="b0be064bbe47ec0a87d87b27143c73ed" resname="biz.profile.heading">
+        <source>biz.profile.heading</source>
+        <target>Tell us about yourself and your company</target>
+      </trans-unit>
+      <trans-unit id="f106beb94b020969d8f7b7b837f5f53b" resname="biz.profile.save">
+        <source>biz.profile.save</source>
+        <target>Save and Continue</target>
+      </trans-unit>
+      <trans-unit id="296c3cc1f5712633a90d3cf605a7688d" resname="biz.review.heading">
+        <source>biz.review.heading</source>
+        <target>Review business info and submit</target>
+      </trans-unit>
+      <trans-unit id="fa25c1dcc0f62b17af3fa8af5c300c16" resname="biz.review.submit">
+        <source>biz.review.submit</source>
+        <target>Submit Business</target>
+      </trans-unit>
+      <trans-unit id="5f40716fdbc76a3c85b004031c838981" resname="biz.description">
+        <source>biz.description</source>
+        <target>Brief Description Of Your Business</target>
+      </trans-unit>
+      <trans-unit id="1c908caf8e5de72fc799d30a01bb3446" resname="biz.financial.heading">
+        <source>biz.financial.heading</source>
+        <target>Company Financial Picture</target>
+      </trans-unit>
+      <trans-unit id="12abda07c13493089fd84e533559c721" resname="biz.legal.dbas">
+        <source>biz.legal.dbas</source>
+        <target>if you have any DBAs list them here</target>
+      </trans-unit>
+      <trans-unit id="969c546fd28989f50b1bfab7116f1d74" resname="biz.legal.year_established">
+        <source>biz.legal.year_established</source>
+        <target>The year your business was established</target>
+      </trans-unit>
+      <trans-unit id="e36ab028c70edfb5ff559b32c5cca461" resname="biz.number_locations">
+        <source>biz.number_locations</source>
+        <target>Number of Locations</target>
+      </trans-unit>
+      <trans-unit id="8539492a69592f463be10e04300a38bc" resname="biz.time_at_current_location">
+        <source>biz.time_at_current_location</source>
+        <target>How long have you been at your current location?</target>
+      </trans-unit>
+      <trans-unit id="974b1e9389acf5ff26877ee119af4574" resname="biz.legal.net_profit">
+        <source>biz.legal.net_profit</source>
+        <target>Net profit, most recent full year as reported for tax purposes</target>
+      </trans-unit>
+      <trans-unit id="35c97f1e7bfc9e161556151d8a6dff33" resname="biz.financial.past_cashflow">
+        <source>biz.financial.past_cashflow</source>
+        <target>Monthly cash flow, last 3 months</target>
+      </trans-unit>
+      <trans-unit id="30570e90a94b37113b19f0f0fdb29470" resname="biz.financial.past_revenue">
+        <source>biz.financial.past_revenue</source>
+        <target>Please provide total revenue and cash flow for each of the most recent 12 months</target>
+      </trans-unit>
+      <trans-unit id="a01d63c217d33001907f8cbbd62aa0af" resname="biz.remaining_term_of_lease">
+        <source>biz.remaining_term_of_lease</source>
+        <target>Remaining term of lease (years)</target>
+      </trans-unit>
+      <trans-unit id="75dba74cdc482a27a8311b3e2b800fbd" resname="biz.own_lease_location">
+        <source>biz.own_lease_location</source>
+        <target>Do you lease or own current location?</target>
+      </trans-unit>
+      <trans-unit id="afed8738d69bcba8eff582b9e873ebd9" resname="biz.legal.cyclical_business">
+        <source>biz.legal.cyclical_business</source>
+        <target>Cyclical business? </target>
+      </trans-unit>
+      <trans-unit id="7b5caf4d79a88a83b0ca941befe745a2" resname="biz.credit_facilities">
+        <source>biz.credit_facilities</source>
+        <target>Do you already have any loans, lines of credit, or other credit facilities? </target>
+      </trans-unit>
+      <trans-unit id="00efd2739b4f13b62baebee19720d4e3" resname="biz.cf_amount_due">
+        <source>biz.cf_amount_due</source>
+        <target>Total amount due</target>
+      </trans-unit>
+      <trans-unit id="0a07767de773321b82b9ddddc18ca9c7" resname="biz.cf_largest_amount_outstanding">
+        <source>biz.cf_largest_amount_outstanding</source>
+        <target>Amount ($) outstanding of largest facility</target>
+      </trans-unit>
+      <trans-unit id="4a757252990d2f9db28d1bdc91d8a155" resname="biz.getCfAmountDue">
+        <source>biz.getCfAmountDue</source>
+        <target>Final payment date (maturity) for last of all current facilities?</target>
+      </trans-unit>
+      <trans-unit id="b663db594b694502e5c2f6f9b05cac60" resname="biz.assets_real_estate_value">
+        <source>biz.assets_real_estate_value</source>
+        <target>Real estate assets</target>
+      </trans-unit>
+      <trans-unit id="2e649f5ccb9ffdaa079dd784923d114b" resname="biz.assets_real_estate_equity">
+        <source>biz.assets_real_estate_equity</source>
+        <target>Real estate equity</target>
+      </trans-unit>
+      <trans-unit id="de368ba58891a5b38d6615ee934d4d9d" resname="biz.assets_equipment">
+        <source>biz.assets_equipment</source>
+        <target>Equipment</target>
+      </trans-unit>
+      <trans-unit id="84cdd6440ad06e705945a69fecc23800" resname="biz.assets_inventory">
+        <source>biz.assets_inventory</source>
+        <target>Inventory</target>
+      </trans-unit>
+      <trans-unit id="25904b5dd74a1ea746a744d7fef66ae0" resname="biz.assets_accounts_receivable">
+        <source>biz.assets_accounts_receivable</source>
+        <target>Accounts Receivable</target>
+      </trans-unit>
+      <trans-unit id="8d625aa0f2b4becdcc45d887b080d72d" resname="biz.assets_cash">
+        <source>biz.assets_cash</source>
+        <target>Cash</target>
+      </trans-unit>
+      <trans-unit id="894beb808ef3e44747f7e8a7fb33d533" resname="biz.cf_final_payment_date">
+        <source>biz.cf_final_payment_date</source>
+        <target>Final payment date (maturity) for last of all current facilities?</target>
+      </trans-unit>
+    </body>
+  </file>
+</xliff>

@@ -1,0 +1,84 @@
+{% extends "StreetVCBorrowerBundle::BorrowerLayout.html.twig" %}
+{% block title %}Profile{% endblock %}
+
+{% block content %}
+<div class="two column doubling ui row">
+  <div class="column ten wide centered">
+    {{ include('StreetVCBorrowerBundle:BorrowerProfile:borrowerSteps.html.twig', { step: '3'}) }}
+    <div class="ui segment">
+      <div class="ui  dimmer">
+        <div class="ui large text loader">Loading</div>
+      </div>
+            <form id="registration" class="applicationForm ui horizontal form {{ form.vars.errors ?'error':'' }}" action="{{ path('put_borrowerapplication', {application: application.id}) }}" method="PUT">
+            <div class="ui tab active" data-tab="registration">
+            <h2 class="ui dividing header">Congratulations, You have been Preapproved for a loan with Investable!</h2>
+            <p>Would you like to submit your application?</p>
+              {{ form_errors(form) }}
+              {{ form_widget(form._token) }}
+              <div id="submitForApproval" class="ui blue submit button">Submit Application</div>
+             </div>
+            </form>
+    </div>
+    <img style="width: 100%;" src="/img/registration/congratulations.jpg" alt="congratulations" />
+  </div>
+</div>
+
+<div id="submissionModal" class="ui modal">
+  <i class="close icon"></i>
+  <div class="content">
+    <div class="description">
+      <div class="ui header">Declined</div>
+      <p class="statusMessage"></p>
+    </div>
+  </div>
+  <div class="actions">
+    <div class="ui positive left labeled button">
+      Close and fix registration
+    </div>
+  </div>
+</div>
+{% endblock %}
+
+{% block javascripts %}
+{{ include('StreetVCBorrowerBundle:Businesses:businessFormJs.html.twig') }}
+<script type="text/javascript">
+  $( document ).ready(function(){
+    
+    var registration = $('#registration');
+    $('#submitForApproval').click(function(){
+      $('.segment').dimmer('show');
+      postForm(registration, function( response ){
+        $.get( "/borrowerapplications/{{ application.id }}/approval.json", function( data ) {
+          if(data.status == 'approved'){
+            window.location = "/borrowers/approved";
+          }else{
+            $('.statusMessage').html(data.message);
+            $('#submissionModal').modal('show');
+          }
+        });
+        $('.segment').dimmer('hide');
+       });
+       return false;
+      });
+
+
+  });
+
+  function postForm( $form, callback ){
+    var values = {};
+    $.each( $form.serializeArray(), function(i, field) {
+      values[field.name] = field.value;
+    });
+   
+    $.ajax({
+      type        : $form.attr( 'method' ),
+      url         : $form.attr( 'action' ),
+      data        : values,
+      success     : function(data) {
+        callback( data );
+      }
+    });
+   
+  }
+</script>
+{% endblock %}

@@ -1,0 +1,149 @@
+#hwi_oauth_redirect:
+#    resource: "@HWIOAuthBundle/Resources/config/routing/redirect.xml"
+#    prefix:   /connect
+
+#hwi_oauth_login:
+#    resource: "@HWIOAuthBundle/Resources/config/routing/login.xml"
+#    prefix:   /login
+
+api_bancbox_webhooks:
+    type: rest
+    resource: StreetVC\BancboxInvest\BancboxInvestBundle\Controller\WebhookController
+
+facebook_login:
+    pattern:  /login/facebook
+
+google_login:
+    pattern:  /login/google
+
+street_vc_activity:
+    resource: "@StreetVCActivityBundle/Resources/config/routing.xml"
+    prefix:   /
+
+street_vc_user:
+    resource: "@StreetVCUserBundle/Resources/config/routing.xml"
+    prefix:   /
+
+street_vc_borrower:
+    resource: "@StreetVCBorrowerBundle/Resources/config/routing.xml"
+    prefix:   /
+
+lenders:
+    resource: StreetVC\LenderBundle\Controller\LendersController
+    type: rest
+
+documents:
+    resource: StreetVC\BaseBundle\Controller\DocumentsController
+    type: rest
+
+disbursements:
+    resource: StreetVC\LoanBundle\Controller\DisbursementsController
+    type: rest
+
+street_vc_lender:
+    resource: "@StreetVCLenderBundle/Resources/config/routing.xml"
+    prefix:   /
+
+transactions:
+    type:     rest
+    resource: StreetVC\TransactionBundle\Controller\TransactionsController
+
+loan_requests:
+    type:     rest
+    resource: StreetVC\BorrowerBundle\Controller\LoanRequestsController
+
+escrows:
+    type:     rest
+    resource: StreetVC\LoanBundle\Controller\EscrowsController
+
+loan_commitments:
+    type:     rest
+    resource: StreetVC\LenderBundle\Controller\LoanCommitmentsController
+
+users:
+    type:     rest
+    resource: StreetVC\UserBundle\Controller\UsersController
+
+borrowers:
+    type:     rest
+    resource: StreetVC\BorrowerBundle\Controller\BorrowersController
+
+businesses:
+    type:     rest
+    resource: StreetVC\BorrowerBundle\Controller\BusinessesController
+
+industries:
+    type:     rest
+    resource: StreetVC\BorrowerBundle\Controller\IndustriesController
+
+borrower_profile:
+    type:     rest
+    resource: StreetVC\BorrowerBundle\Controller\BorrowerProfileController
+    
+borrower_application:
+    type:     rest
+    resource: StreetVC\BorrowerBundle\Controller\BorrowerApplicationController
+
+
+#home:
+#    path: /
+#    defaults:
+#        _controller: FrameworkBundle:Template:template
+#        template:    '::home.html.twig'
+
+home:
+    path:  /
+    defaults:
+      _controller: StreetVCSiteBundle:Default:index 
+
+frontend:
+    type:    rest
+    resource: StreetVC\SiteBundle\Controller\DefaultController
+
+fos_user_security:
+    resource: "@FOSUserBundle/Resources/config/routing/security.xml"
+
+profile:
+    path: /profile/
+    defaults:
+        _controller: FOSUserBundle:Profile:show
+
+fos_user_profile:
+    resource: "@FOSUserBundle/Resources/config/routing/profile.xml"
+    prefix: /profile
+
+fos_user_register:
+    resource: "@FOSUserBundle/Resources/config/routing/registration.xml"
+    prefix: /register
+
+fos_user_resetting:
+    resource: "@FOSUserBundle/Resources/config/routing/resetting.xml"
+    prefix: /resetting
+
+fos_user_change_password:
+    resource: "@FOSUserBundle/Resources/config/routing/change_password.xml"
+    prefix: /profile
+
+fos_comment_api:
+    type: rest
+    resource: "@FOSCommentBundle/Resources/config/routing.yml"
+    prefix: /api
+    defaults: { _format: html }
+
+invest:
+    type: annotation
+    resource: "@StreetVCLenderBundle/Controller/InvestController.php"
+    prefix: /invest
+
+admin:
+    resource: "@StreetVCBaseBundle/Resources/config/routing.yml"
+    prefix: /admin
+    defaults: { _format: html }
+
+#gallery:
+#    resource: '@SonataMediaBundle/Resources/config/routing/gallery.xml'
+#    prefix: /media/gallery
+
+#media:
+#    resource: '@SonataMediaBundle/Resources/config/routing/media.xml'
+#    prefix: /media

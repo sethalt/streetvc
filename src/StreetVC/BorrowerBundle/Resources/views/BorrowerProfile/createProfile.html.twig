@@ -1,0 +1,52 @@
+{% extends "StreetVCBorrowerBundle::BorrowerLayout.html.twig" %}
+{% block title %}Profile{% endblock %}
+
+{% block view %}
+<div class="column">
+    {{ include('StreetVCBorrowerBundle:BorrowerProfile:borrowerSteps.html.twig', { step: '2'}) }}
+    <div class="ui grid">
+      <div class="row">
+        <div class="column">
+        
+            <div class="ui tab segment active" data-tab="legal">
+              {{ render(controller('StreetVCBorrowerBundle:BorrowerProfile:profile')) }}
+            </div>
+            <div class="ui tab segment" data-tab="profile">
+              {{ render(controller('StreetVCBorrowerBundle:BorrowerProfile:financial')) }}
+            </div>
+        </div>
+      </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block javascripts %}
+<script type="text/javascript">
+    $( document ).ready(function() {
+      
+      $('.borrowerTabs .profileTab').tab();
+      
+      $('form#profileForm').on('submit', function(event) {
+        var postData = $(this).serializeArray();
+        var action = $(this).attr("action");
+   //   $('form#legalForm input[type=submit]').attr('disabled', true);
+        $.get( action, postData, function(data) {
+          alert('form submitted!');
+
+        });
+        event.preventDefault();
+      });
+
+
+      $('form#financialForm').on('submit', function(event) {
+        var postData = $(this).serializeArray();
+        var action = $(this).attr("action");
+        $.get( action, postData, function(data) {
+          alert('form submitted!');
+        });
+        event.preventDefault();
+      });
+      
+    });
+</script>
+{% endblock %}

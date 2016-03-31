@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xliff xmlns="urn:oasis:names:tc:xliff:document:1.2" version="1.2">
+  <file source-language="en-US" target-language="en" datatype="plaintext" original="file.ext">
+    <body>
+      <trans-unit id="69862c6009e79b16c7625d31f283ab7b" resname="lender.create_to_invest">
+        <source>lender.create_to_invest</source>
+        <target>Create an Investor Profile to invest</target>
+      </trans-unit>
+      <trans-unit id="0d78f31d2e4299cb777a89b285b023d4" resname="lend.browse_requests">
+        <source>lend.browse_requests</source>
+        <target>Browse Loan Requests</target>
+      </trans-unit>
+      <trans-unit id="66ebb478644f6937a95655f86372a59d" resname="lend.is_new_lender">
+        <source>lend.is_new_lender</source>
+        <target>Are you looking to fund a loan as an investor?</target>
+      </trans-unit>
+      <trans-unit id="19fdfc493df91d7d4f7d38d774fb6095" resname="lender.available_funds_project">
+        <source>lender.available_funds_project</source>
+        <target>are available to fund to this project</target>
+      </trans-unit>
+      <trans-unit id="8bb9434bc88cfbd68ddc5160acfeb84b" resname="lender.add_funds">
+        <source>lender.add_funds</source>
+        <target>Add more funds to your account</target>
+      </trans-unit>
+      <trans-unit id="539876c21057ae00a5c0c8735fa74f3c" resname="lender.investor_id">
+        <source>lender.investor_id</source>
+        <target>Investor Id</target>
+      </trans-unit>
+      <trans-unit id="916612f27194a12854e9e02ef40a9fc3" resname="lender.view_funding_commitments">
+        <source>lender.view_funding_commitments</source>
+        <target>view funding commitments</target>
+      </trans-unit>
+      <trans-unit id="0a4310fdfc977bc88ab701f76050bfd4" resname="lender.available_to_invest">
+        <source>lender.available_to_invest</source>
+        <target>Available to Invest</target>
+      </trans-unit>
+      <trans-unit id="2f02f06cd562feeca694461bd5106937" resname="lender.total_profits">
+        <source>lender.total_profits</source>
+        <target>Total Profits</target>
+      </trans-unit>
+      <trans-unit id="f391bf5b98b42efbe019a4ef5247369b" resname="lender.view_profits">
+        <source>lender.view_profits</source>
+        <target>View Profits</target>
+      </trans-unit>
+      <trans-unit id="59fd3f9bfd6685f80bc6b85408988666" resname="lender.view_account_activity">
+        <source>lender.view_account_activity</source>
+        <target>View Account Activity</target>
+      </trans-unit>
+      <trans-unit id="ef8c7243f3389c44d4fe79a91c1ef445" resname="lender.internal_account_number">
+        <source>lender.internal_account_number</source>
+        <target>Internal Account Number</target>
+      </trans-unit>
+      <trans-unit id="e81191397647c29c212181214eedec4b" resname="lender.account_info">
+        <source>lender.account_info</source>
+        <target>Account Info</target>
+      </trans-unit>
+      <trans-unit id="da65c69c6d79c0d07f892adc205911c7" resname="lender.add_bank_account">
+        <source>lender.add_bank_account</source>
+        <target>Add bank account</target>
+      </trans-unit>
+    </body>
+  </file>
+</xliff>

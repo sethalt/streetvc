@@ -1,0 +1,26 @@
+{% extends "StreetVCBorrowerBundle::BorrowerLayout.html.twig" %}
+{% block title %}Legal{% endblock %}
+
+{% block content %}
+<div class="one column doubling ui row">
+  <div class="column">
+    {{ include('StreetVCBorrowerBundle:BorrowerProfile:borrowerSteps.html.twig', { step: '2'}) }}
+    <div class="ui grid">
+      <div class="row">
+        <div class="column">
+            <h2 class="ui dividing header">{{ 'biz.legal.heading'|trans({}, 'business') }}</h2>
+            <form id="legalForm" class="ui horizontal form {{ form.vars.errors ?'error':'' }}" action="{{ path('legal_borrower') }}" method="GET">
+            
+            <input type="hidden" name="formType" value="business_legal" />
+            <input type="hidden" name="save" value="true" />
+            {{ form_rest(form) }}
+            {{ form_widget(form) }}
+            <input type="submit" class="ui blue submit button" value="{{ 'biz.legal.save'|trans({}, 'business') }}" />
+            </form>
+            
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}

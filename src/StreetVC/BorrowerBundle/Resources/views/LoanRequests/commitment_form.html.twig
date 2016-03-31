@@ -1,0 +1,48 @@
+{% set lender=user.lender %}
+<h4>${{ lender.currentBalance|number_format(2, '.', ',') }} {{ 'lender.available_funds_project'|trans({}, 'lender') }}.  <a class="" href="{{ path('invest_account') }}">{{ 'lender.add_funds'|trans({}, 'lender') }}</a></h4>
+<p>&nbsp;</p>
+<form id="commitFunds" class="ui horizontal form" data-escrow="{{ escrow.id }}" action="{{ path('post_escrow_commitments', {escrow: escrow.id}) }}" method="POST">
+  <div class="ui error message"></div>
+  <label for="amount" class="required">{{ 'lr.minimum_amount'|trans({}, 'loan_request') }} ${{ escrow.minimumFundingAmount|number_format(2, '.', ',') }}, {{ 'lr.max_amount'|trans({}, 'loan_request') }} ${{ escrow.maximumCommitment|number_format(2, '.', ',') }}</label>
+  <div class="ui left labeled icon input">
+    <i class="dollar icon"></i>
+    <input type="number" id="amount" placeholder="1000.00" name="amount" required="required" min="{{ escrow.minimumFundingAmount }}" max="{{ escrow.maximumCommitment }}">
+  </div>
+  <button id="commitFundsButton" type="submit" class="ui button green large fluid">
+    {% if user.lender.hasCommittedToEscrow(escrow) %}
+      {{ 'lr.lend_again'|trans({}, 'loan_request') }}
+    {% else %}
+      {{ 'lr.lend_now'|trans({}, 'loan_request') }}
+    {% endif %}
+  </button>
+</form>
+<script id="handleSubmit" type="application/javascript">
+  $('#commitFunds').submit(function (e) {
+    var $form = $(this);
+    var $submitBtn = $form.find('.btn');
+    $form.addClass('loading');
+    var $errors = $form.find('.error.message');
+    e.preventDefault();
+    $submitBtn.attr('disabled', 'disabled');
+    var data = {};
+    $(this).serializeArray().map(function (i) {
+      data[i.name] = i.value;
+    });
+    var url = $(this).attr('action');
+    $.post(url, data)
+        .done(function (data) {
+          $form.removeClass('loading');
+          $submitBtn.removeAttr('disabled', 'disabled');
+          console.log(data);
+          location.reload();
+        })
+        .fail(function (data) {
+          var response = data.responseJSON;
+          $errors.empty().append(response.errors);
+          $form.addClass('error');
+          $form.removeClass('loading');
+          $submitBtn.removeAttr('disabled', 'disabled');
+          console.log(data);
+        });
+  });
+</script>

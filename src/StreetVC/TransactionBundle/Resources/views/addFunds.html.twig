@@ -1,0 +1,38 @@
+{# uses url, accounts #}
+<h3>Add Funds</h3>
+<form id="fundAccount" class="ui form inline" action="{{ url }}" method="POST">
+
+  <div class="inline field">
+    <label for="account">From Account:</label>
+    {#
+    <select>
+      <option value="">Select Account</option>
+      {% for account in accounts %}
+        <option value="{{ account.id }}">{{ account.name }}</option>
+      {% endfor %}
+    </select>
+    #}
+    <div class="ui inline selection dropdown">
+      <input type="hidden" name="account">
+
+      <div class="default text">Account</div>
+      <i class="dropdown icon"></i>
+
+      <div class="menu">
+        {% for account in accounts %}
+          <div class="item" data-value="{{ account.id }}">{{ account.name }}</div>
+        {% endfor %}
+      </div>
+    </div>
+  </div>
+  <div class="inline field">
+    <label for="amount">Amount</label>
+    <input type="number" id="amount" placeholder="100.00" name="amount">
+  </div>
+  <div class="field">
+    <button type="submit" class="ui funds button">Add</button>
+  </div>
+</form>
+<script type="text/javascript">
+  $('.ui.selection.dropdown').dropdown();
+</script>

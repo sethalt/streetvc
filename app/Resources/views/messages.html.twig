@@ -1,0 +1,7 @@
+{% for type, messages in flashes %}
+    {% for message in messages %}
+        <div class="ui message {{ type }}">
+            {{ message|trans({}, 'FOSUserBundle') }}
+        </div>
+    {% endfor %}
+{% endfor %}

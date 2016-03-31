@@ -1,0 +1,23 @@
+{% extends "StreetVCLenderBundle::LenderLayout.html.twig" %}
+
+{% block title %}Investor Ledger{% endblock %}
+
+{% block content %}
+<div class="ui one column row">
+  <div class="column">
+    {% set lender = user.lender %}
+    {{ user.fullName }}
+    <a href="{{ path('invest_ledger') }}">Ledger</a>
+    <table class="ui striped table">
+    <thead>
+    <tr><th>date</th><th>debit</th><th>credit</th><th>source</th><th>destination</th><th>balance</th></tr>
+    </thead>
+    <tbody>
+    {% for i in ledger %}
+    <tr><td>{{ i.date }}</td><td>{{ i.debit_amount }}</td><td>{{ i.credit_amount }}</td><td>{{ i.source.type }}</td><td>{{ i.destination.type }}</td><td>{{ i.balance }}</td></tr>
+    {% endfor %}
+    </tbody>
+    </table>
+  </div>
+</div>
+{% endblock %}

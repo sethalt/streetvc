@@ -1,0 +1,198 @@
+{% extends "StreetVCBorrowerBundle::BorrowerLayout.html.twig" %}
+{% block title %}Profile{% endblock %}
+
+{% block content %}
+<div class="two column doubling ui row">
+  <div class="column twelve wide">
+    {{ include('StreetVCBorrowerBundle:BorrowerProfile:borrowerSteps.html.twig', { step: '2'}) }}
+      <div class="ui  dimmer">
+        <div class="ui large text loader">Loading</div>
+      </div>
+          <div class="ui tab active" data-tab="registration">
+            <form id="registration" class="applicationForm ui horizontal form {{ form.vars.errors ?'error':'' }}" action="{{ path('put_borrowerapplication', {application: application.id}) }}" method="PUT">
+            <div class="ui segment">
+              <h2 class="ui header">Register your business</h2>
+            </div>
+              {{ form_errors(form) }}
+              {{ form_widget(form._token) }}
+              <div class="ui grid">
+                <div class="two column doubling ui row">
+                  <div class="column">
+                    <div class="ui segment">
+                    {{ form_row(form.legal_name) }}
+                    {{ form_row(form.dbas) }}
+                    {{ form_row(form.registration_state) }}
+                    {{ form_row(form.legal_structure) }}
+                    {{ form_row(form.bio) }}
+                    </div>
+                  </div>
+                  <div class="column">
+                    <div class="ui segment">
+                    {{ form_row(form.business_address) }}
+                    {{ form_row(form.business_phone) }}
+                    {{ form_row(form.email) }}
+                    {{ form_row(form.website) }}
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <input type="submit" id="submitBusiness" class="ui blue submit button" value="Save and continue" />
+            </form>
+          </div>
+          <div class="ui tab" data-tab="loan-eligibility">
+            <form id="financial" class="applicationForm ui horizontal form {{ form.vars.errors ?'error':'' }}" action="{{ path('put_borrowerapplication', {application: application.id}) }}" method="PUT">
+              <div class="ui segment">
+                <h2 class="ui header">Additional Information</h2>
+              </div>
+              {{ form_errors(form) }}
+              {{ form_widget(form._token) }}
+              <div class="ui segment">
+              <h3 class="ui block header">Desired Loan Info</h3>
+              {{ form_row(form.funding_goal) }}
+              {{ form_row(form.term) }}
+              {{ form_row(form.use_of_loan_proceeds) }}
+              </div>
+              <div class="ui grid">
+                <div class="two column doubling ui row">
+                  <div class="column">
+                    <div class="ui segment">
+                    <h3 class="ui block header">Business Info</h3>
+                    {{ form_row(form.year_established) }}
+                    {{ form_row(form.annual_revenue) }}
+                    {{ form_row(form.number_employees) }}
+                    {{ form_row(form.number_locations) }}
+                    {{ form_row(form.number_years_profitable) }}
+                    {{ form_row(form.industry) }}
+                    {{ form_row(form.tax_id) }}
+                    </div>
+                  </div>
+                  <div class="column">
+                    <div class="ui segment">
+                    <h3 class="ui block header">Personal Info</h3>
+                    {{ form_row(form.first_name) }}
+                    {{ form_row(form.last_name) }}
+                    {{ form_row(form.date_of_birth) }}
+                    {#
+                    {{ form_row(form.social_security_number) }}
+                    #}
+                    {{ form_row(form.personal_address) }}
+                    {{ form_row(form.income) }}
+                    {{ form_row(form.guarantor_business_ownership) }}
+                    </div>
+                  </div>
+                </div>
+              </div>
+              
+              <div class="ui green button back">Previous Page</div> 
+              <input type="submit" id="submitForPreApproval" class="ui blue submit button" value="Submit for eligibility" />
+            </form>
+          </div>
+  </div>
+  <div class="column four wide">
+    <img style="margin-top: 146px;" src="/img/registration/borrower.png" alt="borrower" />
+  </div>
+</div>
+
+<div id="submissionModal" class="ui modal">
+  <i class="close icon"></i>
+  <div class="content">
+    <div class="description">
+      <div class="ui header">Sorry!</div>
+      <p class="statusMessage"></p>
+    </div>
+  </div>
+  <div class="actions">
+    <div class="ui positive left labeled button">
+      Close and fix registration
+    </div>
+  </div>
+</div>
+{% endblock %}
+
+{% block javascripts %}
+<script type="text/javascript">
+  $( document ).ready(function(){
+    $('.ui.button.back').click(function(){
+         $.tab('change tab', 'registration');
+         window.scrollTo(0, 0);
+    });
+
+    var token = $('#_token');
+    var registration = $('#registration');
+    var financial = $('#financial');
+    token.clone().appendTo(financial);
+    
+    registration.submit(function(e){
+      e.preventDefault();
+      $('.segment').dimmer('show');
+      postForm($(this), function( response ){
+         $.tab('change tab', 'loan-eligibility');
+         window.scrollTo(0, 0);
+         $('.segment').dimmer('hide');
+       });
+       return false;
+    });
+    financial.submit(function(e){
+      e.preventDefault();
+      $('.segment').dimmer('show');
+      postForm($(this), function( response ){
+        $.get( "/app_dev.php/borrowerapplications/{{ application.id }}/preapproval.json", function( data ) {
+          if(data.status == 'preapproved'){
+            window.location = "/borrowers/preapproved";
+          }else{
+            $('.statusMessage').html(data.message);
+            $('#submissionModal').modal('show');
+          }
+        });
+        $('.segment').dimmer('hide');
+       });
+       return false;
+    });
+    /**
+    $('#submitBusiness').click(function(){
+      $('.segment').dimmer('show');
+      postForm(registration, function( response ){
+         $.tab('change tab', 'loan-eligibility');
+         window.scrollTo(0, 0);
+         $('.segment').dimmer('hide');
+       });
+       return false;
+      });
+
+    $('#submitForPreApproval').click(function(){
+      $('.segment').dimmer('show');
+      postForm(registration, function( response ){
+        $.get( "/borrowerapplications/{{ application.id }}/preapproval.json", function( data ) {
+          if(data.status == 'preapproved'){
+            window.location = "/borrowers/approved";
+          }else{
+            $('.statusMessage').html(data.message);
+            $('#submissionModal').modal('show');
+          }
+        });
+        $('.segment').dimmer('hide');
+       });
+       return false;
+      });
+**/
+
+  });
+
+  function postForm( $form, callback ){
+    var values = {};
+    $.each( $form.serializeArray(), function(i, field) {
+      values[field.name] = field.value;
+    });
+   
+    $.ajax({
+      type        : $form.attr( 'method' ),
+      url         : $form.attr( 'action' ),
+      data        : values,
+      success     : function(data) {
+        callback( data );
+      }
+    });
+   
+  }
+</script>
+{% endblock %}

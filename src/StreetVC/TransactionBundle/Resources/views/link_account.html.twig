@@ -1,0 +1,65 @@
+{# link account form for borrowers and lenders. url is only parameter passed. #}
+
+<h2 class="ui heading">Link New Account</h2>
+
+<form id="link-account" class="ui horizontal fluid form" action="{{ url }}" method="POST">
+  <div class="ui error message">
+  </div>
+  <div class="field ">
+    <label for="name" class="required">Bank Name</label>
+    <input type="text" id="name" name="name" required="required">
+  </div>
+  <div class="field">
+    <label for="account_holder" class="required">Name of Account Holder</label>
+    <input type="text" id="account_holder" name="account_holder" required="required">
+  </div>
+  <div class="field ">
+    <label for="type" class="required">Type</label>
+    <select id="type" name="type">
+      <option value="SAVING">SAVING</option>
+      <option value="CHECKING">CHECKING</option>
+    </select>
+  </div>
+  <div class="field">
+    <label for="routing_number" class="required">Routing number</label>
+    <input type="text" id="routing_number" name="routing_number" required="required" placeholder="075906016" value="075906016" readonly>
+  </div>
+  <div class="field">
+    <label for="account_number" class="required">Account number</label>
+    <input type="text" id="account_number" name="account_number" required="required" placeholder="123456789" value="123456789" readonly>
+  </div>
+  <div class="actions">
+    <button type="submit" class="ui green icon submit button tiny"><i class="money icon"></i> Add Bank Account</button>
+  </div>
+</form>
+
+<script>
+
+  $('#link-account').submit(function (e) {
+    e.preventDefault();
+    var $form = $(this);
+    $form.addClass('loading');
+    var $submitBtn = $form.find('.submit.button');
+    $submitBtn.attr('disabled', 'disabled');
+    var $errors = $form.find('.error.message');
+    $.post($form.attr('action'), $form.serialize())
+        .done(function (data) {
+          alert('success');
+          $form.append('<p>success</p>');
+          $form.replaceWith('<p>success</p>');
+          location.reload();
+        })
+        .fail(function (data) {
+          $form.addClass('error');
+          alert('fail');
+          var response = data.responseJSON;
+          if (response) {
+            $errors.empty().append(response.errors);
+          }
+        })
+        .always(function () {
+          $form.removeClass('loading');
+          $submitBtn.removeAttr('disabled', 'disabled');
+        });
+  });
+</script>

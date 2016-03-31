@@ -1,0 +1,7 @@
+{% extends "StreetVCBorrowerBundle::BorrowerLayout.html.twig" %}
+
+{% block title %}Investor Dashboard{% endblock %}
+
+{% block content %}
+    {{ render(controller('StreetVCBorrowerBundle:LoanRequests:get', {id:loanRequest.id})) }}
+{% endblock %}

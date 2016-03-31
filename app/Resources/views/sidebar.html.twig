@@ -1,0 +1,56 @@
+  <div id="sidebar" class="ui vertical inverted sidebar menu">
+    <a class="item" href="/"><img src="/img/investable.png" alt="streetVC" /></a>
+    <div class="item">logged in as <b>{{ user.username }}</b>
+      <div class="item"><a href="{{ path('fos_user_profile_show') }}">view profile</a></div>
+    </div>
+    {% if is_granted("ROLE_INVESTOR") %}
+    <div class="item"><a href="{{ path('invest_index') }}"><b>Investor Profile</b></a>
+    <div class="menu">
+    {% if user %}
+       <a class="item" href="{{ path('invest_commitments') }}"><i class="book icon"></i> View Funding Commitments</a>
+       <a class="item" href="{{ path('get_lender_accounts', {lender: user.lender.id }) }}"><i class="money icon"></i> Bank Accounts</a>
+       <a class="item" href="{{ path('invest_account') }}"><i class="briefcase icon"></i>Account/Add Funds</a>
+       <a class="item" href="{{ path('invest_activity') }}"><i class="exchange icon"></i> Account Activity</a>
+       {% endif %}
+       <div class="item"><b>Archived</b>
+         <div class="menu">
+           <a class="item" href="">Repaid</a>
+           <a class="item" href="">Defaulted</a>
+         </div>
+      </div>
+    </div>
+    </div>
+    {% endif %}
+
+
+  {% if is_granted("ROLE_ISSUER") %}
+    <div class="item"><a href="{{ path('fos_user_profile_show') }}"><b>Business Profile</b></a>
+      <div class="menu">
+        {% set business = user.business %}
+        {#
+          <a class="item" href="{{ path('edit_business', {business: business.id}) }}"><i class="edit icon"></i> Edit Profile</a>
+         #}
+          <a class="item" href="{{path('get_business', {business: business.id})}}"><i class="user icon"></i> View Business</a>
+          <div class="item"><b>Requests</b>
+            <div class="menu">
+              <a class="item" href="{{ path('new_business_loanrequest', {business: business.id}) }}">Request a Loan</a>
+              {% set currentRequest = business.activeLoanRequest %}
+              {% if currentRequest %}
+                <a class="item" href="{{ path('get_loanrequest', {loanRequest: currentRequest.id} ) }}">Current Request</a>
+              {% endif %}
+              <a class="item" href="#get_funded_requests">Funded Requests</a>
+            </div>
+          </div>
+      </div>
+    </div>
+  {% endif %}
+
+    <a class="item" href="{{ path('get_loanrequests') }}">Browse Loan Requests</a>
+    {% if not is_granted("ROLE_ISSUER") %}
+      <a class="item" href="{{ path('legal_borrower') }}">Create Borrower Profile</a>
+    {% endif %}
+    {% if not is_granted("ROLE_INVESTOR") %}
+        <a class="item" href="{{ path('new_lender') }}">Create Investor Profile</a>
+    {% endif %}
+
+  </div>

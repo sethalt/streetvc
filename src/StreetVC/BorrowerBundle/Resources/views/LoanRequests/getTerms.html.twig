@@ -1,0 +1,8 @@
+{% set url = '/sampleagreement.pdf' %}
+ <div ng-app="PDFViewer">
+    <div ng-controller="DocCtrl">
+      <ng-pdf pdf-url="{{ url }}" template-url="/partials/viewer.html" canvasid="pdf-canvas"></ng-pdf>
+    </div>
+  </div>
+
+

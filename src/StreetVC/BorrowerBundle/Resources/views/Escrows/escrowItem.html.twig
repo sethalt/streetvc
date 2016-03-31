@@ -1,0 +1,6 @@
+<div class="item">
+    <div class="content">
+        <a class="header" href="{{ path('get_escrow', {'escrow': escrow.id}) }}">{{ escrow.title }}</a>
+        <div class="description">funding target: {{ escrow.fundingTarget}}<br />funded: {{ escrow.balance }}</div>
+    </div>
+</div>

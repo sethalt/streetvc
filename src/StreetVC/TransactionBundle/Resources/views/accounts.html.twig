@@ -1,0 +1,26 @@
+
+<h2 class="heading ui">Linked Bank Accounts</h2>
+  {% if accounts %}
+    <table class="ui table">
+      <thead>
+        <tr><td></td><td>Bank Name</td><td>Account Holder</td><td>Account Number</td><td>Routing Number</td><td>Type</td><td>Status</td></tr>
+      </thead>
+      <tbody>
+      {% for account in accounts %}
+        {% set accountStart = account.accountNumber|length - 4 %}
+        {% set routingStart = account.routingNumber|length - 4 %}
+        <tr>
+            <td>{{ loop.index }}</td>
+            <td>{{ account.name }}</td>
+            <td>{{ account.accountHolder }}</td>
+            <td>*****{{ account.accountNumber|slice(accountStart, 4)}}</td>
+            <td>*****{{ account.routingNumber|slice(routingStart, 4) }}</td>
+            <td>{{ account.type }}</td>
+            <td>{{ account.state }}</td>
+         </tr>
+      {% endfor %}
+      </tbody>
+    </table>
+  {% else %}
+    <p>You have no linked accounts. create one below</p>
+  {% endif %}

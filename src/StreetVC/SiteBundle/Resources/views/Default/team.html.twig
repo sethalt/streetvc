@@ -1,0 +1,235 @@
+{% extends '::frontend.html.twig' %}
+
+{% block title %}
+Our Team
+{% endblock %}
+
+{% block view %}
+  <script type="text/javascript">
+  <!--
+    function launchModal(id){
+      $('.' + id + '.modal').modal('show');
+    }
+  //-->
+  </script>
+  
+  <div id="team">
+      <h1 class="ui center aligned header">Our Team</h1>
+      <div class="three column center aligned doubling ui grid ">
+        <div class="column">
+          <img class="jason" onclick="launchModal('jason');" src="/img/team/jason.jpg" alt="jason cross" />
+        </div>
+        {#
+        <div class="column">
+          <img src="/img/team/jen.jpg" onclick="launchModal('jen');" alt="Jennifer Galperin" />
+        </div>
+        <div class="column">
+          <img src="/img/team/jean-paul.jpg" onclick="launchModal('jean-paul');" alt="Jean-Paul Ndong" />
+        </div>
+        #}
+        <div class="column">
+          <img src="/img/team/dylan.jpg" onclick="launchModal('dylan');" alt="Dylan Oliver" />
+        </div>
+        <div class="column">
+          <img src="/img/team/shane.jpg" onclick="launchModal('shane');" alt="Shane Faherty" />
+        </div>
+        <div class="column">
+          <img src="/img/team/joe.jpg" onclick="launchModal('joe');" alt="Joseph Luchs" />
+        </div>
+        <div class="column">
+          <img src="/img/team/seth.jpg" onclick="launchModal('seth');" alt="Seth Alt" />
+        </div>   
+      </div>
+  </div>
+  
+  
+  <div class="ui modal large jason">
+    <i class="close icon"></i>
+    <div class="header">
+      Jason Cross 
+    </div>
+    <div class="content">
+      <div class="left">
+        <img class="ui  image" src="/img/team/jason.jpg" alt="jason cross" />
+      </div>
+      <div class="right">
+                    <p>Jason is a passionate entrepreneur who has exploited a market opportunity for an alternative investment strategy for the everyday investor
+                      at the benefit of small business owners. Jason has over four years of Management Consulting experience with Capgemini Consulting in their
+                      Strategy &amp; Transformation Practice. In his time at Capgemini, he has worked with executives across a variety of industries to make and
+                      execute on key strategic, financial, and operational decisions.</p>
+                    <p>
+                      <strong>Education</strong>
+                    </p>
+                    <p>Jason received his Bachelor of Business Administration from Goizueta Business School at Emory University, double majoring in Finance and
+                      Consulting &amp; Venture Management. As a student-athlete (Swimming &amp; Diving), Jason had a leadership role in Alpha Kappa Psi Business
+                      Fraternity and Sigma Alpha Epsilon fraternity.</p>
+                  
+      </div>
+    </div>
+    <div class="actions">
+      <div class="ui button">
+       close 
+      </div>
+    </div>
+  </div>
+  
+  <div class="ui modal large jen">
+    <i class="close icon"></i>
+    <div class="header">
+      Jennifer Galperin
+    </div>
+    <div class="content">
+      <div class="left">
+        <img class="ui  image" src="/img/team/jen.jpg" alt="Jennifer Galperin" />
+      </div>
+      <div class="right">
+                    <p>
+                      Jennifer is a quantitative financial professional with an expertise in data analysis.  She has over 10 years experience in the finance industry, most recently as a financial consultant focusing on data analysis for start-ups and small- to mid-sized companies.  Prior to that, Jennifer spent 6 years at JPMorgan as a Vice President analyzing investments and credit transactions for the Private Banking division.  Jennifer began her career in finance at Goldman Sachs in the Equity Capital Markets Group.
+                    </p>
+                    <p>
+                      Jennifer received her BS in Chemical Engineering from the Massachusetts Institute of Technology in 2001.  
+                    </p>
+                  
+      </div>
+    </div>
+    <div class="actions">
+      <div class="ui button">
+       close 
+      </div>
+    </div>
+  </div>
+  
+    <div class="ui modal large jean-paul">
+    <i class="close icon"></i>
+    <div class="header">
+      Jean-Paul Ndong 
+    </div>
+    <div class="content">
+      <div class="left">
+        <img class="ui  image" src="/img/team/jean-paul.jpg" alt="Jean-Paul Ndong" />
+      </div>
+      <div class="right">
+                    <p>
+                    Risk management executive with over 15 years of experience across geographies (US and UK) products (loans, credit cards, charge cards, P2P Lending) and customer segments (consumers and small businesses). Core competencies include designing and building risk management infrastructure, credit risk rating, credit underwriting, asset quality review, portfolio management, enterprise risk management, new products development.
+                    </p>
+                  
+      </div>
+    </div>
+    <div class="actions">
+      <div class="ui button">
+       close 
+      </div>
+    </div>
+  </div>
+  
+  <div class="ui modal large dylan">
+    <i class="close icon"></i>
+    <div class="header">
+      Dylan Oliver
+    </div>
+    <div class="content">
+      <div class="left">
+        <img class="ui  image" src="/img/team/dylan.jpg" alt="Dylan Oliver" />
+      </div>
+      <div class="right">
+                    <p>Dylan is, above all, adept in identifying and rapidly gaining proficiency in the technologies required to complete any task at hand. He has
+                      worked with computers since he was a teenager; he ran a small BBS (Bulletin Board System) from his basement before 'the internet' was
+                      popular and started using Linux when he was about 16. Dylan is self-taught with the exception of a few courses in computer programming
+                      including Evolutionary Computation, Artificial Life, and Genetic Algorithms in College. He has experience in many programming languages,
+                      including (in order of familiarity): PHP, Javascript, Actionscript, Python, C++, Bash, Perl, LISP, etc. He has administered MySQL,
+                      PostgreSQL, and Microsoft SQL Server databases and is proficient in SQL.</p>
+                  
+      </div>
+    </div>
+    <div class="actions">
+      <div class="ui button">
+       close 
+      </div>
+    </div>
+  </div>
+  
+  
+  <div class="ui modal large shane">
+    <i class="close icon"></i>
+    <div class="header">
+      Shane Faherty
+    </div>
+    <div class="content">
+      <div class="left">
+        <img class="ui  image" src="/img/team/shane.jpg" alt="Shane Faherty" />
+      </div>
+      <div class="right">
+                    <p>
+                      <strong>Co-Founder, Pro-Motion Studios LLC</strong><br>Video Production &amp; Animation, creating visual content for small and corporate
+                      businesses (print ads, web videos,TV commercials, films). Corporate Identity and branding strategy including distribution and online
+                      optimization for content.
+                    </p>
+                    <p>
+                      <strong>Founder, Fisheye Productions LLC</strong><br> Website solutions, online strategy for business development and marketing. Analysis
+                      and evaluation of E-Commerce environments and operations for inventory and drop-ship models. Specializing in UX design and customer
+                      interface.
+                    </p>
+                  
+      </div>
+    </div>
+    <div class="actions">
+      <div class="ui button">
+       close 
+      </div>
+    </div>
+  </div>
+  
+   <div class="ui modal large joe">
+    <i class="close icon"></i>
+    <div class="header">
+      Joseph Luchs
+    </div>
+    <div class="content">
+      <div class="left">
+        <img class="ui  image" src="/img/team/joe.jpg" alt="Joseph Luchs" />
+      </div>
+      <div class="right">
+                    <p>
+Joe is a technology entrepreneur with a deep focus on data-driven marketing and advertising. With almost a decade of experience in building successful technology companies and executing mixed media marketing plans, Joe brings a fresh, technical approach to StreetVC/Investable's market strategy. Prior to Investable, Joe has worked at BlueKai (Acquired by Oracle), 33Across, the NFL, and Campus Destinations.
+                    </p>
+                    <p>
+Joe received his Bachelor's degree from Duke University. 
+                    </p>
+                  
+      </div>
+    </div>
+    <div class="actions">
+      <div class="ui button">
+       close 
+      </div>
+    </div>
+  </div>
+   
+  <div class="ui modal large seth">
+    <i class="close icon"></i>
+    <div class="header">
+      Seth Alt
+    </div>
+    <div class="content">
+      <div class="left">
+        <img class="ui  image" src="/img/team/seth.jpg" alt="Seth Alt" />
+      </div>
+      <div class="right">
+      <p>
+      Seth is a multimedia artist and web programmer. He graduated from the University of Minnesota in 2007 with a BA in Art after transferring from the University of Wisconsin in Milwaukee, where he studied two years in a program "Digital Interactivity, Visualization, Animation, and Sound." Through university studies, Seth became proficient and worked mostly in the Adobe creative suite (Photoshop, Illustrator, Flash, Premier), and 3d animation and modeling software (Maya, Sketchup).
+      </p>
+      <p>
+        Seth's introduction to programming came in the form of Max/MSP/Jitter, which is a visual programming environment that allows one to control and manipulate visuals and sound. From there, he learned how to build basic websites until 2007 when he partnered in the web development firm, Sweeping Design.
+      </p>
+      <p>
+        He now works in a number of technologies and php frameworks, and is proficient in HTML5, CSS3, Javascript, PHP, MYSQL, and MongoDB. Since the incorporation of Sweeping Design, Seth has worked on or built 50+ websites ranging from small personal sites, to large, complex productivity applications.
+      </p>
+      </div>
+    </div>
+    <div class="actions">
+      <div class="ui button">
+       close 
+       </div>
+  </div>
+  
+{% endblock %}

@@ -1,0 +1,30 @@
+{% extends '::layout.html.twig' %}
+
+{% block view %}
+
+<div class="ui page grid">
+<div class="column">
+  <div class="ui tabular attached blue menu">
+    <a class="right floated item active" data-tab="join" href="#">Join</a>
+    <a class="right floated item" data-tab="logIn" href="#">Log In</a>
+  </div>
+  <div class="ui tab active" data-tab="join">
+    {% render(controller('FOSUserBundle:Registration:register')) %}
+  </div>
+  <div class="ui tab" data-tab="logIn">
+    {% render(controller('FOSUserBundle:Security:login')) %}
+  </div>
+</div>
+
+{% endblock %}
+
+{% block javascripts %}
+<script type="text/javascript">
+$(document).ready(function() {
+  var $pageTabs = $('.tabular.menu .item');
+//  var $pageTabMenu = $('body .tabular.menu');
+  $pageTabs.tab( { history: false });
+//  $('.ui.modal').modal('show');
+});
+</script>
+{% endblock %}

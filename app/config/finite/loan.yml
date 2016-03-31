@@ -1,0 +1,36 @@
+finite_finite:
+    loan:
+        class: StreetVC\LoanBundle\Document\Loan
+        states:
+            draft:
+                type: initial
+                properties: { description: New loan document }
+            proposed:
+                properties: { description:  pending }
+            created:
+                properties: { description:  official }
+            disbursed:
+                properties: { description: Escrow Fund disbursal to borrower complete }
+            repayment_scheduled:
+                properties: { description: repayment schedule created }
+            repayment:
+                properties: { description: repayment schedule active }
+            repaid:
+                type: final
+                properties: { description: Loan is repaid }
+            defaulted:
+                type: final
+                properties: { description: Loan is defaulted }
+        transitions:
+            create:
+                from: [ draft ]
+                to:   created
+            disburse:
+                from: [ created ]
+                to:   disbursed
+            default:
+                from: [ repayment ]
+                to:   defaulted
+            complete:
+                from: [ repayment ]
+                to:   repaid

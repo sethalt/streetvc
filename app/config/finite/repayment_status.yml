@@ -1,0 +1,18 @@
+finite_finite:
+    repayment:
+        class: StreetVC\LoanBundle\Document\Loan
+        states:
+            current:
+                type: initial
+                properties: { description: Escrow persisted. }
+            past_due:
+                properties: { description: Payment past due.  }
+            collections:
+                properties: { description: Account turned over to collections agency. }
+            defaulted:
+                properties: { description: Repayment defaulted, written off. }
+        transitions:
+            past_due:
+                from: [ current ]
+                to: past_due
+

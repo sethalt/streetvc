@@ -1,0 +1,39 @@
+{% extends "StreetVCUserBundle::layout.html.twig" %}
+
+{% trans_default_domain 'FOSUserBundle' %}
+
+{% block title %}Registration Confirmed{% endblock %}
+{% block fos_user_content %}
+
+    <h1 class="ui header">{{ block('title') }}</h1>
+    <div class="ui vertical segment">
+    <p>{{ 'registration_confirmed'|trans({'%username%': user.username}, 'registration') }}</p>
+    {% if app.session is not empty %}
+        {% set targetUrl = app.session.get('_security.' ~ app.security.token.providerKey ~ '.target_path') %}
+        {% if targetUrl is not empty %}<p><a href="{{ targetUrl }}">{{ 'registration.back'|trans }}</a></p>{% endif %}
+    {% endif %}
+    </div>
+    <div class="investorOrBorrower ui two column middle aligned relaxed grid basic segment">
+      <div class="center aligned column">
+         {% if is_granted("ROLE_INVESTOR") %}
+           <a class="circle green" href="{{ path('invest_index') }}">
+            <span>{{ 'lend.browse_requests'|trans({}, 'lender') }}</span>
+           </a>
+         {% else %}
+           <a class="circle green" href="{{ path('new_lender') }}">
+            <span>{{ 'lend.is_new_lender'|trans({}, 'lender') }}</span>
+           </a>
+         {% endif %}
+      </div>
+      <div class="ui vertical divider">
+        Or
+      </div>
+      <div class="center aligned column">
+         <a class="circle blue" href="{{ path('new_borrower') }}">
+            <span>{{ 'bor.apply_for_loan'|trans({}, 'borrower') }}</span>
+         </a>
+      </div>
+    </div>
+  
+{% endblock fos_user_content %}
+    

@@ -1,0 +1,37 @@
+{% if business %}
+  <h3 class="ui header">Active Loan Request</h3>
+
+  {#
+  {% if user and user.id == request.user.id and request.isEditable %}
+    <a href="{{ path('edit_loanrequest', {loanRequest: request.id}) }}" class="ui green button">
+      <i class="icon dollar"></i> Edit Loan Request</a>
+  {% endif %}
+  #}
+
+  {% if user == business.user %}
+    <a href="{{ path('new_business_loanrequest', {business: business.id}) }}" class="ui green button">
+      <i class="icon dollar"></i> Request a Loan
+    </a>
+  {% endif %}
+
+  <table class="ui table segment">
+    {{ include('StreetVCBorrowerBundle:LoanRequests:loanRequestHeaders.html.twig') }}
+    <tbody>
+    {% for rq in business.loanRequests if rq.state == 'open' %}
+      {{ include('StreetVCBorrowerBundle:LoanRequests:loanRequestItem.html.twig', { loanRequest: rq }) }}
+    {% endfor %}
+    </tbody>
+  </table>
+
+  <h3 class="ui header">Archived Loan Requests</h3>
+
+  <table class="ui table segment">
+    {{ include('StreetVCBorrowerBundle:LoanRequests:loanRequestHeaders.html.twig') }}
+    <tbody>
+    {% for rq in business.loanRequests if rq.state != 'open' %}
+      {{ include('StreetVCBorrowerBundle:LoanRequests:loanRequestItem.html.twig', { loanRequest: rq }) }}
+    {% endfor %}
+    </tbody>
+  </table>
+
+{% endif %}

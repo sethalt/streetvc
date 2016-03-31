@@ -1,0 +1,14 @@
+{% extends "StreetVCLenderBundle::LenderLayout.html.twig" %}
+
+{% block content %}
+<div class="doubling two column row">
+  <div class="column eight wide centered">
+    <div class="ui segment">
+    <h2 class="ui header">Create Investor Profile</h2>
+    <form class="ui horizontal form {{ form.vars.errors ?'error':'' }}" action="{{ path('post_lender') }}" method=POST {{ form_enctype(form) }}>
+    {{ form_widget(form) }}
+    </form>
+    </div>
+  </div>
+</div>
+{% endblock %}

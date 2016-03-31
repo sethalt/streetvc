@@ -1,0 +1,62 @@
+{% extends "StreetVCBorrowerBundle::BorrowerLayout.html.twig" %}
+{% block title %}Review Loan Request{% endblock %}
+
+{% block content %}
+<div class="two column doubling ui row">
+  <div class="column ten wide centered">
+  {% set isOwner = user and loanRequest.user == user %}
+    {{ include('StreetVCBorrowerBundle:BorrowerProfile:borrowerSteps.html.twig', { step: '5'}) }}
+  <div class="segment ui">
+    <h2 class="ui header">Review Loan Request</h2>
+
+    <h3 class="ui header">by <a href="{{ path('get_business',{business: loanRequest.business.id}) }}">{{ loanRequest.business }}</a></h3>
+    {{ include('StreetVCBorrowerBundle:LoanRequests:lrDetails.html.twig') }}
+
+    {% if isOwner and loanRequest.isEditable %}
+      <div>
+        <a class="ui button" onClick="editLoanRequest()">{{ 'lr.edit'|trans({}, 'loan_request') }}</a>
+        {% if loanRequest.state == 'draft' %}
+          <a class="ui button" onClick="submitLoanRequest()">{{ 'lr.submit_for_approval'|trans({}, 'loan_request') }}</a>
+        {% endif %}
+      </div>
+    {% endif %}
+    <div class="ui basic modal">
+      <h2>Edit Loan Request</h2>
+      {{ form_start(form) }}
+      {{ form_row(form) }}
+      <div class="ui buttons">
+        <input type="submit" class="ui submit button" value="Edit Request"/>
+      </div>
+      {{ form_end(form) }}
+
+    </div>
+  </div>
+</div>
+{% endblock %}
+
+{% block javascripts %}
+  {{ include('StreetVCBorrowerBundle:Businesses:businessFormJs.html.twig') }}
+  <script type="text/javascript">
+    function editLoanRequest() {
+      $('.basic.modal').modal('show');
+    }
+
+    function submitLoanRequest() {
+      $.get("{{ path('submit_loanrequest', {'loanRequest': loanRequest.id }) }}", function (data) {
+        window.location = '{{ path('create_borrower_escrow', {'loanRequest': loanRequest.id})}}';
+      });
+    }
+
+    $(document).ready(function () {
+
+      $('form').on('submit', function (event) {
+        var postData = $(this).serializeArray();
+        var action = $(this).attr("action");
+        $.post(action, postData, function (data) {
+          location.reload();
+        });
+        event.preventDefault();
+      });
+    });
+  </script>
+{% endblock %}

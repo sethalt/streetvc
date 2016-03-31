@@ -1,0 +1,5 @@
+imports:
+    - { resource: loan_request.yml }
+    - { resource: loan.yml }
+    - { resource: escrow.yml }
+    - { resource: loan_commitment.yml }

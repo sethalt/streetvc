@@ -1,0 +1,31 @@
+  <div id="sidebar" class="ui large green inverted vertical sidebar menu">
+    <a class="item" href="/"><img src="/img/dashboard/logo-white.png" alt="streetVC" /></a>
+    {% if is_granted("ROLE_INVESTOR") %}
+    <div class="item"><a href="{{ path('invest_index') }}"><i class="dashboard icon"></i> <b>Dashboard</b></a></div>
+    <div class="item"><a href="{{ path('invest_index') }}"><i class="search icon"></i> Browse Loan Requests</a></div>
+    
+    {% if user %}
+       <div class="item"><a href="{{ path('invest_activity') }}"><i class="exchange icon"></i> Account Activity</a>
+         <div class="menu">
+            <a class="item" href="{{ path('invest_account') }}">Add Funds</a>
+            <a class="item" href="{{ path('invest_account') }}">Withdraw Funds</a>
+            <a class="item" href="{{ path('invest_accounts') }}">Manage Linked Accounts</a>
+            <a class="item" href="{{ path('invest_commitments') }}">View Loan Commitments</a>
+           <a class="item" href="">Loan Repayments</a>
+         </div>
+       </div>
+       {% endif %}
+    {% else %}
+      <div class="item"><a href="{{ path('new_lender') }}">Create Investor Profile</a></div>
+    {% endif %}
+
+    
+        <div class="item" style="position: absolute; bottom: 0;">
+          {% if not is_granted("ROLE_ISSUER") %}
+            <a href="{{ path('new_borrower') }}">Create Borrower Profile</a>
+          {% else %}
+            <a href="{{ path('index_borrower') }}"><i class="forward mail icon"></i> Switch to Borrower Profile</a>
+          {% endif %}
+       </div>
+
+  </div>

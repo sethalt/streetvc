@@ -1,0 +1,42 @@
+{% extends '::layout.html.twig' %}
+
+{% block view %}
+
+{% block sonata_page_breadcrumb %}
+    {% if breadcrumb_context is not defined %}
+        {% set breadcrumb_context = 'user_index' %}
+    {% endif %}
+    <div class="row-fluid clearfix">
+        {{ sonata_block_render_event('breadcrumb', { 'context': breadcrumb_context, 'current_uri': app.request.requestUri }) }}
+    </div>
+{% endblock %}
+
+<h2 class="ui header">{% block sonata_profile_title %}{% trans from 'SonataUserBundle' %}sonata_profile_title{% endtrans %}{% endblock %}</h2>
+
+<div class="row">
+
+    <div class="column three wide">
+        {% block sonata_profile_menu %}
+            {{ sonata_block_render({'type': 'sonata.user.block.menu'}, {'current_uri': app.request.requestUri}) }}
+        {% endblock %}
+    </div>
+
+    <div class="column thirteen wide">
+        {% for message in app.session.flashbag.get('fos_user_success') %}
+            <div class="alert alert-success">
+                {{ message|trans({}, "FOSUserBundle") }}
+            </div>
+        {% endfor %}
+        {% for message in app.session.flashbag.get('sonata_user_success') %}
+            <div class="alert alert-success">
+                {{ message|trans({}, "SonataUserBundle") }}
+            </div>
+        {% endfor %}
+
+        {% block sonata_profile_content %}
+        {% endblock %}
+    </div>
+
+</div>
+
+{% endblock %}

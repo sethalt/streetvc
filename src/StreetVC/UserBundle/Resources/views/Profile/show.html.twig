@@ -1,0 +1,52 @@
+{% extends '::frontend.html.twig' %}
+{% trans_default_domain 'FOSUserBundle' %}
+{% block title %}Profile{% endblock %}
+
+{% block view %}
+{#
+  <div class="one column row">
+    <div class="column">
+      <h2 class="ui huge header">{{ app.user.fullName }}</h2>
+    
+      <p>{{ 'profile.show.username'|trans }}: {{ user.username }}</p>
+      <p>{{ 'profile.show.email'|trans }}: {{ user.email }}</p>
+      <p><a class="ui button tiny blue" href="{{ path('fos_user_profile_edit') }}"><i class="edit icon"></i> Edit Profile</a></p>
+    </div>
+  </div>
+
+  {{ include('StreetVCLenderBundle:Lenders:lenderProfile.html.twig') }}
+  
+  {{ include('StreetVCBorrowerBundle:Borrowers:borrowerProfile.html.twig') }}
+  #}
+  
+<div class="one column row">
+  <div class="column">
+    <h1 class="ui header center aligned">Please choose how you would like to navigate the site.</h1>
+
+    <div class="investorOrBorrower ui two column middle aligned relaxed grid basic segment">
+      <div class="center aligned column">
+           {% if is_granted("ROLE_INVESTOR") %}
+             <a class="circle green" href="{{ path('invest_index') }}">
+           {% else %}
+           <a class="circle green" href="{{ path('new_lender') }}">
+           {% endif %}
+            <span>Lender</span>
+           </a>
+      </div>
+      <div class="ui vertical divider">
+        Or
+      </div>
+      <div class="center aligned column">
+         {% if is_granted("ROLE_ISSUER") %}
+           <a class="circle blue" href="{{ path('index_borrower') }}">
+         {% else %}
+           <a class="circle blue" href="{{ path('new_borrower') }}">
+         {% endif %}
+            <span>Borrower</span>
+         </a>
+      </div>
+    </div>
+  </div>
+</div>
+  
+{% endblock  %}

@@ -1,0 +1,11 @@
+{% extends '::layout.html.twig' %}
+
+{% block view %}
+<div class="column">
+<form class="ui form" action="{{ path('post_transaction') }}" method="POST">
+{{ form_row(form.amount) }}
+{{ form_rest(form) }}
+<input class="ui button submit" type="submit" value="submit" />
+</form>
+</div>
+{% endblock %}

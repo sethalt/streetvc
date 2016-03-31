@@ -1,0 +1,16 @@
+{% extends '::layout.html.twig' %}
+
+{% block title %}Browse Loans{% endblock %}
+{% block view %}
+<div class="column">
+<h2 class="ui header">Browse Businesses</h2>
+{% for business in businesses %}
+<div class="ui segment">
+  <div class="content">
+    <a class="header" href="{{ path('get_business', {'business': business.id}) }}">{{ business.legalName}}</a>
+    <div class="bio"><p>{{ business.bio ?: ' '}}</p></div>
+  </div>
+</div>
+{% endfor %}
+</div>
+{% endblock %}

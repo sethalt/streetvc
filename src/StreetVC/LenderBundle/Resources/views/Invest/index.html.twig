@@ -1,0 +1,14 @@
+{% extends "StreetVCLenderBundle::LenderLayout.html.twig" %}
+
+{% block title %}Investor Dashboard{% endblock %}
+
+{% block content %}
+
+<div class="one column row">
+  <div class="column">
+  <h2 class="ui heading">Current Loan Requests</h2>
+  {{ render(controller('StreetVCBorrowerBundle:LoanRequests:cget')) }}
+  </div>
+</div>
+  
+{% endblock %}

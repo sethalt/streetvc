@@ -1,0 +1,89 @@
+{% extends "StreetVCBorrowerBundle::BorrowerLayout.html.twig" %}
+{% block title %}Create Escrow{% endblock %}
+
+{% block content %}
+<div class="two column doubling ui row">
+
+{% set isOwner = user and loanRequest.user == user %}
+{% set evaluation = loanRequest.evaluation %}
+<div class="column ten wide centered">
+    {{ include('StreetVCBorrowerBundle:BorrowerProfile:borrowerSteps.html.twig', { step: '6'}) }}
+</div>
+  {% if isOwner and finite_can(loanRequest, 'accept') %}
+  <div class="column eight wide">
+    <div class="ui segment">
+    <h2 class="ui header">Create Escrow</h2>
+        
+      <h3 class="ui header">You are about to create an escrow with the following terms</h3>
+      {{ include('StreetVCBorrowerBundle:LoanRequests:lrDetails.html.twig') }}
+      {% if evaluation %}
+        <h3 class="ui header">Credit Evaluation</h3>
+        {{ 'lr.evaluation.rate'|trans({}, 'loan_request') }}: {{ evaluation.rate*100|number_format }}%<br />
+        {{ 'lr.evaluation.grade'|trans({}, 'loan_request') }}: {{ evaluation.grade }}<br />
+
+        <h4>{{ 'lr.evaluation.schedule'|trans({}, 'loan_request') }}</h4>
+        {% set total = evaluation.rate * loanRequest.fundingGoal + loanRequest.fundingGoal %}
+        {{ 'lr.evaluation.total'|trans({}, 'loan_request') }}: ${{ total|number_format(2) }}<br />
+        {% set monthly = total / evaluation.term %}
+        {{ 'lr.evaluation.monthly'|trans({}, 'loan_request') }}: ${{ monthly|number_format(2) }}<br />
+      {% endif %}
+      
+
+    </div>
+  </div>
+  <div class="column eight wide">
+    <div class="ui segment">
+      <h3>{{ 'lr.terms_conditions'|trans({}, 'loan_request') }}</h3>
+      <p>{{ 'lr.terms_conditions_terms'|trans({}, 'loan_request') }}</p>
+      <p>&nbsp;</p>
+      <p>{{ 'lr.accept_launch'|trans({}, 'loan_request') }}</p>
+      {% set accept_url=path('accept_loanrequest_terms', {'loanRequest': loanRequest.id}) %}
+      {% set cancel_url=path('cancel_loanrequest', {'loanRequest': loanRequest.id}) %}
+      
+      <div class="ui buttons">
+        <a class="ui positive button" href="{{ accept_url }}">{{ 'lr.accept'|trans({}, 'loan_request') }}</a>
+        <div class="or"></div>
+        <a class="ui negative button" href="{{ cancel_url }}">{{ 'lr.decline'|trans({}, 'loan_request') }}</a>
+      </div>
+    </div>
+  </div>
+  {% endif %}
+
+
+  {% if isOwner and finite_can(loanRequest, 'create_escrow') %}
+  <div class="column eight wide centered">
+    <div class="ui segment">
+    <p>Agreement accepted, create your escrow to start accepting funds.</p>
+      {% if evaluation %}
+        <h3 class="ui header">Credit Evaluation</h3>
+        {{ 'lr.evaluation.rate'|trans({}, 'loan_request') }}: {{ evaluation.rate*100|number_format }}%<br />
+        {{ 'lr.evaluation.grade'|trans({}, 'loan_request') }}: {{ evaluation.grade }}<br />
+
+        <h4>{{ 'lr.evaluation.schedule'|trans({}, 'loan_request') }}</h4>
+        {% set total = evaluation.rate * loanRequest.fundingGoal + loanRequest.fundingGoal %}
+        {{ 'lr.evaluation.total'|trans({}, 'loan_request') }}: ${{ total|number_format(2) }}<br />
+        {% set monthly = total / evaluation.term %}
+        {{ 'lr.evaluation.monthly'|trans({}, 'loan_request') }}: ${{ monthly|number_format(2) }}<br /><br />
+      {% endif %}
+    <div class="ui buttons">
+          {% set post_escrow_url = path('post_loanrequest_escrow', {'loanRequest': loanRequest.id}) %}
+          <a class="ui positive button" href="{{ post_escrow_url }}">{{ 'create_escrow'|trans({}, 'escrow') }}</a>
+          <div class="or"></div>
+          <a class="ui button red" href="{{ path('cancel_loanrequest', {loanRequest: loanRequest.id}) }}">{{ 'lr.cancel'|trans({}, 'loan_request') }}</a>
+        {% if isOwner and loanRequest.escrow and finite_can(loanRequest.escrow, 'cancel') %}
+        {% set cancel_escrow_url = path('cancel_escrow', {escrow: loanRequest.escrow.id }) %}
+          <a class="ui red button" href="{{ cancel_escrow_url }}">{{ 'cancel_escrow'|trans({}, 'escrow') }}</a>
+        {% endif %}
+    </div>
+    </div>
+  </div>
+  {% endif %}
+
+</div>
+{% endblock %}
+
+{% block javascripts %}
+<script src="/scripts/pdfjs/pdf.js"></script>
+<script src="/scripts/pdfjs/pdf.worker.js"></script>
+<script src="/scripts/pdfjs/angular-pdf.js"></script>
+{% endblock %}

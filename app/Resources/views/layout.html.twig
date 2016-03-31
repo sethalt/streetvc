@@ -1,0 +1,8 @@
+{% extends app.request.isXmlHttpRequest or app.request.pathInfo == '/_fragment' ? '::ajax.html.twig' : "::base.html.twig" %}
+
+{% block body %}
+    {% block view %}{% endblock %}
+{% endblock %}
+
+{% block javascripts %}
+{% endblock %}

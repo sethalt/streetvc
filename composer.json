@@ -1,0 +1,81 @@
+{
+    "name": "sweepingdesign/sf-base",
+    "license": "MIT",
+    "type": "project",
+    "description": "custom sd edition",
+    "autoload": {
+        "psr-0": { "": "src/" }
+    },
+    "require": {
+        "php": ">=5.3.3",
+        "symfony/symfony": "~2.4",
+        "doctrine/orm": ">=2.2.3,<2.4-dev",
+        "doctrine/doctrine-bundle": "1.2.*",
+        "twig/extensions": "1.0.*",
+        "symfony/assetic-bundle": "2.3.*",
+        "symfony/swiftmailer-bundle": "2.3.*",
+        "symfony/monolog-bundle": "2.4.*",
+        "sensio/distribution-bundle": "2.3.*",
+        "sensio/framework-extra-bundle": "2.3.*",
+        "sensio/generator-bundle": "2.3.*",
+        "incenteev/composer-parameter-handler": "~2.0",
+        "friendsofsymfony/rest-bundle": "1.3.*@dev",
+        "jms/serializer-bundle": "dev-master",
+        "jms/di-extra-bundle": "~1.3",
+        "friendsofsymfony/user-bundle": "2.0.*@dev",
+        "doctrine/mongodb-odm-bundle": "3.0.*@dev",
+        "friendsofsymfony/comment-bundle": "~2.0@dev",
+        "sonata-project/media-bundle": "~2.3@dev",
+        "sonata-project/doctrine-mongodb-admin-bundle": "~2.3@dev",
+        "doctrine/mongodb-odm": "~1.0@dev",
+        "stephpy/TimelineBundle": "2.0.*@dev",
+        "stephpy/timeline": "1.0.*",
+        "snc/redis-bundle": "1.1.*",
+        "hwi/oauth-bundle": "0.4.*@dev",
+        "guzzlehttp/guzzle-services": "dev-master",
+        "streetvc/bancbox-php": "dev-master",
+        "yohang/finite": "~1.1",
+        "jms/security-extra-bundle": "dev-master",
+        "mathiasverraes/money": "dev-master",
+        "phpunit/phpunit": "~4.0",
+        "instaclick/translation-editor-bundle": "dev-master",
+        "namshi/notificator": "1.0.*",
+        "oldsound/rabbitmq-bundle": "1.*"
+    },
+    "repositories": [
+        {
+            "type": "vcs",
+            "url": "gitolite:StreetVC/BancboxInvest.git"
+        }
+    ],
+    "scripts": {
+        "post-install-cmd": [
+            "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::buildBootstrap",
+            "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::clearCache",
+            "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::installAssets",
+            "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::installRequirementsFile"
+        ],
+        "post-update-cmd": [
+            "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::buildBootstrap",
+            "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::clearCache",
+            "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::installAssets",
+            "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::installRequirementsFile"
+        ]
+    },
+    "config": {
+        "bin-dir": "bin"
+    },
+    "minimum-stability": "dev",
+    "extra": {
+        "symfony-app-dir": "app",
+        "symfony-web-dir": "web",
+        "incenteev-parameters": {
+            "file": "app/config/parameters.yml"
+        },
+        "branch-alias": {
+            "dev-master": "2.4-dev"
+        }
+    },
+    "require-dev": {
+    }
+}

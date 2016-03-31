@@ -1,0 +1,18 @@
+{% extends 'FOSUserBundle::layout.html.twig' %}
+
+{% block fos_user_content %}
+<form class="ui fluid form segment three column grid" action="{{ path('register_lender') }}" {{ form_enctype(form) }} method="POST">
+<div class="column"></div>
+<div class="column">
+    <h3 class="ui header">Register as Lender</h3>
+    {{ form_row(form.username) }}
+    {{ form_row(form.email) }}
+    {{ form_widget(form.plainPassword) }}
+    {{ form_widget(form) }}
+    <div>
+        <input class="ui button" type="submit" value="Submit" />
+    </div>
+</div>
+<div class="column"></div>
+</form>
+{% endblock %}

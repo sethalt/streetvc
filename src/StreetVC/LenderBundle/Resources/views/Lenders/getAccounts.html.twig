@@ -1,0 +1,28 @@
+{% extends '::layout.html.twig' %}
+
+{% block view %}
+  <div class="ui column">
+    {% include 'StreetVCTransactionBundle::accounts.html.twig' with {accounts: accounts} %}
+
+    <div class="ui small linkAccount modal">
+      <div class="content">
+        {% include 'StreetVCTransactionBundle::link_account.html.twig' with {url: path('post_lender_account', {lender: lender.id}), modal: true} %}
+      </div>
+    </div>
+
+    <button type="button" class="ui green linkAccount button">
+      Link Account
+    </button>
+
+  </div>
+{% endblock %}
+
+{% block stylesheets %}
+{% endblock %}
+
+{% block javascripts %}
+  <script>
+    $('.linkAccount.modal')
+        .modal('attach events', '.linkAccount.button', 'show');
+  </script>
+{% endblock %}

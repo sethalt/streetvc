@@ -1,0 +1,51 @@
+<?xml version="1.0" ?>
+
+<container xmlns="http://symfony.com/schema/dic/services"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
+
+    <parameters>
+        <parameter key="sd_base.form.type.choice_or_other.class">Sd\BaseBundle\Form\Type\ChoiceOrOtherType</parameter>
+        <parameter key="sd_base.form.type.gridfs_upload_type.class">Sd\BaseBundle\Form\Type\GridFSUploadType</parameter>
+        <parameter key="sd_base.form.type.address.class">Sd\BaseBundle\Form\Type\AddressFormType</parameter>
+        <parameter key="sd_base.form.transformer.gridfs_upload_type.class">Sd\BaseBundle\Form\Transformer\GridFSUploadTypeTransformer</parameter>
+        <parameter key="sd_base.twig.config_listener.class">Sd\BaseBundle\Twig\TwigListener</parameter>
+        <parameter key="sd_base.twig.base_extension.class">Sd\BaseBundle\Twig\SdBaseExtension</parameter>
+    </parameters>
+
+    <services>
+        <service id="sd_base.form.type.choice_or_other" class="%sd_base.form.type.choice_or_other.class%">
+            <tag name="form.type" alias="choice_or_other" />
+        </service>
+
+        <service id="sd_base.form.type.gridfs_upload_type" class="%sd_base.form.type.gridfs_upload_type.class%">
+            <tag name="form.type" alias="gridfs_upload_type" />
+            <argument type="service" id="sd_base.form.transformer.gridfs_upload_type"></argument>
+        </service>
+
+        <service id="sd_base.form.type.address" class="%sd_base.form.type.address.class%">
+            <tag name="form.type" alias="sd_base_address" />
+        </service>
+
+        <service id="sd_base.form.transformer.gridfs_upload_type" class="%sd_base.form.transformer.gridfs_upload_type.class%">
+            <argument type="service" id="odm"></argument>
+        </service>
+
+        <service id="sd_base.twig.config_listener" class="%sd_base.twig.config_listener.class%">
+            <argument type="service" id="twig" />
+            <tag name="kernel.event_listener" event="kernel.request" method="onKernelRequest" />
+        </service>
+
+        <service id="sd_base.twig.base_extension" class="%sd_base.twig.base_extension.class%">
+            <tag name="twig.extension" />
+        </service>
+
+        <!--
+        <service id="odm.explainer" class="Sd\BaseBundle\Listener\MongoDBExplainerListener">
+            <tag name="doctrine_mongodb.odm.event_listener" event="collectionPreFind" method="collectionPreFind" connection="default" lazy="true" />
+            <tag name="doctrine_mongodb.odm.event_listener" event="collectionPostFind" method="collectionPostFind" connection="default" lazy="true" />
+            <argument type="service" id="doctrine_mongodb.odm.default_document_manager" />
+        </service>
+        -->
+    </services>
+</container>

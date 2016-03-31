@@ -1,0 +1,769 @@
+<html class=" js csstransitions csstransforms csstransforms3d">
+<head>
+<title></title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+
+<!--Meta Tags-->
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="">
+<!--/Meta Tags-->
+
+<!--CSS Files-->
+<link rel="stylesheet" href="css/style.css" type="text/css">
+<link rel="stylesheet" href="css/reset.css" type="text/css">
+<link rel="stylesheet" href="css/media-screen.css" type="text/css">
+<link href="css/lightbox.css" rel="stylesheet">
+<!--/CSS Files-->
+
+<!--Favicon-->
+<link rel="icon" type="image/png" href="images/favicon.png">
+<!--/Favicon-->
+
+<!--Google Fonts-->
+<link href="http://fonts.googleapis.com/css?family=Open+Sans:400,700,300,800" rel="stylesheet" type="text/css">
+<!--/Google Fonts-->
+
+<style type="text/css"></style>
+<style id="poshytip-css-tip-white" type="text/css">
+div.tip-white {
+  visibility: hidden;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+div.tip-white table.tip-table,div.tip-white table.tip-table td {
+  margin: 0;
+  font-family: inherit;
+  font-size: inherit;
+  font-weight: inherit;
+  font-style: inherit;
+  font-variant: inherit;
+  vertical-align: middle;
+}
+
+div.tip-white td.tip-bg-image span {
+  display: block;
+  font: 1px/1px sans-serif;
+  height: 10px;
+  width: 10px;
+  overflow: hidden;
+}
+
+div.tip-white td.tip-right {
+  background-position: 100% 0;
+}
+
+div.tip-white td.tip-bottom {
+  background-position: 100% 100%;
+}
+
+div.tip-white td.tip-left {
+  background-position: 0 100%;
+}
+
+div.tip-white div.tip-inner {
+  background-position: -10px -10px;
+}
+
+div.tip-white div.tip-arrow {
+  visibility: hidden;
+  position: absolute;
+  overflow: hidden;
+  font: 1px/1px sans-serif;
+}
+</style>
+</head>
+<body onload="initCharts();" id="cbp-so-scroller">
+  <!-- HEADER -->
+  <header id="ha-header" class="ha-header ha-header-large ">
+    <div class="ha-header-perspective">
+      <!--logo-->
+      <div class="logo scroll-effect">
+        <a class="nav-scroll" data-speed="1200" data-easing="easeInOutQuint" href="index.html#home"><img alt="" src="img/logo.png"></a>
+      </div>
+      <!--/logo-->
+
+      <!--navigation-->
+      <div class="navigation">
+        <a class="nav-scroll" data-speed="1200" data-easing="easeInOutQuint" href="#home">HOME</a>
+        <a class="nav-scroll" data-speed="1200" data-easing="easeInOutQuint" href="#about">ABOUT</a>
+        <a class="nav-scroll" data-speed="1200" data-easing="easeInOutQuint" href="#founders">TEAM</a>
+        {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
+            <a id="logout" class="right floated text item logout" href="{{ path('fos_user_security_logout') }}">log Out</a>
+            <span id="loggedin">logged in as <a href="{{path('fos_user_profile_show')}}">{{ app.user.userName }}</a></span>
+        {% else %}
+            <a id="login" href="{{ path('fos_user_security_login') }}">log In</a> {# or <a id="register" href="{{ path('fos_user_registration_register') }}">register</a> #}
+            <a id="login" href="{{ path('fos_user_registration_register') }}">Register</a> {# or <a id="register" href="{{ path('fos_user_registration_register') }}">register</a> #}
+        {% endif %}
+      </div>
+      <!--/navigation-->
+
+      <!--DL Menu-->
+      <div id="dl-menu" class="dl-menuwrapper scroll-effect">
+        <button class="dl-trigger">Open Menu</button>
+        <div class="clear"></div>
+        <ul class="dl-menu">
+          <li><a class="nav-scroll" data-speed="1200" data-easing="easeInOutQuint" href="#home">HOME</a></li>
+          <li><a class="nav-scroll" data-speed="1200" data-easing="easeInOutQuint" href="#about">ABOUT</a></li>
+          <li><a class="nav-scroll" data-speed="1200" data-easing="easeInOutQuint" href="#founders">TEAM</a></li>
+        </ul>
+      </div>
+      <!-- end DL Menu -->
+    </div>
+    <!-- end .ha-header-perspective -->
+  </header>
+  <!-- end header -->
+
+  <!-- SLIDER -->
+  <div id="home" class="">
+    <div class="homeWrapper" >
+     <div class="homeBlocksWrapper">
+      <div class="homeVideo">
+        <iframe id="youtubePlaylist" width="100%" height="400" src="//www.youtube.com/embed/videoseries?list=PL36CkQw-R4KKbZGMfyuLKsYXqLCaCUZeU" frameborder="0"
+          allowfullscreen=""></iframe>
+      </div>
+     
+     
+         <!-- Interested Borrowers -->
+    <div id="interestedBorrowers" class="interestedBorrowers" >
+      <div class="contact-inner">
+      
+        <!-- begin MailChimp Signup Form -->
+        <h2 style="font-size: 30px; text-align: center;">Are you looking for a small business loan?</h2>
+        <div class="form">
+          <mark id="message"></mark>
+          <form action="//streetvc.us3.list-manage.com/subscribe/post?u=5f6727beb93150501b602fadc&amp;id=a61f07a976" method="post" id="cform"
+            name="mc-embedded-subscribe-form" class="form validate" autocomplete="on" target="_blank" novalidate="">
+              <input type="text" required="" name="FNAME" id="Name" placeholder="First Name">
+              <input type="text" required="" name="LNAME" id="LastName" placeholder="Last Name">
+              <input type="email" required="" value="" name="EMAIL" class="required email" id="mce-EMAIL" placeholder="Email">
+            <div class="clear"></div>
+              <div style="margin: 10px 0;">
+              <label>Business Location? </label>
+              <input type="text" value="" style="float: none;" name="STATE" class="required" id="mce-STATE" placeholder="State">
+              </div>
+            <div class="clear"></div>
+              <div style="margin: 10px 0;">
+              <label>Loan amount: </label>
+              <input type="text" name="LOANAMOUNT" style="float: none;" class="required" placeholder="$50,000.00" value="" id="mce-LOANAMOUNT">
+              </div>
+            <div class="clear"></div>
+              <textarea value="" name="BIZDESC" class="required" id="mce-BIZDESC" placeholder="Brief description of business"></textarea>
+            <div class="clear"></div>
+            <div id="mce-responses" class="clear">
+              <div class="response" id="mce-error-response" style="display: none"></div>
+              <div class="response" id="mce-success-response" style="display: none"></div>
+            </div>
+            <!-- real people should not fill this in and expect good things - do not remove this or risk form bot signups-->
+            <div style="position: absolute; left: -5000px;">
+              <input type="text" name="b_5f6727beb93150501b602fadc_12a1f62db9" value="">
+            </div>
+            <div class="form-button">
+              <button type="submit" value="Subscribe" name="submit" id="submit" class="btn">Send</button>
+
+            </div>
+          </form>
+
+          <!--End mc_embed_signup-->
+          </div>
+      </div>
+    </div>
+    <!-- end interested Borrowers form --> 
+      
+     </div>
+      
+    </div>
+    <!--
+  <div class="slider-wrapper" data-stellar-background-ratio="0.5">
+    <div class="slider">
+      <div class="fs_loader"></div>
+
+      <div class="slide ha-waypoint "  data-animate-down="ha-header-small" data-animate-up="ha-header-large">
+           <a     class="teaser"   data-position="-100,192" data-in="right" data-delay="500">StreetVC</a>
+           <a     class="teaser-text" data-position="-50,130" data-in="left" data-delay="900">
+           StreetVC, LLC is a Peer-to-Business lending platform connecting borrowers in need of capital between $25,000 and $200,000 with lenders
+    interested in generating a favorable return on their investment (ROI). Lenders (.investors.) have an opportunity to lend capital to borrowers
+    in need of money at a mutually agreed upon interest rate. Loans are paid out weekly throughout the term of the loan, which is customized for
+    borrower-specific needs.</a>
+        </div>
+      <div class="slide ha-waypoint "  data-animate-down="ha-header-small" data-animate-up="ha-header-large">
+           <a     class="teaser"   data-position="-100,192" data-in="right" data-delay="500">hi</a>
+           <a     class="teaser-text" data-position="-50,130" data-in="left" data-delay="900">
+           StreetVC, LLC is a Peer-to-Business lending platform connecting borrowers in need of capital between $25,000 and $200,000 with lenders
+    interested in generating a favorable return on their investment (ROI). Lenders (.investors.) have an opportunity to lend capital to borrowers
+    in need of money at a mutually agreed upon interest rate. Loans are paid out weekly throughout the term of the loan, which is customized for
+    borrower-specific needs.</a>
+        </div>
+
+    </div>
+  </div>
+-->
+  </div>
+  <!--end slider-->
+
+  <div id="about">
+
+    <div class="homeAbout" style="color: #fff; background: #2c3e50; padding: 5% 10%; font-size: 18px;">
+      <p>StreetVC, LLC is a marketplace lending platform connecting borrowers in need of capital between $20,000 and $250,000 with lenders interested in generating a competitive interest rate of return. Lenders (“investors”) have an opportunity to lend capital to borrowers in need of money at a mutually agreed upon interest rate. Loans are paid out bi-weekly or monthly throughout the term of the loan, which is customized for borrower-specific needs.</p>
+      <p style="margin-top: 1em;">Our company collects information beyond the business-specific information and aims to incorporate data points from social media and other online business operations to develop a comprehensive assessment of each and every applicant. 
+Our team uses a proprietary credit-scoring algorithm which looks at borrower-specific performance to generate a credit risk assessment within minutes.</p>
+      <p style="margin-top: 1em;">Lenders have an opportunity to browse through borrower requests, watching personalized videos before making loan decision(s).
+Small businesses come to StreetVC for funding and exposure. Lenders follow.</p>
+
+    </div>
+
+
+    <!-- SERVICES -->
+
+    <div id="services" class="services">
+      <div class="services-r og-grid cbp-so-section cbp-so-init cbp-so-animate">
+
+        <!-- Circles -->
+        <div class="round blue cbp-so-side-o cbp-so-side-left-o">
+          <a class="round-link" href="/register"> <span class="sv-icon"><img alt="icon 2" src="img/dollar.png"></span>
+            <div class="sv-content">
+              <h2 class="sv-main">FUND</h2>
+            </div>
+          </a>
+        </div>
+        <div class="round black cbp-so-side-o cbp-so-side-right-o">
+          <a class="round-link" href="/register"> <span class="sv-icon"><img alt="icon 3" src="img/create.png"></span>
+            <div class="sv-content">
+              <h2 class="sv-main">CREATE</h2>
+            </div>
+          </a>
+        </div>
+        <div class="clear"></div>
+      </div>
+      <!-- end Circles -->
+
+      <!-- Page Slides -->
+      <div id="grey">
+        <div class="pageslide">
+          <div class="icon">
+            <img alt="icon 1" src="images/services/s-icon1.png">
+          </div>
+          <h2 class="header">Tours</h2>
+          <div class="desc scroll">
+            <h4>Lorem ipsum dolor sit amet,</h4>
+            <p>"Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim
+              veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate
+              velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim
+              id est laborum."</p>
+          </div>
+          <a href="javascript:$.pageslide.close()" class="close">X</a>
+        </div>
+      </div>
+      <div id="blue">
+        <div class="pageslide">
+          <div class="icon">
+            <img alt="icon 2" src="images/services/s-icon2.png">
+          </div>
+          <h2 class="header">Hotels</h2>
+          <div class="desc scroll">
+            <h4>Lorem ipsum dolor sit amet,</h4>
+            <p>"Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim
+              veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate
+              velit esse cillum dolore eu fugiat nulla pariatur.</p>
+            <br>
+            <p>Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."</p>
+          </div>
+          <a href="javascript:$.pageslide.close()" class="close">X</a>
+        </div>
+      </div>
+      <div id="black">
+        <div class="pageslide">
+          <div class="icon">
+            <img alt="icon 3" src="images/services/s-icon3.png">
+          </div>
+          <h2 class="header">Ocean</h2>
+          <div class="desc scroll">
+            <p>The standard chunk of Lorem Ipsum used since the 1500s is reproduced below for those interested. Sections 1.10.32 and 1.10.33 from "de Finibus
+              Bonorum et Malorum" by Cicero are also reproduced in their exact original form, accompanied by English versions from the 1914 translation by H.
+              Rackham.</p>
+            <br>
+            <p>This slide uses "modal" option set to "true". When using a modal pageslide, clicking on the main window will not close the window.</p>
+          </div>
+          <a href="javascript:$.pageslide.close()" class="close">X</a>
+        </div>
+      </div>
+      <div id="darkblue">
+        <div class="pageslide">
+          <div class="icon">
+            <img alt="icon 4" src="images/services/s-icon4.png">
+          </div>
+          <h2 class="header">Plain</h2>
+          <div class="desc scroll">
+            <p>Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it
+              over 2000 years old. Richard McClintock, a Latin professor at Hampden-Sydney College in Virginia, looked up one of the more obscure Latin words,
+              consectetur, from a Lorem Ipsum passage, and going through the cites of the word in classical literature, discovered the undoubtable source. Lorem
+              Ipsum comes from sections 1.10.32 and 1.10.33."</p>
+            <br>
+            <p>The standard chunk of Lorem Ipsum used since the 1500s is reproduced below for those interested. Sections 1.10.32 and 1.10.33 from "de Finibus
+              Bonorum et Malorum" by Cicero are also reproduced.</p>
+          </div>
+          <a href="javascript:$.pageslide.close()" class="close">X</a>
+        </div>
+      </div>
+      <div id="pageslide" style="display: none;"></div>
+    </div>
+    <!-- end services -->
+
+    <!-- LATEST-WORKS -->
+    <div id="founders" class="latest-works" data-stellar-background-ratio="0.5" style="background-position: 0px 38.359375px;">
+
+      <!-- latest works header -->
+      <div class="latest-works-header">
+        <!--
+  <div class="bar"><img src="images/bar.png" width="118" height="540"></div>
+  -->
+        <h1 class="lw-header">
+          STREETVC TEAM<span></span>
+        </h1>
+        <a class="lw-desc"></a>
+        <!--
+    <div class="bar2"><img src="images/bar.png" width="118" height="540">
+    </div>
+    -->
+      </div>
+      <!-- end latest works header -->
+
+      <div id="lt-container" class="lt-container">
+        <div class="lt-nav">
+          <span class="lt-nav-prev">&lt;</span><span class="lt-nav-next">​&gt;</span>
+        </div>
+        <div class="lt-wrapper" style="overflow: hidden;">
+          <div class="lt-item lt-item-6" style="position: absolute; left: 0px;">
+            <div class="lt-item-main">
+              <div class="lt-icon"></div>
+              <div class="door">
+                <img width="400" src="images/team/seth.jpg">
+              </div>
+            <!-- 
+              <h3>Seth Alt</h3>
+              <h4>
+                <span>Developer<span> </span></span>
+              </h4>
+             -->                
+              <a href="index.html#" class="lt-more" style="display: block;"></a>
+            </div>
+            <div class="lt-content-wrapper" style="left: 395px; width: 0px;">
+              <div class="lt-content">
+                <h6>Seth Alt</h6>
+                <a href="index.html#" class="lt-close">close</a>
+                <div class="lt-content-text">
+                  <p>Seth Alt is a web developer and partner at the web development firm, Sweeping Design. He works in a number of technologies and frameworks,
+                    and is proficient in HTML5, CSS, Javascript, PHP, MYSQL, and MongoDB.</p>
+                  <p></p>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="lt-item lt-item-1" style="position: absolute; left: 395; display: block;">
+            <div class="lt-item-main">
+              <div class="lt-icon"></div>
+              <div class="door">
+                <img width="400" src="images/team/jason.jpg">
+              </div>
+          <!-- 
+              <h3>Jason Cross</h3>
+              <h4>
+                <span>Co-founder &amp; CEO<span> </span></span>
+              </h4>
+              -->
+              <a href="index.html#" class="lt-more" style="display: block;"></a>
+            </div>
+            <div class="lt-content-wrapper" style="left: 395px; width: 0px;">
+              <div class="lt-content">
+                <h6>Jason Cross</h6>
+                <a href="index.html#" class="lt-close">close</a>
+                <div class="lt-content-text">
+                  <p>Jason is a passionate entrepreneur who has exploited a market opportunity for an alternative investment strategy for the everyday investor
+                    at the benefit of small business owners. Jason has over four years of Management Consulting experience with Capgemini Consulting in their
+                    Strategy &amp; Transformation Practice. In his time at Capgemini, he has worked with executives across a variety of industries to make and
+                    execute on key strategic, financial, and operational decisions.</p>
+                  <p>
+                    <strong>Education</strong>
+                  </p>
+                  <p>Jason received his Bachelor of Business Administration from Goizueta Business School at Emory University, double majoring in Finance and
+                    Consulting &amp; Venture Management. As a student-athlete (Swimming &amp; Diving), Jason had a leadership role in Alpha Kappa Psi Business
+                    Fraternity and Sigma Alpha Epsilon fraternity.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+{#
+          <div class="lt-item lt-item-2" style="position: absolute; left: 630px; display: block;">
+            <div class="lt-item-main">
+              <div class="lt-icon"></div>
+              <div class="door">
+                <img width="400" src="images/team/rodney.jpg">
+              </div>
+              <h3>Rodney Leger</h3>
+              <h4>
+                <span>Chief Marketing Officer / Business Development<span> </span></span>
+              </h4>
+              <a href="index.html#" class="lt-more" style="display: block;"></a>
+            </div>
+            <div class="lt-content-wrapper" style="left: 395px; width: 0px;">
+              <div class="lt-content">
+                <h6>Rodney Leger</h6>
+                <a href="index.html#" class="lt-close">close</a>
+                <div class="lt-content-text">
+                  <p>Rodney began his professional career at Price Waterhouse Cooper as a consultant after earning his BA from UVA. Rodney continued his work as
+                    a consultant for PeopleSoft, and later, Boston Consulting Group, before founding his own consulting firm in 2009, Bright Engine Idea. His
+                    specialties include: Specialties: actionable business insight, opportunity assessment, process design and redesign, project management and
+                    execution support, technology enablement, sourcing, due diligence. Rodney earned an MBA from Wharton Business School. He decided to pursue
+                    further education by earning a Masters in Computer Science from University of Chicago in 2004, and a Masters in Management Information
+                    Systems from The University of Virginia. Rodney received his undergraduate education at University of Virginia, earning a BS in Commerce.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+#}
+          <div class="lt-item lt-item-3" style="position: absolute; left: 945px; display: block;">
+            <div class="lt-item-main">
+              <div class="lt-icon"></div>
+              <div class="door">
+                <img width="400" src="/images/team/dylan.jpg">
+              </div>
+          <!-- 
+              <h3>Dylan Oliver</h3>
+              <h4>
+                <span>Co-founder, Chief Technology Officer<span> </span></span>
+              </h4>
+              -->
+              <a href="index.html#" class="lt-more" style="display: block;"></a>
+            </div>
+            <div class="lt-content-wrapper" style="left: 395px; width: 0px;">
+              <div class="lt-content">
+                <h6>Dylan Oliver</h6>
+                <a href="index.html#" class="lt-close">close</a>
+                <div class="lt-content-text">
+                  <p>Dylan is, above all, adept in identifying and rapidly gaining proficiency in the technologies required to complete any task at hand. He has
+                    worked with computers since he was a teenager; he ran a small BBS (Bulletin Board System) from his basement before 'the internet' was
+                    popular and started using Linux when he was about 16. Dylan is self-taught with the exception of a few courses in computer programming
+                    including Evolutionary Computation, Artificial Life, and Genetic Algorithms in College. He has experience in many programming languages,
+                    including (in order of familiarity): PHP, Javascript, Actionscript, Python, C++, Bash, Perl, LISP, etc. He has administered MySQL,
+                    PostgreSQL, and Microsoft SQL Server databases and is proficient in SQL.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="lt-item lt-item-5" style="position: absolute; left: 1575px; display: block;">
+            <div class="lt-item-main">
+              <div class="lt-icon"></div>
+              <div class="door">
+                <img width="400" src="images/team/shane.jpg">
+              </div>
+          <!-- 
+              <h3>Shane Faherty</h3>
+              <h4>
+                <span>Chief Design Officer<span> </span></span>
+              </h4>
+              -->
+              <a href="index.html#" class="lt-more" style="display: block;"></a>
+            </div>
+            <div class="lt-content-wrapper" style="left: 395px; width: 0px;">
+              <div class="lt-content">
+                <h6>Shane Faherty</h6>
+                <a href="index.html#" class="lt-close">close</a>
+                <div class="lt-content-text">
+                  <p>
+                    <strong>Co-Founder, Pro-Motion Studios LLC</strong><br>Video Production &amp; Animation, creating visual content for small and corporate
+                    businesses (print ads, web videos,TV commercials, films). Corporate Identity and branding strategy including distribution and online
+                    optimization for content.
+                  </p>
+                  <p>
+                    <strong>Founder, Fisheye Productions LLC</strong><br> Website solutions, online strategy for business development and marketing. Analysis
+                    and evaluation of E-Commerce environments and operations for inventory and drop-ship models. Specializing in UX design and customer
+                    interface.
+                  </p>
+
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="lt-item lt-item-6" style="position: absolute; left: 1890px; display: block;">
+            <div class="lt-item-main">
+              <div class="lt-icon"></div>
+              <div class="door">
+                <img width="400" src="images/team/jennifer.jpg">
+              </div>
+          <!-- 
+              <h3>Jennifer Galperin</h3>
+              <h4>
+                <span>Co-Founder, Chief Credit Officer<span> </span></span>
+              </h4>
+           -->
+              <a href="index.html#" class="lt-more" style="display: block;"></a>
+            </div>
+            <div class="lt-content-wrapper" style="left: 395px; width: 0px;">
+              <div class="lt-content">
+                <h6>Jennifer Galperin</h6>
+                <a href="index.html#" class="lt-close">close</a>
+                <div class="lt-content-text">
+                  <p>
+                    Jennifer is a quantitative financial professional with an expertise in data analysis.  She has over 10 years experience in the finance industry, most recently as a financial consultant focusing on data analysis for start-ups and small- to mid-sized companies.  Prior to that, Jennifer spent 6 years at JPMorgan as a Vice President analyzing investments and credit transactions for the Private Banking division.  Jennifer began her career in finance at Goldman Sachs in the Equity Capital Markets Group.
+                  </p>
+                  <p>
+                    Jennifer received her BS in Chemical Engineering from the Massachusetts Institute of Technology in 2001.  
+                  </p>
+
+                </div>
+              </div>
+            </div>
+          </div>
+          
+          
+                    <!-- 
+          <div class="lt-item lt-item-7" style="position: absolute; left: 1260px; display: block;">
+            <div class="lt-item-main">
+              <div class="lt-icon"></div>
+              <div class="door">
+                <img width="400" src="images/team/marc.jpg">
+              </div>
+              <div class="door"></div>
+              <h3>Marc Adesso</h3>
+              <h4>
+                <span>Co-founder, Adviser</span>
+              </h4>
+              <a href="index.html#" class="lt-more" style="display: block;"></a>
+            </div>
+            <div class="lt-content-wrapper" style="left: 395px; width: 0px;">
+              <div class="lt-content">
+                <h6>Marc Adesso</h6>
+                <a href="index.html#" class="lt-close">close</a>
+                <div class="lt-content-text">
+                  <p>Marc J. Adesso is an active member of the Corporate and Securities practice group of Sichenzia Ross Friedman Ference LLP. Mr. Adesso
+                    focuses his practice in the areas of securities, corporate finance, general corporate counsel and mergers and acquisitions. Mr. Adesso
+                    advises a broad variety of entities through all of their life cycle events, including private placements, offerings of equity and debt
+                    securities, securities law compliance and reporting, corporate governance, contracts, ownership-succession planning, M&amp;A transactions
+                    and technology agreements. As he speaks several foreign languages, Mr. Adesso advises international clients in transactional matters as
+                    well.</p>
+                  <p>Prior to joining the firm, Mr. Adesso was an attorney at a number of prestigious Wisconsin-based law firms. Mr. Adesso was named a Leading
+                    Lawyer in the area of Business Law by M Magazine, and a Rising Star by SuperLawyers. Mr. Adesso earned his J.D. from Marquette University
+                    and he holds an M.B.A. from the Thunderbird School of Global Management. He received his B.A. from the University of Wisconsin-Madison and
+                    his M.A. from New York University.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+           -->
+
+
+        </div>
+        <!-- end .lt-wrapper -->
+      </div>
+
+      <!-- end .lt-container -->
+    </div>
+    <!-- latest-Works -->
+    
+    
+
+    
+    
+
+    <!-- CONTACT -->
+    <div id="contact" class="contact" data-stellar-background-ratio="0.5" style="background-position: 0px 344.140625px;">
+      <div class="contact-inner">
+
+        <!-- contact form -->
+        <!-- begin MailChimp Signup Form -->
+        <h2 style="font-size: 30px; text-align: center;">Want to be the first to hear about our BETA launch?</h2>
+        <div class="form">
+          <mark id="message"></mark>
+          <form action="http://streetvc.us3.list-manage.com/subscribe/post?u=5f6727beb93150501b602fadc&amp;id=12a1f62db9" method="post" id="cform"
+            name="mc-embedded-subscribe-form" class="form validate" autocomplete="on" target="_blank" novalidate="">
+            <input type="text" required="" name="FNAME" id="Name" placeholder="First Name"> <input type="text" required="" name="LNAME" id="LastName"
+              placeholder="Last Name"> <input type="email" required="" value="" name="EMAIL" class="required email" id="mce-EMAIL" placeholder="Email">
+            <div class="clear"></div>
+            <div id="mce-responses" class="clear">
+              <div class="response" id="mce-error-response" style="display: none"></div>
+              <div class="response" id="mce-success-response" style="display: none"></div>
+            </div>
+            <!-- real people should not fill this in and expect good things - do not remove this or risk form bot signups-->
+            <div style="position: absolute; left: -5000px;">
+              <input type="text" name="b_5f6727beb93150501b602fadc_12a1f62db9" value="">
+            </div>
+            <div class="form-button">
+              <button type="submit" value="Subscribe" name="submit" id="submit" class="btn">Subscribe</button>
+
+            </div>
+          </form>
+
+          <!--End mc_embed_signup-->
+          <!-- end contact form -->
+          
+          
+          
+
+          <!-- social icons -->
+          <!--
+    <div class="socials"> <a href="" class="facebook"></a> <a href="" class="google"></a> <a href="" class="tumblr"></a> <a href="" class="twitter"></a> <a href="" class="vimeo"></a> </div>
+-->
+          <!-- end social icons -->
+
+          <div class="clear"></div>
+
+          <!-- company detail -->
+
+          <div class="company">
+            <span class="company-text">©2014 StreetVC, LLC. all rights reserved.</span>
+          </div>
+
+          <!-- end company detail -->
+
+        </div>
+        <!-- end .contact-inner -->
+
+      </div>
+      <!-- end .contact -->
+
+      <!--JS Files-->
+      <script src="js/jquery-1.8.3.min.js" type="text/javascript"></script>
+      <script src="js/jquery.queryloader2.js" type="text/javascript"></script>
+      <script type="text/javascript" src="js/STREETVC.js"></script>
+      <script src="js/modernizr.custom.js"></script>
+      <script src="js/main.js" type="text/javascript" charset="utf-8"></script>
+      <script type="text/javascript" src="js/waypoints.js"></script>
+      <script type="text/javascript" src="js/jquery.stellar.js"></script>
+      <script src="js/jquery.fractionslider.js" type="text/javascript" charset="utf-8"></script>
+      <script src="js/smooth-scroll.js"></script>
+      <script src="js/jquery.easy-pie-chart.js"></script>
+      <script src="js/jquery.isotope.min.js"></script>
+      <script src="js/lightbox-2.6.min.js"></script>
+      <script src="js/jquery.validate.js"></script>
+      <!--/JS Files-->
+
+      <!-- DL Menu Scripts -->
+      <script src="js/jquery.dlmenu.js"></script>
+      <!-- /DL Menu Scripts -->
+
+      <!-- Services Page Slide Script -->
+      <script src="js/jquery.pageslide.js"></script>
+      <!-- /Services Page Slide Script -->
+
+      <!-- Last-Works-Scripts -->
+      <script type="text/javascript" src="js/jquery.easing.1.3.js"></script>
+      <script type="text/javascript" src="js/jquery.contentcarousel.js"></script>
+      <script type="text/javascript">
+      $('#lt-container').contentcarousel();
+</script>
+      <!-- /Last-Works-Scripts -->
+
+      <!-- Flex Slider Script -->
+      <script defer="" src="js/jquery.flexslider.js"></script>
+      <!-- /Flex Slider Script -->
+
+      <script>
+    // pageslide
+       /* Default pageslide, moves to the right */
+        $(".first").pageslide();
+
+        /* Slide to the left, and make it model (you'll have to call $.pageslide.close() to close) */
+        $(".round-link").pageslide({ direction: "left", modal: true });
+
+</script>
+
+      <!-- Tooltip Scripts / in map -->
+      <script type="text/javascript" src="js/jquery.poshytip.js"></script>
+      <script type="text/javascript">
+    //<![CDATA[
+    $(function(){$('.demo-basic').poshytip();});
+    //]]>
+</script>
+      <!-- /Tooltip Scripts / in map -->
+
+      <!-- scroll-jquery -->
+      <!-- 
+      <script src="js/jquery.nicescroll.min.js"></script>
+       -->
+      
+
+      <!-- Header-Effect-script -->
+      <script>
+      var $head = $( '#ha-header' );
+      $( '.ha-waypoint' ).each( function(i) {
+      'use strict';
+        var $el = $( this ),
+          animClassDown = $el.data( 'animateDown' ),
+          animClassUp = $el.data( 'animateUp' );
+
+        $el.waypoint( function( direction ) {
+          if( direction === 'down' && animClassDown ) {
+            $head.attr('class', 'ha-header ' + animClassDown);
+          }
+          else if( direction === 'up' && animClassUp ){
+            $head.attr('class', 'ha-header ' + animClassUp);
+          }
+        }, { offset: '0' } );
+      } );
+    </script>
+
+      <!-- FlexSlider-script -->
+      <script type="text/javascript">
+    $(function(){
+  'use strict';
+      SyntaxHighlighter.all();
+    });
+    $(window).load(function(){
+      $('.flexslider').flexslider({
+        animation: "fade",
+        start: function(slider){
+          $('blog').removeClass('loading');
+        }
+      });
+    });
+  </script>
+      <script src="js/classie.js"></script>
+      <script src="js/cbpScroller.js"></script>
+      <script>
+      new cbpScroller( document.getElementById( 'cbp-so-scroller' ) );
+    </script>
+
+
+    </div>
+  </div>
+  <!-- 
+  <div id="lightboxOverlay" class="lightboxOverlay" style="display: none;"></div>
+  <div id="lightbox" class="lightbox" style="display: none;">
+    <div class="lb-outerContainer">
+      <div class="lb-container">
+        <img class="lb-image" src="">
+        <div class="lb-nav">
+          <a class="lb-prev" href=""></a><a class="lb-next" href=""></a>
+        </div>
+        <div class="lb-loader">
+          <a class="lb-cancel"></a>
+        </div>
+      </div>
+    </div>
+    <div class="lb-dataContainer">
+      <div class="lb-data">
+        <div class="lb-details">
+          <span class="lb-caption"></span><span class="lb-number"></span>
+        </div>
+        <div class="lb-closeContainer">
+          <a class="lb-close"></a>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div id="ascrail2000" class="nicescroll-rails"
+    style="width: 18px; z-index: auto; cursor: default; position: fixed; top: 0px; height: 100%; right: 0px; opacity: 0; background: none;">
+    <div
+      style="position: relative; top: 626px; float: right; width: 16px; height: 272px; border: 1px solid rgb(57, 57, 57); border-top-left-radius: 8px; border-top-right-radius: 8px; border-bottom-right-radius: 8px; border-bottom-left-radius: 8px; background-color: rgb(57, 57, 57); background-clip: padding-box;"></div>
+  </div>
+  <div id="ascrail2000-hr" class="nicescroll-rails"
+    style="height: 18px; z-index: auto; position: fixed; left: 0px; width: 100%; bottom: 0px; cursor: default; display: none; opacity: 0; background: none;">
+    <div
+      style="position: relative; top: 0px; height: 16px; width: 1920px; border: 1px solid rgb(57, 57, 57); border-top-left-radius: 8px; border-top-right-radius: 8px; border-bottom-right-radius: 8px; border-bottom-left-radius: 8px; left: 0px; background-color: rgb(57, 57, 57); background-clip: padding-box;"></div>
+  </div>
+   -->
+  {% include '::intercom.js.twig' %}
+</body>
+</html>

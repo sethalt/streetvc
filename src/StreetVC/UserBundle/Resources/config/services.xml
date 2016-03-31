@@ -1,0 +1,71 @@
+<?xml version="1.0" ?>
+
+<container xmlns="http://symfony.com/schema/dic/services"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
+
+    <parameters>
+        <parameter key="street_vc_user.user.class">StreetVC\UserBundle\Document\User</parameter>
+        <parameter key="streetvc_user.user_provider.class">StreetVC\UserBundle\Security\Core\FOSUBUserProvider</parameter>
+        <parameter key="streetvc_user.user_provider.properties" type="collection">
+            <parameter key="linkedin">linkedin_id</parameter>
+            <parameter key="google">google_id</parameter>
+        </parameter>
+    </parameters>
+
+    <services>
+    <!--
+        <service id="street_vc_user.registration_listener" class="StreetVC\UserBundle\Event\RegistrationConfirmedListener">
+            <argument type="service" id="router" />
+            <tag name="kernel.event_subscriber" />
+        </service>
+    -->
+        <service id="street_vc_user.form.registration" class="StreetVC\UserBundle\Form\Type\RegistrationFormType">
+            <argument>%street_vc_user.user.class%</argument>
+            <tag name="form.type" alias="streetvc_user_registration" />
+        </service>
+        <service id="street_vc_user.form.bank_account" class="StreetVC\UserBundle\Form\Type\BankAccountFormType">
+            <tag name="form.type" alias="bank_account" />
+        </service>
+
+        <service id="streetvc_user.user_provider" class="%streetvc_user.user_provider.class%">
+            <argument type="service" id="fos_user.user_manager" />
+            <argument>%streetvc_user.user_provider.properties%</argument>
+        </service>
+
+        <service id="streetvc_user.authentication_handler" class="StreetVC\UserBundle\Security\AuthenticationHandler">
+            <argument type="service" id="security.http_utils" />
+            <argument>/</argument>
+        </service>
+
+        <service id="streetvc_user.xhr_core_exception_listener" class="StreetVC\UserBundle\Listener\ExceptionListener">
+            <tag name="kernel.event_listener" event="kernel.exception" method="onCoreException" priority="1000" />
+        </service>
+
+<!--
+        <service id="streetvc_user.registration.form.handler" class="StreetVC\UserBundle\Form\LinkedInRegistrationFormHandler">
+            <argument type="service" id="fos_user.user_manager" />
+            <argument type="service" id="fos_user.mailer" />
+            <argument type="service" id="fos_user.util.token_generator" on-invalid="null"/>
+            <call method="setFormHandler">
+                <argument type="service" id="fos_user.registration.form.handler" on-invalid="null" />
+            </call>
+        </service>
+        <service id="streetvc_user.registration.form.type" class="StreetVC\UserBundle\Form\LinkedInRegistrationFormType">
+            <tag name="form.type" alias="streetvc_user_registration" />
+            <argument>%fos_user.model.user.class%</argument>
+        </service>
+        <service id="streetvc_user.edit_profile.form.type" class="StreetVC\UserBundle\Form\ProfileFormType">
+            <tag name="form.type" alias="streetvc_user_profile" />
+            <argument>%fos_user.model.user.class%</argument>
+        </service>
+
+        <service id="streetvc_user.serialization_listener" class="StreetVC\UserBundle\Listener\SerializationListener">
+            <tag name="jms_serializer.event_subscriber" />
+            <argument type="service" id="odm" />
+        </service>
+-->
+
+    </services>
+
+</container>

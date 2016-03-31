@@ -1,0 +1,15 @@
+{% extends '::layout.html.twig' %}
+
+{% block view %}
+<div class="column">
+<form class="ui form" method="POST" action="{{ path('post_loanrequest') }}">
+{{ form_row(form) }}
+{{ form_rest(form) }}
+<input type="submit" class="ui submit button" value="Save loan request and continue" />
+</form>
+</div>
+{% endblock %}
+
+{% block javascripts %}
+  {{ include('StreetVCBorrowerBundle:Businesses:businessFormJs.html.twig') }}
+{% endblock %}

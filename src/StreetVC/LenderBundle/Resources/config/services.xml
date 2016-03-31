@@ -1,0 +1,19 @@
+<?xml version="1.0" ?>
+
+<container xmlns="http://symfony.com/schema/dic/services"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
+
+    <parameters>
+        <parameter key="street_vc_lender.loan_commitment.class">StreetVC\LenderBundle\Document\LoanCommitment</parameter>
+        <parameter key="street_vc_lender.manager.loan_commitment.class">StreetVC\LenderBundle\Model\LoanCommitmentManager</parameter>
+    </parameters>
+
+    <services>
+        <service id="street_vc_lender.manager.loan_commitment" class="%street_vc_lender.manager.loan_commitment.class%">
+            <argument type="service" id="doctrine.odm.mongodb.document_manager" />
+            <argument>%street_vc_lender.loan_commitment.class%</argument>
+        </service>
+    </services>
+
+</container>

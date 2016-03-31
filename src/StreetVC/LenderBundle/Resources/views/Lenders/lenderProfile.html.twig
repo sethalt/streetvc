@@ -1,0 +1,31 @@
+{% if is_granted('ROLE_INVESTOR') %}
+  {% set lender=user.lender %}
+  {% set account = user.lender.internalAccount %}
+
+  <div class="two column doubling row">
+    <div class="column eight wide">
+        <h2 class="ui header">{{ 'lender.account_info'|trans({}, 'lender') }}</h2>
+        <p>User: {{ user.fullName }}</p>
+        <p>Accreditation Status: {{ lender.accredited?'Accredited':'Not Accredited' }}</p>
+        <p>Current Balance: ${{ lender.currentBalance|number_format(2, '.', ',') }}</p>
+        
+        <h4 class="ui dividing header">Bank Accounts</h4>
+        {% set accounts = user.lender.linkedAccounts %}
+        <div class="ui ordered list">
+          {% for account in accounts %}
+            <div class="item">
+              {{ account }}
+            </div>
+          {% endfor %}
+        </div>
+        <a class="ui green icon button tiny" href="{{ path('new_lender_account', {lender: user.lender.id }) }}"><i class="money icon"></i> {{ 'lender.add_bank_account'|trans({}, 'lender') }}</a>
+        
+        
+    </div>
+    
+    <div class="column eight wide">
+      <h2 class="ui header">Latest</h2>
+      <a class="ui button blue" href="{{ path('get_loanrequests') }}">{{ 'lend.browse_requests'|trans({}, 'lender') }}</a>
+    </div>
+  </div>
+{% endif %}

@@ -1,0 +1,49 @@
+<!-- HEADER -->
+<header id="ha-header" class="ha-header ha-header-large ">
+  <div class="ha-header-perspective">
+    <!--logo-->
+    <div class="logo scroll-effect"><a href="/"><img src="/img/logo.png" alt="" /></a></div>
+    <!--/logo-->
+
+    <!--navigation-->
+    <div id="primary" class="navbar navbar-inverse" style="top: 50px;">
+
+    <button type="button" class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse"> <span class="icon-bar"></span> <span class="icon-bar"></span> <span class="icon-bar"></span> </button>
+    <div class="nav-collapse collapse" style="height: 0px;">
+      <ul id="nav">
+        <li class="active"><a href="/">Home</a></li>
+        <li class=""><a href="#about">About</a></li>
+        <li class=""><a href="#learn">Learn More</a></li>
+        <li class=""><a href="#featured">Featured</a></li>
+        <li class=""><a href="#stories">Stories</a></li>
+        <li class=""><a href="#map">Map</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </div>
+  </div>
+    <div class="navigation">
+      {% include '::auth.html.twig' %}
+      <a class="nav-scroll" data-speed="1200" data-easing="easeInOutQuint" href="#" >FAQ</a>
+      <a class="nav-scroll"  href="#">Contact</a>
+    </div>
+    <!--/navigation-->
+
+    <!--DL Menu-->
+    <div id="dl-menu" class="dl-menuwrapper scroll-effect">
+      <button class="dl-trigger">Open Menu</button>
+      <div class="clear"></div>
+      <ul class="dl-menu">
+        <li class="active"><a href="#home">Home</a></li>
+        <li class=""><a href="#about">About</a></li>
+        <li class=""><a href="#learn">Learn More</a></li>
+        <li class=""><a href="#featured">Featured</a></li>
+        <li class=""><a href="#stories">Stories</a></li>
+        <li class=""><a href="#map">Map</a></li>
+        <li> <a href="#contact">Contact</a></li>
+      </ul>
+    </div>
+    <!-- end DL Menu -->
+  </div>
+  <!-- end .ha-header-perspective -->
+</header>
+<!-- end header -->

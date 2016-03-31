@@ -1,0 +1,29 @@
+{% extends "StreetVCUserBundle::layout.html.twig" %}
+
+
+{% block title %}Registration Confirmed{% endblock %}
+{% block fos_user_content %}
+    <h1 class="ui header">Please choose how you would like to navigate the site.</h1>
+
+    <div class="investorOrBorrower ui two column middle aligned relaxed grid basic segment">
+      <div class="center aligned column">
+         {% if is_granted("ROLE_INVESTOR") %}
+           <a class="circle green" href="{{ path('invest_index') }}">
+            <span>Lender</span>
+           </a>
+         {% else %}
+           <a class="circle green" href="{{ path('new_lender') }}">
+            <span>Lender</span>
+           </a>
+         {% endif %}
+      </div>
+      <div class="ui vertical divider">
+        Or
+      </div>
+      <div class="center aligned column">
+         <a class="circle blue" href="{{ path('index_borrower') }}">
+            <span>Borrower</span>
+         </a>
+      </div>
+    </div>
+{% endblock %}

@@ -1,0 +1,67 @@
+finite_finite:
+    loan_request:
+        class: StreetVC\LoanBundle\Document\LoanRequest
+        graph: default
+        states:
+            draft:
+                type: initial
+                properties: { description: Loan Request created but has not been submitted }
+            submitted:
+                type:  normal
+                properties: { description: Borrower submitted Loan Request for review. Platform must validate. }
+            verifying:
+                properties: { description: System is verifying identity. }
+            verified:
+                properties: { description: Borrower identity verified. }
+            evaluated:
+                properties: { description: Risk evaluated. }
+            reviewing:
+                properties: { description: Risk Assessment approved by platform. }
+            rejected:
+                properties: { description: Application rejected by platform. }
+            accepted:
+                properties: { description: Borrower has accepted terms. Escrow ready to be created. }
+            declined:
+                type: final
+                properties: { description: Borrower declined terms }
+            canceled:
+                properties: { description: Loan Request canceled. }
+            escrow:
+                properties: { description: Escrow created from approved request. }
+            loan:
+                properties: { description: Loan created from successful escrow. }
+        transitions:
+            submit:
+                from: [ draft ]
+                to:   submitted
+            verify:
+                from: [ draft, submitted, verifying ]
+                to:   verified
+            evaluate:
+                from: [ submitted, verified ]
+                to:   evaluated
+            review:
+                from: [ evaluated ]
+                to:   reviewing
+            accept:
+                from: [ evaluated, reviewing ]
+                to:   accepted
+            decline:
+                from: [ evaluated, reviewing ]
+                to:   declined
+            reject:
+                from: [ submitted, verifying, verified, evaluated ]
+                to:   rejected
+            create_escrow:
+                from: [ accepted ]
+                to:   escrow
+            cancel:
+                from: [ draft, submitted, verified, evaluated, accepted ]
+                to:   canceled
+            loan:
+                from: [ escrow ]
+                to:   loan
+
+        callbacks:
+            after:
+#                after_accept: { to: 'accepted', do: ["@=$this", 'foo'] }

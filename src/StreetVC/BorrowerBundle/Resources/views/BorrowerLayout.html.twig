@@ -1,0 +1,88 @@
+{% extends '::layout.html.twig' %}
+
+{% block title %}
+{% endblock %}
+
+  {% block sidebar %}
+    {% include("StreetVCBorrowerBundle::BorrowerSidebar.html.twig") %}
+  {% endblock %}
+  
+{% block view %}
+    {% if is_granted('ROLE_ISSUER') %}
+      {% set business = user.business %}
+      {% set escrow = business.activeEscrow %}
+      {% set currentRequest = business.activeLoanRequest %}
+  <div class="one column doubling row">
+    <div class="column">
+      <div class="ui segment">
+        <div class="ui secondary green pointing menu">
+          <span class="item">
+            <h2 class="ui header blue">Borrower Dashboard</h2>
+          </span>
+          {% if currentRequest and currentRequest.state in ['escrow'] %}
+          <a class="item" href="{{ path('index_borrower') }}">
+            <i class="dollar icon"></i>
+            <span>View Loan Request</span>
+          </a>
+          {% elseif currentRequest and currentRequest.state in ['draft'] %}
+          <a class="item" href="{{ path('review_borrower_loanrequest', {loanRequest: currentRequest.id}) }}">
+            <i class="dollar icon"></i>
+            <span>edit loan request</span>
+          </a>
+          {% elseif currentRequest and currentRequest.state in ['accepted', 'evaluated'] %}
+          <a class="item" href="{{ path('create_borrower_escrow', {loanRequest: currentRequest.id }) }}">
+            <i class="dollar icon"></i>
+            <span>Create Escrow</span>
+          </a>
+          {% else %}
+            <a class="item " href="{{ path('new_borrower_loanrequest', {business: business.id})}}">
+              <i class="dollar icon"></i>
+            <span>Create new loan request</span>
+            </a>
+          {% endif %}
+  
+          {% if business %}
+          <a class="item " href="{{ path('banking_borrower') }}">
+                <i class="exchange icon"></i>
+            <span>Transfer funds to account</span>
+          </a>
+          <a class="item " href="{{ path('business_borrower') }}">
+                <i class="users icon"></i>
+            <span>view and edit business profile</span>
+          </a>
+          {% else %}
+           <a class="item " href="">
+                <i class="users icon"></i>
+            <span>create business profile</span>
+          </a>
+          {% endif %}
+          {% if business.hasArchivedLoanRequests %}
+          <a class="item " href="">
+                <i class="book icon"></i>
+            <span>view expired loan requests</span>
+          </a>
+          {% endif %}
+        </div>
+        </div>
+      </div>
+    </div>
+    {% endif %}
+    
+    {% block content %}
+    {% endblock %}   
+
+  {#
+  {% if user.cashflowPositive %}
+  
+  {% else %}
+    <div class="one column doubling ui row">
+      <div class="column">
+        <h2 class="ui heading">You stated in your registration that you are not cashflow positive, so you are not eligible to apply for a loan with beinvestable.com</h2>
+        <a class="ui button blue" href="{{ path('cashflowpositive_user') }}">My business is now cashflow positive.</a>
+      </div>
+    </div>
+  {% endif %}
+  #}
+  
+  
+{% endblock %}

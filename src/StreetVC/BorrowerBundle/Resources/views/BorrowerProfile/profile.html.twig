@@ -1,0 +1,62 @@
+{% extends "StreetVCBorrowerBundle::BorrowerLayout.html.twig" %}
+{% block title %}Profile{% endblock %}
+
+{% block content %}
+<div class="two column doubling ui row">
+  <div class="column ten wide centered">
+    {{ include('StreetVCBorrowerBundle:BorrowerProfile:borrowerSteps.html.twig', { step: '2'}) }}
+    <div class="ui segment">
+            <h2 class="ui dividing header">{{ 'biz.profile.heading'|trans({}, 'business') }}</h2>
+            <form id="profileForm" class="ui horizontal form {{ form.vars.errors ?'error':'' }}" action="{{ path('profile_borrower') }}" method="GET">
+            
+            <input type="hidden" name="formType" value="business_profile" />
+            <input type="hidden" name="save" value="true" />
+            {{ form_errors(form) }}
+            {{ form_widget(form._token) }}
+            {{ form_row(form.legal_name) }}
+            {{ form_row(form.dbas) }}
+            {{ form_row(form.phone) }}
+            {{ form_row(form.legal_structure) }}
+            {# form_row(form.tax_id) #}
+            {{ form_row(form.website) }}
+            {# form_row(form.industry) #}
+            {# form_row(form.year_established) #}
+            {{ form_row(form.registration_state) }}
+            {{ form_row(form.address) }}
+            {# form_row(form.bricks_and_mortar) #}
+            <div id="numLocations">
+            </div>
+            {# form_row(form.time_at_current_location) #}
+            {{ form_row(form.bio) }}
+            {{ form_row(form.video) }}
+            <input type="submit" class="ui blue submit button" value="{{ 'biz.legal.save'|trans({}, 'business') }}" />
+            </form>
+      </div>
+  </div>
+</div>
+{% endblock %}
+
+{% block javascripts %}
+{{ include('StreetVCBorrowerBundle:Businesses:businessFormJs.html.twig') }}
+{#
+<script type="text/javascript">
+  $( document ).ready(function(){
+    bricksAndMotar();
+    $('input[name="bricks_and_mortar"]').change(function(){
+      bricksAndMotar();
+    })
+  });
+
+  function bricksAndMotar(){
+    var field = $('input[name="bricks_and_mortar"]:checked');
+    if(field.val() == '1' && field.is(":checked")){
+      $('#numLocations').html('{{ form_row(form.number_locations) }}');
+        
+    }else{
+      $('#numLocations').html('');
+    }
+  }
+  
+</script>
+  #}
+{% endblock %}

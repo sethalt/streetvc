@@ -1,0 +1,26 @@
+{% extends '::frontend.html.twig' %}
+
+{% block title %}
+{% endblock %}
+
+{% block view %}
+
+
+<div class="ui grid homeBanner">
+  <div class="column">
+    <div class="homeSlider">
+        <img src="/img/home/banner.jpg" alt="Investable" />
+        <div class="homeCta">
+          <h1>Community funded<br />small business loans</h1>
+          <a class="ui button blue" href="{{ path('register', {type: 'borrower'}) }}">Request a Loan</a>
+          <a class="ui button green" href="{{ path('register', {type: 'lender'}) }}">Lend to businesses</a>
+        </div>
+    </div>
+  </div>
+</div>
+
+{% include 'StreetVCSiteBundle:Default:loanRequests.html.twig' %}
+{% include 'StreetVCSiteBundle:Default:testimonials.html.twig' %}
+{% include 'StreetVCSiteBundle:Default:contact.html.twig' %}
+
+{% endblock %}

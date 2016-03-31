@@ -1,0 +1,24 @@
+<h2>{{ investor.first_name }} {{ investor.last_name }} ({{ investor.id }})</h2>
+    <pre>
+  dob: {{ investor.dob }}
+  funds: {{investor.funds}}
+  pending: {{investor.pending_balance}}
+  status: {{investor.status}}
+  type: {{investor.type}}
+  phone: {{investor.phone}}
+    </pre>
+<h3>Accounts</h3>
+    <div class="debug">{{investor.account_info}}</div>
+<ul ng-repeat="account in investor.linked_external_accounts">
+  <li>id: {{account.id}} holder: {{account.bank_account_holder}} number: {{account.bank_account_number}} type: {{account.bank_account_type}} default? {{account.is_default == 'Y'? 'YES':'NO'}}</li>
+</ul>
+<h3>Investments</h3>
+<div ng-repeat="i in investor.investments">
+  <div>
+    {{i.project}} ({{i.escrow_id}}): {{i.amount}} / {{i.goal}} {{i.investment_date}} {{i.end_date}}
+    {{i.is_refunded}}
+    {{i.is_reversed}}
+  </div>
+</div>
+
+

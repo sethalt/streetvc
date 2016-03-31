@@ -1,0 +1,43 @@
+<header id="ha-header" class="column">
+ <div class="headerInner">
+  <a class="logo" href="/"><img src="/img/investable.png" alt="Investable" /></a>
+  {#
+  <div id="navigation" class="">
+    {% include '::auth.html.twig' %}
+  </div>
+  #}
+  
+  
+  <div id="userMenu" class="ui secondary right menu">
+    {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
+      <span id="loggedin" class="item loggedin">Logged in as <a href="{{path('fos_user_profile_show')}}">{{ app.user.username }}</a></span>
+    {% endif %}
+  </div>
+  <div id="topMenu" class="ui secondary  menu">
+    <div class="pages left menu">
+      <a href="{{ path('home') }}" class="item {% if app.request.get('_route') == 'home' %}active{% endif %}">Home</a>
+      <a href="{{ path('about_') }}" class="item {% if app.request.get('_route') == 'about_' %}active{% endif %}">About</a>
+      <a href="{{ path('howto_') }}" class="item {% if app.request.get('_route') == 'howto_' %}active{% endif %}">How It Works</a>
+      <a href="{{ path('team_') }}" class="item {% if app.request.get('_route') == 'team_' %}active{% endif %}">Our Team</a>
+      <a href="{{ path('home') }}#contact" class="item">Contact</a>
+    </div>
+    <div id="accountMenu" class="left menu">
+      {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
+      {#
+      <span id="loggedin" class="item loggedin">Logged in as <a href="{{path('fos_user_profile_show')}}">{{ app.user.username }}</a></span>
+      #}
+      <a class="item" href="{{path('fos_user_profile_show')}}">Profile</a></span>
+      <a id="logout" class="ui button orange item logout" href="{{ path('fos_user_security_logout') }}">Log Out</a>
+      {% else %}
+        <a id="login" class="item login" href="{{ path('fos_user_security_login') }}">Log In</a>
+        {#
+        <a id="register" class="ui button blue item register" href="{{ path('register', {type: 'borrower'}) }}">Register Borrower</a>
+        <a id="register" class="ui button green item register" href="{{ path('register', {type: 'lender'}) }}">Register Lender</a>
+        #}
+      {% endif %}
+    </div>
+    
+
+  </div>
+  </div>
+</header>

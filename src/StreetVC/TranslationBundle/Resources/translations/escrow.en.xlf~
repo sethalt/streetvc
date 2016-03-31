@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xliff xmlns="urn:oasis:names:tc:xliff:document:1.2" version="1.2">
+  <file source-language="en-US" target-language="en" datatype="plaintext" original="file.ext">
+    <body>
+      <trans-unit id="e0c892f0c485ac0fd3f00168ae541f61" resname="create_escrow">
+        <source>create_escrow</source>
+        <target>Create Escrow</target>
+      </trans-unit>
+      <trans-unit id="c222d52a6b8eace24e8a2f96f113da2c" resname="escrow.sign_agreement">
+        <source>escrow.sign_agreement</source>
+        <target>Please accept and sign the Escrow Agreemnt that was emailed to you to open your request for funding.</target>
+      </trans-unit>
+      <trans-unit id="b37bc0598bd2e19ea702de8273818ab4" resname="escrow.credit_overview">
+        <source>escrow.credit_overview</source>
+        <target>Loan Overview</target>
+      </trans-unit>
+      <trans-unit id="9c1424827b799b1be089953b277b320b" resname="escrow.terms_accepted">
+        <source>escrow.terms_accepted</source>
+        <target>Escrow terms have been accepted, click create escrow to start funding your project.</target>
+      </trans-unit>
+    </body>
+  </file>
+</xliff>

@@ -1,0 +1,8 @@
+{% extends '::frontend.html.twig' %}
+
+{% block view %}
+<div class="column">
+<a class="ui button left" href="{{ path('register_borrower') }}">Sign up as a Borrower</a>
+<a class="ui button right" href="{{ path('register_lender') }}">Sign up as an Investor</a>
+</div>
+{% endblock %}

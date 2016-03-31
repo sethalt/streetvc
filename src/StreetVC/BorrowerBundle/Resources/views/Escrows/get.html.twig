@@ -1,0 +1,86 @@
+{% extends '::layout.html.twig' %}
+
+{% block title %}{{ escrow.title }}{% endblock %}
+{% block view %}
+  <div class="two column row">
+    <div class="column">
+      <h2 class="ui dividing header">Project: {{ block('title') }}</h2>
+
+      <h3 class="ui header">by <a href="{{ path('get_business',{business: escrow.business.id}) }}">{{ escrow.business }}</a></h3>
+      <table class="ui table">
+        <tr>
+          <td>funding goal</td>
+          <td>{{ escrow.fundingGoal }}</td>
+        </tr>
+        <tr>
+          <td>state</td>
+          <td>{{ escrow.state }}</td>
+        </tr>
+      </table>
+      <div>
+        {% if user and user.id == escrow.user.id %}
+          {% if escrow.state == 'draft' %}
+            <a class="ui button" href="{{ path('submit_escrow', {'escrow': escrow.id, '_method': 'PATCH'}) }}">Submit for Review</a>
+          {% endif %}
+        {% endif %}
+        {% if user and is_granted('ROLE_ADMIN') %}
+          {% if escrow.state == 'proposed' %}
+            <a class="ui button" href="{{ path('approve_escrow', {'escrow': escrow.id, '_method': 'PATCH'}) }}">Accept Request</a>
+          {% endif %}
+          {% if escrow.state == 'accepted' %}
+            <a class="ui warning button" href="{{ path('open_escrow', {'escrow': escrow.id, '_method': 'PATCH'}) }}">Open Escrow</a>
+          {% endif %}
+        {% endif %}
+      </div>
+      <div class="ui progress">
+        <div class="bar" style="width: {{ (escrow.amountFunded / escrow.fundingGoal) * 100 }}%;"></div>
+      </div>
+      <h3 class="ui dividing header">Invest in this Project</h3>
+
+      <div class="ui segment">
+        {% if app.user %}
+          {% if escrow.amountRemaining > 0 %}
+            {% render(controller('StreetVCBorrowerBundle:LoanRequests:newLoancommitments', {escrow: escrow.id})) %}
+          {% else %}
+            <p>This project is fully funded!</p>
+          {% endif %}
+        {% else %}
+          sign up to invest
+        {% endif %}
+      </div>
+    </div>
+
+    {% block commitments %}
+      <div class="column">
+        <h3 class="ui dividing header">Commitments to Date</h3>
+        <table class="ui table">
+          <thead>
+          <tr>
+            <th>User</th>
+            <th>Date</th>
+            <th>Amount</th>
+          </tr>
+          </thead>
+          <tbody>
+          {% for commitment in escrow.commitments %}
+            <tr>
+              <td>{{ commitment.lender.username }}</td>
+              <td>{{ commitment.createdOn|date("m/d/y") }}</td>
+              <td>{{ commitment.amount }}</td>
+            </tr>
+          {% endfor %}
+          </tbody>
+        </table>
+      </div>
+    {% endblock %}
+
+  </div>
+
+  <div class="row">
+    <div class="column">
+      {% include '::comments.html.twig' with {'id': escrow.id } %}
+    </div>
+  </div>
+
+{% endblock %}
+

@@ -1,0 +1,16 @@
+{% extends '::layout.html.twig' %}
+
+{% block view %}
+<div class="column">
+<p>hi</p>
+<div class="ui modal">
+  <i class="close icon"></i>
+  <div class="content">
+    {% include('FOSUserBundle::login_register.html.twig') %}
+  </div>
+</div>
+<script type="text/javascript">
+$('.ui.modal').modal('show');
+</script>
+</div>
+{% endblock %}

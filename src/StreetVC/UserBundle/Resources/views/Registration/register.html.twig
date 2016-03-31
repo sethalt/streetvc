@@ -1,0 +1,94 @@
+{% extends '::frontend.html.twig' %}
+
+{% block view %}
+      {% set valid = form.vars.valid %}
+    <div class="two column doubling ui grid ">
+      <div class="column">
+        {% if type == 'borrower' %}
+            <img class="full" src="/img/register/borrower-register.png" alt="register as borrower" />
+        {% elseif type == 'lender' %}
+            <img class="full" src="/img/register/investor-register.png" alt="register as investor" />
+        {% endif %}
+      </div>
+      <div class="column">
+        <div class="ui segment">
+          {% if type == 'borrower' %}
+            <h2 class="ui header">Register to request loans with Investable</h2>
+            <p>Get Funding for your business. Customized Loans.</p>
+          {% elseif type == 'lender' %}
+            <h2 class="ui header">Register to invest with Investable</h2>
+            <p>Invest in businesses and track your ROI.</p>
+          {% endif %}
+          {#
+          <p>{{ 'reg.heading'|trans({}, 'registration') }}</p>
+          #}
+        </div>
+        <form id="register" class="ui fluid form {{ valid ? '' : 'error' }}"
+              action="{{ path('register', {type: type}) }}" {{ form_enctype(form) }} method="POST">
+          
+          {#
+          <div class="three fields">
+            <div class="field"><a class="ui blue linkedin button"><i class="big white linkedin sign icon"></i> Join via LinkedIn</a></div>
+            <div class="field"><a class="ui blue facebook button"><i class="big white facebook sign icon"></i> Join via Facebook</a></div>
+            <div class="field"><a class="ui blue googleplus button"><i class="big white google plus sign icon"></i> Join via Google Plus</a></div>
+          </div>
+          #}
+          {#
+          <div class="two fields">
+            <div class="field">
+              <input type="text" id="first_name" name="first_name" required="required" placeholder="First Name" />
+            </div>
+            <div class="field">
+            {{ form_errors(form.last_name) }}
+              <input type="text" id="last_name" name="last_name" required="required" placeholder="Last Name" />
+            </div>
+          </div>
+          <div class="field">
+            <input type="text" id="email" name="email" required="required" placeholder="Email" />
+          </div>
+            <div class="field">
+              <label for="plainPassword[first]">Password</label>
+              <input type="text" id="password_first" name="plainPassword[first]" required="required" placeholder="Password" />
+            </div>
+            <div class="field">
+              <label for="plainPassword[second]">Password</label>
+              <input type="text" id="password_second" name="plainPassword[second]" required="required" placeholder="Confirm" />
+            </div>
+          <div class="date field">
+            <label for="date_of_birth" class="required">Date of Birth</label>
+            <input type="date" id="date_of_birth" name="date_of_birth" required="required">
+          </div>
+            <div class="inline field">
+              <div class="ui checkbox">
+                <input id="terms" name="terms" type="checkbox">
+                <label>By joining StreetVC you agree to the <a href="">Terms of Use</a></label>
+              </div>
+            </div>
+          </div>
+          #}
+              {{ form_errors(form) }}
+              {{ form_widget(form._token) }}
+              {{ form_row(form.email) }}
+              {{ form_widget(form.plainPassword) }}
+              {#
+              {{ form_row(form.username) }}
+              {{ form_row(form.first_name) }}
+              {{ form_row(form.last_name) }}
+              {{ form_row(form.phone_number) }}
+              {{ form_row(form.date_of_birth) }}
+              {{ form_row(form.social_security_number) }}
+              {% if type == 'borrower' %}
+                {{ form_row(form.cashflow_positive) }}
+              {% endif %}
+              {{ form_row(form.certify_true) }}
+              {{ form_row(form.allow_background_check) }}
+              #}
+              {#{{ form_widget(form) }}#}
+          {# form_widget(form._token) #}
+          <div class="inline field">
+            <button id="join_now" class="ui {% if type == 'lender' %}green{% elseif type == 'borrower' %}blue{% endif %} button" type="submit">Join Now</button>
+          </div>
+        </form>
+        </div>
+      </div>
+{% endblock %}

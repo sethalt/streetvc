@@ -1,0 +1,37 @@
+{% extends '::layout.html.twig' %}
+
+{% block view %}
+<div class="column">
+<form class="ui fluid form segment" action="{{ path('fos_user_registration_register') }}" {{ form_enctype(form) }} method="POST">
+    <div class="ui two column grid">
+        <div class="column">
+        <h3 class="ui header">Account</h3>
+            {# form_widget(form) #}
+            {{ form_row(form.username) }}
+            {{ form_row(form.email) }}
+            {{ form_widget(form.plainPassword) }}
+        </div>
+        <div class="column">
+            <h3 class="ui header">Parent or Guardian</h3>
+            {{ form_widget(form.guardians[0]) }}
+        </div>
+    {#
+    <div class="ui two column grid">
+        <div class="column">
+        <h3 class="ui header">Parent or Guardian</h3>
+        {{ form_widget(form.guardians[0]) }}
+        </div>
+        <div class="column">
+        <h3 class="ui header">Driver</h3>
+        {{ form_widget(form.students[0]) }}
+        </div>
+    </div>
+    #}
+    {{ form_widget(form) }}
+    </div>
+    <div>
+        <input class="ui button" type="submit" value="{{ 'registration.submit'|trans({}, 'FOSUserBundle') }}" />
+    </div>
+</form>
+</div>
+{% endblock %}

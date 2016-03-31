@@ -1,0 +1,404 @@
+
+@media only screen and (max-width: 1900px){
+
+#gallery-items{
+	width:100%;
+}
+
+}
+
+@media only screen and (max-width: 1680px){
+
+.element{
+	width:24.9%;
+}
+
+}
+
+@media only screen and (min-width: 1440px){
+
+.slider{
+	width:1440px;
+}
+}
+
+@media only screen and (max-width: 1024px) {
+	
+.element{
+	width:33%;
+}
+}
+
+
+@media only screen and (max-width: 1000px){
+
+.sk-box{
+	width:28%;
+}
+
+.ww-icon{
+	width:50px;
+	height:50px;
+}
+
+.element{
+	width:33%;
+}	
+
+}
+
+
+@media only screen and (max-width: 943px) {
+	
+#youtubePlaylist { height: 360px; }
+.navigation{
+	display:none;
+}
+
+.dl-menuwrapper{
+	display:block;
+}
+
+.services-r{
+	width:100%;
+	overflow:hidden;
+}
+
+.responsive-slider{
+	height:600px;
+}
+
+
+.slider-wrapper{
+	height:750px;
+}
+
+.sk-box{width:28%;}
+
+}
+
+@media only screen and (max-width: 800px) {
+
+.og-expander h3 { font-size: 32px; }
+.og-expander p { font-size: 13px; }
+.og-expander a { font-size: 12px; }
+	
+	
+.responsive-slider{
+	height:690px;
+}
+
+.slider-wrapper{
+	height:690px;
+}
+
+.element{
+	width:49.9%;
+}
+
+.form input,
+.form input:last-child,
+.form input:first-child{
+	float:none;
+	width:80%;
+	margin:10px;
+}
+
+.form textarea{
+	float:none;
+	width:80%;
+	margin:10px;
+}
+
+.ca-menu li{
+	width:45%;
+}
+
+.sk-box{width:28%;}
+
+
+.round{
+	height:350px;
+	position:relative;
+}
+.sv-main{
+	font-size:400%;
+}
+.round-link{
+	width:70%;
+}
+
+.services-r .grey{
+	top:200px;
+}
+
+.services-r .blue{
+	top:40px;
+}
+
+.services-r .black{
+	top:40px;
+}
+
+.services-r .darkblue{
+	bottom:150px;
+}
+
+}
+@media only screen and (max-width:700px) {
+
+.responsive-slider{
+	height:590px;
+}
+
+.slider-wrapper{
+	height:590px;
+}
+
+.flexslider{
+	height:400px;
+}
+
+.post-detail-inner{
+	width:200px;
+	height:200px;
+	overflow:hidden;
+	padding:20px;
+}
+
+.post-detail-inner{
+	width:100px;
+	height:100px;
+}
+
+.post-detail-inner .desc{
+	display:none;
+}
+.post-detail-inner a.date{
+	display:none;
+}
+.post-detail-inner .post-header{
+	font-size:13px;
+	top:30%;
+}
+
+.post-detail-inner a.all-posts{
+	font-size:11px;
+	top:15%;
+}
+
+.blog-inner .post{
+	margin-top:150px;
+}
+
+.post-detail-inner{
+	top:20px;
+}
+
+.sk-box{
+	width:33%;
+	margin:0 auto;
+}
+
+.opportunity-detail header{
+	font-size:200%;
+}
+
+}	
+@media only screen and (max-width: 640px) {
+
+.og-fullimg { display: none; }
+.og-details { float: none; width: 100%; }
+
+.round{
+	height:300px;
+}
+
+.sv-main{
+	font-size:300%;
+}
+.round-link{
+	width:70%;
+}
+
+.content ul.ca-menu li{
+	width:90%;
+	float:none;
+	margin:0 auto;
+}
+
+.opportunity-images{
+	display:none;
+}
+
+.opportunity-detail{
+	width:100%;
+	float:none;
+	text-align:center;
+}
+
+.opportunity-detail header{
+	text-align:center;
+}
+
+.opportunity-detail .text{
+	overflow-y:scroll;
+	height:240px;
+	text-align:center;
+}
+
+.opportunity-detail a.opp-button{
+	float:none;
+	margin:30px auto;
+}
+
+}
+
+@media only screen and (max-width: 480px) {
+    
+#youtubePlaylist { height: 220px; }
+.homeVideo { margin: 0; margin-top: 80px; }
+	
+.responsive-slider{
+	height:300px;
+}
+
+.slider-wrapper{
+	height:300px;
+}
+
+.slider{
+	margin:120px auto;
+}
+
+.round{
+	height:230px;
+}
+
+.sv-main{
+	font-size:200%;
+}
+.round-link{
+	width:60%;
+}
+
+.services-r .grey{
+	top:200px;
+}
+
+.services-r .black{
+	top:60px;
+}
+
+.services-r .blue{
+	top:60px;
+}
+
+.services-r .darkblue{
+	bottom:100px;
+}
+
+.flexslider{
+	height:250px;
+}
+
+.dl-menu,
+#dl-menu{
+	width:39%;
+}
+
+.element{
+	width:100%;
+}
+
+.ww-do .column{
+	width:90%;
+	margin:30px auto 50px;
+	float:none;
+}
+
+.ww-icon{
+	width:25px;
+	height:25px;
+	padding:0;
+}
+.services{
+	min-height:600px;
+}
+
+.services:after{
+	min-height:600px;
+}
+.services-r{
+	min-height:600px;
+}
+
+.sk-box{
+	width:90%;
+	margin:20px auto;
+	float:none;
+}
+
+.lt-nav span{
+	left:46%;
+}
+.lt-nav span.lt-nav-next{
+	left:53%;
+}
+
+.button{
+	padding:3px 0;
+}
+
+.m-button{
+	padding:0px 5px;
+}
+
+.m-button a{
+	margin-top:15px;
+}
+
+}
+
+@media only screen and (max-width: 400px) {
+
+.round{
+	height:150px;
+}
+
+.sv-icon{
+	top:30%;
+}
+.sv-content{
+	top:30;
+}
+.sv-main{
+	font-size:150%;
+}
+.round-link{
+	width:35%;
+}
+
+
+.services-r .grey{
+	top:150px;
+}
+
+.services-r .black{
+	top:80px;
+}
+
+.services-r .blue{
+	top:80px;
+}
+
+.services-r .darkblue{
+	bottom:0px;
+}
+
+#pageslide .desc{
+	max-height:270px;
+	overflow:scroll;
+}
+
+}

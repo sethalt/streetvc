@@ -1,0 +1,291 @@
+
+  {% set user = app.user %}
+  {% set evaluation = loanRequest.evaluation %}
+  {% set escrow = loanRequest.escrow %}
+  {% set isOwner = (user and loanRequest.user == user) %}
+  
+  
+
+
+  <div class="one column doubling row">
+    <div class="column">
+
+    <div class="ui segment">
+      {% if app.getEnvironment() == 'dev' %}
+        <div class="ui inverted segment">
+          escrow.id: {{ escrow ? escrow.id : '' }}
+          escrow.bancbox_id: {{ escrow ? escrow.bancboxId : '' }}
+        </div>
+      {% endif %}
+
+      {% if isOwner %} {#loanRequest.user == user %} #}
+        <b>(This is your loan request)</b>
+      {% endif %}
+      <div class="ui five column grid">
+      <div class="column">
+        <div class="ui horizontal segment blue">
+          <div>Project</div>
+          <h2>{{ loanRequest.title }}</h2>
+        </div>
+      </div>
+      <div class="column">
+        <div class="ui horizontal segment green">
+          <div>Funding Goal</div>
+          <h2>${{ loanRequest.fundingGoal|number_format(2) }}</h2>
+        </div>
+      </div>
+      <div class="column">
+        <div class="ui horizontal segment red">
+          <div>Interest Rate</div>
+          {% if evaluation %}
+            <h2>{{ evaluation.rate*100|number_format }}%</h2>
+          {% endif %}
+        </div>
+      </div>
+      <div class="column">
+        <div class="ui horizontal segment blue">
+          <div>Grade</div>
+          {% if evaluation %}
+            <h2>{{ evaluation.grade }}</h2>
+          {% endif %}
+        </div>
+      </div>
+      <div class="column">
+        <div class="ui horizontal segment yellow">
+          <div>&nbsp;</div>
+          {% if loanRequest.timeUntilClose %}
+            <h2>{{ loanRequest.timeUntilClose }} Days Remaining</h2>
+          {% else %}
+            {% if escrow %}
+              <h3><i class="attention icon red"></i>Campaign has ended</h3>
+            {% endif %}
+          {% endif %}
+        </div>
+      </div>
+      </div>
+    </div>
+    </div>
+  </div>
+
+  <div class="two column doubling row" xmlns="http://www.w3.org/1999/html">
+    <div class="column ten wide lrData">
+    <div class="ui segment">
+      {% if escrow %}
+        {% if escrow.isFullyFunded %}
+          <h2 class="ui red header">Fully Funded</h2>
+        {% else %}
+          <h2 class="ui red header">${{ escrow.amountRemaining|number_format(2, '.', ',') }} Remaining</h2>
+        {% endif %}
+        <div class="lrGraph">
+          <span class="ui blue ">${{ escrow.amountFunded|number_format(2, '.', ',') }}</span> Funded of
+          <span class="ui blue ">${{ escrow.fundingGoal|number_format(2, '.', ',') }}</span> Requested
+          <div class="ui indicating progress amountFunded">
+            <div class="bar" style="width: {{ escrow.percentFunded }}%;"></div>
+          </div>
+        </div>
+      {% endif %}
+      {% if loanRequest.video %}
+        <div class="lrVideo">
+          <div class="ui video" data-source="youtube" data-id="{{ loanRequest.video }}" ></div>
+        </div>
+
+      {% endif %}
+
+      </div>
+
+      {# Bottom Tabs #}
+      <div class="row">
+        <div class="column">
+          <div class="ui top attached tabular lrTabs menu">
+            <a class="active item" data-tab="project">Project</a>
+            {% if evaluation %}
+              <a class="item" data-tab="credit-evaluation">Credit Evaluation</a>
+            {% endif %}
+            {% if escrow and escrow.repaymentSchedule %}
+              <a class="item" data-tab="repayment-schedule">Repayment Schedule</a>
+            {% endif %}
+          </div>
+          <div class="ui tab active bottom attached segment" data-tab="project">
+            <h2 class="ui dividing header">{{ block('title') }}</h2>
+
+            <h3 class="ui header">by <a href="{{ path('get_business',{business: loanRequest.business.id}) }}">{{ loanRequest.business }}</a></h3>
+            {{ include('StreetVCBorrowerBundle:LoanRequests:lrDetails.html.twig') }}
+          </div>
+          {% if evaluation %}
+            <div class="ui tab bottom attached segment" data-tab="credit-evaluation">
+              <h3 class="ui dividing header">Credit Evaluation</h3>
+              {{ 'lr.evaluation.rate'|trans({}, 'loan_request') }}: {{ evaluation.rate*100|number_format }}%<br>
+              {{ 'lr.evaluation.grade'|trans({}, 'loan_request') }}: {{ evaluation.grade }}<br><br>
+
+              <h4>{{ 'lr.evaluation.schedule'|trans({}, 'loan_request') }}</h4>
+              {% set total = evaluation.rate * loanRequest.fundingGoal + loanRequest.fundingGoal %}
+              {{ 'lr.evaluation.total'|trans({}, 'loan_request') }}: ${{ total|number_format(2) }}<br>
+              {% set monthly = total / evaluation.term %}
+              {{ 'lr.evaluation.monthly'|trans({}, 'loan_request') }}: ${{ monthly|number_format(2) }}<br>
+            </div>
+          {% endif %}
+          {% if escrow and escrow.repaymentSchedule %}
+            {% set schedule = escrow.repaymentSchedule %}
+            <div class="ui tab bottom attached segment" data-tab="repayment-schedule">
+              <h3 class="ui dividing header">Repayment Schedule</h3>
+              {% if app.debug %}{{ schedule.id }}{% endif %}
+
+              <table class="ui table">
+                <thead>
+                <tr>
+                  <td>Date</td>
+                  <td>Payment</td>
+                  <td>Status</td>
+                </tr>
+                </thead>
+                <tbody>
+                {% set total = 0 %}
+                {% for repayment in schedule.repayments %}
+                  <tr>
+                    <td>{{ repayment.date|date('m/d/y') }}</td>
+                    <td>${{ schedule.termPayment|number_format(2) }}</td>
+                    <td>{% if date(repayment.date) < date('now') %}<i class="checkmark icon"></i>{% else %}..{% endif %}</td>
+                  </tr>
+                  {% set total = total + schedule.termPayment %}
+                {% endfor %}
+                </tbody>
+              </table>
+              Total: {{ total|number_format(2) }}<br>
+
+            </div>
+          {% endif %}
+        </div>
+      </div>
+      {# END Bottom Tabs #}
+    </div>
+    <div class="column six wide">
+    <div class="ui segment">
+
+      {% if escrow %}
+        {% if app.debug and finite_can(escrow, 'open_confirmed', 'escrow') %}
+          <a id="confirm-open" class="ui button" href="{{ path('confirm_escrow_open', {escrow: escrow.id}) }}">Confirm Open (Hack)</a>
+        {% endif %}
+        {% if app.debug and finite_can(escrow, 'close_confirmed', 'escrow') %}
+          <a id="confirm-open" class="ui button" href="{{ path('confirm_escrow_close', {escrow: escrow.id}) }}">Confirm Close (Hack)</a>
+        {% endif %}
+        {% if isOwner and escrow.isFullyFunded %}
+          {% if finite_can(escrow, 'disburse', 'escrow') %}
+            <a class="ui button" href="{{ path('close_escrow', {escrow: escrow.id}) }}">Disburse and Close Escrow</a>
+          {% endif %}
+        {% endif %}
+      {% endif %}
+      {% if isOwner and loanRequest.isEditable %}
+        <div>
+          <a class="ui button" href="{{ path('edit_loanrequest', {'loanRequest': loanRequest.id }) }}">{{ 'lr.edit'|trans({}, 'loan_request') }}</a>
+          {% if finite_can(loanRequest, 'submit') %}
+            {% set submit_url=path('submit_loanrequest', {'loanRequest': loanRequest.id}) %}
+            <a class="ui button" href="{{ submit_url }}">{{ 'lr.submit_for_approval'|trans({}, 'loan_request') }}</a>
+          {% endif %}
+        </div>
+      {% endif %}
+
+      {% if escrow %}
+      <h4 class="ui header"><i class="calendar icon"></i> Campaign starts: {{ loanRequest.startDate|date('M d, Y') }}</h4>
+      <h4 class="ui header"><i class="time icon"></i> Campaign ends: {{ loanRequest.closeDate|date('M d, Y') }}</h4>
+      </div>
+
+        {% if not isOwner %}
+        <div class="ui horizontal icon divider">
+          <i class="circular angle down icon"></i>
+        </div>
+        <div class="escrow" data-escrow="{{ escrow.id }}">
+
+          <h3 class="ui header center aligned">{{ 'lr.cta.invest'|trans({}, 'loan_request') }}</h3>
+
+          <div class="ui segment">
+            {% if escrow.isFullyFunded %}
+              <p>{{ 'lr.funded'|trans({}, 'loan_request') }}</p>
+            {% endif %}
+            {% if is_granted('ROLE_INVESTOR') %}
+              {% if finite_can(escrow, 'fund', 'escrow') %}
+                {% include 'StreetVCBorrowerBundle:LoanRequests:commitment_form.html.twig' with {'escrow': escrow} %}
+              {% else %}
+                <p>{{ 'lr.not_open'|trans({}, 'loan_request') }}</p>
+                {% if loanRequest.user == user %}
+                  <p>{{ 'escrow.sign_agreement'|trans({}, 'escrow') }}</p>
+                {% endif %}
+              {% endif %}
+            {% else %}
+              <p><a href="{{ path('new_lender') }}">{{ 'lender.create_to_invest'|trans({}, 'lender') }}</a></p>
+            {% endif %}
+          </div>
+        </div>
+        {% endif %}
+
+        <div class="ui horizontal icon divider">
+          <i class="circular angle down icon"></i>
+        </div>
+        <h3 class="ui header center aligned">{{ 'lr.cta.share'|trans({}, 'loan_request') }}</h3>
+
+        <div class="share">
+          <span class='st_sharethis_large' displayText='ShareThis'></span>
+          <span class='st_facebook_large' displayText='Facebook'></span>
+          <span class='st_twitter_large' displayText='Tweet'></span>
+          <span class='st_linkedin_large' displayText='LinkedIn'></span>
+          <span class='st_pinterest_large' displayText='Pinterest'></span>
+          <span class='st_email_large' displayText='Email'></span>
+        </div>
+
+      {% else %}
+        <h3>{{ 'escrow.terms_accepted'|trans({}, 'escrow') }}</h3>
+        <div class="ui buttons">
+          {% if isOwner and finite_can(loanRequest, 'create_escrow') %}
+            {% set post_escrow_url = path('post_loanrequest_escrow', {'loanRequest': loanRequest.id}) %}
+            <a class="ui positive button" href="{{ post_escrow_url }}">{{ 'create_escrow'|trans({}, 'escrow') }}</a>
+            <div class="or"></div>
+            <a class="ui button red" href="{{ path('cancel_loanrequest', {loanRequest: loanRequest.id}) }}">{{ 'lr.cancel'|trans({}, 'loan_request') }}</a>
+          {% endif %}
+          {% if isOwner and loanRequest.escrow and finite_can(loanRequest.escrow, 'cancel', 'escrow') %}
+            {% set cancel_escrow_url = path('cancel_escrow', {escrow: loanRequest.escrow.id }) %}
+            <a class="ui red button" href="{{ cancel_escrow_url }}">{{ 'cancel_escrow'|trans({}, 'escrow') }}</a>
+          {% endif %}
+        </div>
+
+
+      {% endif %}
+    </div>
+  </div>
+
+  {% if isOwner and finite_can(loanRequest, 'accept') %}
+    <div class="row">
+      <div class="column four wide"></div>
+      <div class="column eight wide">
+        {{ include('::js/pdfviewer.html.twig', {url: "/sampleagreemnt.pdf"}) }}
+        <p>{{ 'lr.accept_launch'|trans({}, 'loan_request') }}</p>
+        {% set accept_url=path('accept_loanrequest_terms', {'loanRequest': loanRequest.id}) %}
+        {% set cancel_url=path('cancel_loanrequest', {'loanRequest': loanRequest.id}) %}
+        <div class="ui buttons">
+          <a class="ui positive button" href="{{ accept_url }}">{{ 'lr.accept'|trans({}, 'loan_request') }}</a>
+
+          <div class="or"></div>
+          <a class="ui negative button" href="{{ cancel_url }}">{{ 'lr.decline'|trans({}, 'loan_request') }}</a>
+        </div>
+      </div>
+      <div class="column four wide"></div>
+    </div>
+  {% endif %}
+
+  <div class="row">
+    <div class="column">
+      {% include '::comments.html.twig' with {'id': loanRequest.id } %}
+    </div>
+  </div>
+
+
+  <script src="/scripts/pdfjs/pdf.js"></script>
+  <script src="/scripts/pdfjs/pdf.worker.js"></script>
+  <script src="/scripts/pdfjs/angular-pdf.js"></script>
+  <script type="text/javascript">
+    $(document).ready(function () {
+      $('.lrTabs.menu .item').tab();
+    });
+  </script>
+
+
+
+

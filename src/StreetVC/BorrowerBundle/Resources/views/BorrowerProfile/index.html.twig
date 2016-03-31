@@ -1,0 +1,28 @@
+{% extends "StreetVCBorrowerBundle::BorrowerLayout.html.twig" %}
+{% block title %}Profile{% endblock %}
+
+{% block content %}
+{% if user.business %}
+  <div class="one column doubling ui row">
+    <div class="column">
+      <h2 class="ui heading">Active Loan Request</h2>
+    </div>
+  </div>
+    {% if  business.activeLoanRequest and  business.activeLoanRequest.state in ['escrow'] %}
+      {{ render(controller('StreetVCBorrowerBundle:LoanRequests:get', {id:business.activeLoanRequest.id})) }}
+      active
+    {% else %}
+      not active
+    {% endif %}
+{% else %}
+  <div class="one column doubling ui row">
+    <div class="column">
+      <a class="ui button blue" href="{{ path('new_borrower') }}">Create Business Profile</a>
+    </div>
+  </div>
+{% endif %}
+
+{#
+  {{ include('StreetVCBorrowerBundle:Borrowers:borrowerProfile.html.twig') }}
+#}
+{% endblock  %}

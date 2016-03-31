@@ -1,0 +1,79 @@
+{% extends "StreetVCBorrowerBundle::BorrowerLayout.html.twig" %}
+{% block title %}Financial{% endblock %}
+
+{% block content %}
+<div class="one column doubling ui row">
+  <div class="column ten wide centered">
+    {{ include('StreetVCBorrowerBundle:BorrowerProfile:borrowerSteps.html.twig', { step: '3'}) }}
+        <div class="ui segment">
+            <h2 class="ui dividing header">{{ 'biz.financial.heading'|trans({}, 'business') }}</h2>
+            <form id="financialForm" class="ui horizontal form {{ form.vars.errors ?'error':'' }}" action="{{ path('financial_borrower') }}" method="GET">
+            <input type="hidden" name="formType" value="business_financial" />
+            <input type="hidden" name="save" value="true" />
+            {#
+            {{ form_rest(form) }}
+            #}
+            {{ form_errors(form) }}
+            {{ form_widget(form._token) }}
+            {{ form_row(form.annual_revenue) }}
+            {{ form_row(form.net_profit) }}
+            {{ form_row(form.has_cashflow) }}
+            <div id="pastCashflow"></div>
+            {{ form_row(form.cyclical_business) }}
+            <div id="pastRevenue"></div>
+            {{ form_row(form.credit_facilities) }}
+            <div id="creditFacilities"></div>
+            {{ form_row(form.number_employees) }}
+            {{ form_row(form.own_lease_location) }}
+            <div id="remainingLease"></div>
+            <h3 class="ui heading">Total business assets: ($ for each)</h3>
+            {{ form_row(form.assets_real_estate_value) }}
+            {{ form_row(form.assets_real_estate_equity) }}
+            {{ form_row(form.assets_equipment) }}
+            {{ form_row(form.assets_inventory) }}
+            {{ form_row(form.assets_accounts_receivable) }}
+            {{ form_row(form.assets_cash) }}
+            
+            <input type="submit" class="ui blue submit button" value="{{ 'biz.profile.save'|trans({}, 'business') }}" />
+            </form>
+        </div>
+  </div>
+</div>
+{% endblock %}
+
+{% block javascripts %}
+<script type="text/javascript">
+  var pastCashflowInput = '{{ form_row(form.past_cashflow) }}';
+  var pastRevenueInput = '{{ form_row(form.past_revenue) }}';
+  var leaseInput = '{{ form_row(form.remaining_term_of_lease) }}';
+  var creditFacilitiesInput = '{{ form_row(form.cf_amount_due) }}{{ form_row(form.cf_largest_amount_outstanding) }}{{ form_row(form.cf_final_payment_date) }}';
+  $( document ).ready(function(){
+      hideShowData($('#has_cashflow_0'), $('#pastCashflow'), pastCashflowInput);
+      hideShowData($('#cyclical_business_0'), $('#pastRevenue'), pastRevenueInput);
+      hideShowData($('#own_lease_location_0'), $('#remainingLease'), leaseInput);
+      hideShowData($('#credit_facilities_0'), $('#creditFacilities'), creditFacilitiesInput);
+      
+    $('input[name="has_cashflow"]').change(function(){
+     hideShowData($(this), $('#pastCashflow'), pastCashflowInput);
+    })
+    $('input[name="cyclical_business"]').change(function(){
+     hideShowData($(this), $('#pastRevenue'), pastRevenueInput);
+    })
+    $('input[name="own_lease_location"]').change(function(){
+     hideShowData($(this), $('#remainingLease'), leaseInput);
+    })
+    $('input[name="credit_facilities"]').change(function(){
+     hideShowData($(this), $('#creditFacilities'), creditFacilitiesInput);
+    })
+  });
+
+  function hideShowData(field, anchor, input){
+    if(field.val() == '1' && field.is(":checked")){
+      anchor.html(input);
+        
+    }else{
+      anchor.html('');
+    }
+  }
+</script>
+{% endblock %}

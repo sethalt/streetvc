@@ -1,0 +1,14 @@
+{% extends "StreetVCBorrowerBundle::BorrowerLayout.html.twig" %}
+{% block title %}Profile{% endblock %}
+
+{% block content %}
+<div class="column ten wide centered">
+  {{ include('StreetVCBorrowerBundle:BorrowerProfile:borrowerSteps.html.twig', { step: '1'}) }}
+  <div class="ui segment">
+    <h1 class="ui heading">Welcome to Investable!</h1>
+    <p>Thank you for creating an account with Investable. Click below to begin your borrower application.</p>
+    <a href="{{ path('new_borrower') }}" class="ui button green">Begin Application</a>
+  </div>
+  <img style="width: 100%;" src="/img/registration/welcome-to-investable.jpg" alt="congratulations" />
+</div>
+{% endblock %}

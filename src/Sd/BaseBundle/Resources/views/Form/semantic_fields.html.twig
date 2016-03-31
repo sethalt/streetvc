@@ -1,0 +1,77 @@
+{% extends 'form_div_layout.html.twig' %}
+
+{% block form_start %}
+  {% spaceless %}
+    {% set method = method|upper %}
+    {% if method in ["GET", "POST"] %}
+      {% set form_method = method %}
+    {% else %}
+      {% set form_method = "POST" %}
+    {% endif %}
+    <form class="ui form {{ valid ? '' : 'error' }}" name="{{ form.vars.name }}" method="{{ form_method|lower }}" action="{{ action }}"{% for attrname, attrvalue in attr %} {{ attrname }}="{{ attrvalue }}"{% endfor %}{% if multipart %} enctype="multipart/form-data"{% endif %}>
+    {% if form_method != method %}
+      <input type="hidden" name="_method" value="{{ method }}" />
+    {% endif %}
+  {% endspaceless %}
+{% endblock form_start %}
+
+{% block form_row %}{% spaceless %}
+    <div class="field  {{ errors|length ? 'error':'' }}">
+        {{ form_label(form) }}
+        <div class="ui left icon input" style="padding-left: 0;">
+        {{ form_widget(form) }}
+        {% for attrname, attrvalue in attr %}
+          {% if attrvalue == 'money' %}
+          <i class="dollar icon" ></i>
+          {% endif %}
+        {% endfor %}
+        </div>
+        {# form_errors(form) #}
+        {# form_widget(form, {attr: {placeholder: form.vars.label}}) #}
+    </div>
+{% endspaceless %}{% endblock form_row %}
+
+{% block checkbox_row %}
+  <div class="field">
+    <div class="ui checkbox">
+      {{ form_widget(form) }}
+      {{ form_label(form) }}
+    </div>
+  </div>
+{% endblock %}
+
+{% block form_errors %}{% spaceless %}
+{% if errors|length %}
+  {% if compound %}
+  <div class="ui error message">
+    <ul class="list">
+    {% for error in errors %}
+      <li>{{ error.message }}</li>
+    {% endfor %}
+    </ul>
+  </div>
+  {% else %}
+  <div class="ui red pointing prompt label transition visible" style="display: inline-block;">
+  {% for error in errors %}
+    <p>error.message</p>
+  {% endfor %}
+  </div>
+  {% endif %}
+{% endif %}
+{% endspaceless %}{% endblock form_errors %}
+
+{% block button_widget %}
+  {% spaceless %}
+    {% if label is empty %}
+      {% set label = name|humanize %}
+    {% endif %}
+    {% set attr = attr|merge({'class': attr.class|default('ui button')}) %}
+    <button type="{{ type|default('button') }}" {{ block('button_attributes') }}>{{ label|trans({}, translation_domain) }}</button>
+  {% endspaceless %}
+{% endblock button_widget %}
+
+{% block submit_widget %}
+{% set attr = attr|merge({'class': attr.class|default('ui positive button')}) %}
+{{ parent() }}
+{% endblock %}
+
